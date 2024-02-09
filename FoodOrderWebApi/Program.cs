@@ -1,5 +1,12 @@
+using FoodOrderWebApi.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<FoodOrderDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -16,6 +23,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllers();
 
