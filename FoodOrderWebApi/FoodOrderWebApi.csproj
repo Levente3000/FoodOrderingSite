@@ -19,9 +19,7 @@
   <ItemGroup>
     <Folder Include="Controller\" />
     <Folder Include="DTO\" />
-    <Folder Include="Model\" />
     <Folder Include="Enum\" />
-    <Folder Include="Repository\" />
     <Folder Include="Service\" />
   </ItemGroup>
 
