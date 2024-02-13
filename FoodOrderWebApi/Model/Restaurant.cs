@@ -23,13 +23,13 @@ namespace FoodOrderWebApi.Model
         public string LogoName { get; set; } = null!;
 
         [Required]
-        [ForeignKey("OpeningHour")]
         public int OpeningHourId { get; set; }
+        [ForeignKey("OpeningHourId")]
         public virtual OpeningHour OpeningHours { get; set; } = null!;
 
         [Required]
-        [ForeignKey("OpeningHour")]
         public int ClosingHourId { get; set; }
+        [ForeignKey("ClosingHourId")]
         public virtual OpeningHour ClosingHours { get; set; } = null!;
 
         public virtual ICollection<Order> Orders { get; set; } = null!;

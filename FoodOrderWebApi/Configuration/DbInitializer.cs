@@ -1,5 +1,5 @@
 ﻿using FoodOrderWebApi.Model;
-using FoodOrderWebApi.Repository;
+using NodaTime;
 
 namespace FoodOrderWebApi.Configuration
 {
@@ -17,9 +17,9 @@ namespace FoodOrderWebApi.Configuration
             }
 
             SeedCategories();
+            SeedOpeningHours();
             SeedRestaurants();
             SeedProducts();
-            SeedOpeningHours();
         }
         private static void SeedCategories()
         {
@@ -163,47 +163,43 @@ namespace FoodOrderWebApi.Configuration
             {
                 new OpeningHour
                 {
-                    RestaurantId = 1,
-                    Monday = new DateTime(1,1,1,8,0,0),
-                    Tuesday = new DateTime(1,1,1,8,0,0),
-                    Wednesday = new DateTime(1,1,1,8,0,0),
-                    Thursday = new DateTime(1,1,1,8,0,0),
-                    Friday = new DateTime(1,1,1,8,0,0),
+                    Monday = Instant.FromUtc(1,1,1,8,0,0),
+                    Tuesday = Instant.FromUtc(1,1,1,8,0,0),
+                    Wednesday = Instant.FromUtc(1,1,1,8,0,0),
+                    Thursday = Instant.FromUtc(1,1,1,8,0,0),
+                    Friday = Instant.FromUtc(1,1,1,8,0,0),
                     Saturday = null,
                     Sunday = null,
                 },
                 new OpeningHour
                 {
-                    RestaurantId = 1,
-                    Monday = new DateTime(1,1,1,18,0,0),
-                    Tuesday = new DateTime(1,1,1,20,0,0),
-                    Wednesday = new DateTime(1,1,1,19,0,0),
-                    Thursday = new DateTime(1,1,1,18,0,0),
-                    Friday = new DateTime(1,1,1,16,0,0),
+                    Monday = Instant.FromUtc(1,1,1,18,0,0),
+                    Tuesday = Instant.FromUtc(1,1,1,20,0,0),
+                    Wednesday = Instant.FromUtc(1,1,1,19,0,0),
+                    Thursday = Instant.FromUtc(1,1,1,18,0,0),
+                    Friday = Instant.FromUtc(1,1,1,16,0,0),
                     Saturday = null,
                     Sunday = null,
                 },
                 new OpeningHour
                 {
-                    RestaurantId = 2,
-                    Monday = new DateTime(1,1,1,8,0,0),
-                    Tuesday = new DateTime(1,1,1,8,0,0),
+                    Monday = Instant.FromUtc(1,1,1,8,0,0),
+                    Tuesday = Instant.FromUtc(1,1,1,8,0,0),
                     Wednesday = null,
                     Thursday = null,
-                    Friday = new DateTime(1,1,1,8,0,0),
-                    Saturday = new DateTime(1,1,1,10,0,0),
-                    Sunday = new DateTime(1,1,1,10,0,0),
+                    Friday = Instant.FromUtc(1,1,1,8,0,0),
+                    Saturday = Instant.FromUtc(1,1,1,10,0,0),
+                    Sunday = Instant.FromUtc(1,1,1,10,0,0),
                 },
                 new OpeningHour
                 {
-                    RestaurantId = 2,
-                    Monday = new DateTime(1,1,1,20,0,0),
-                    Tuesday = new DateTime(1,1,1,20,0,0),
+                    Monday = Instant.FromUtc(1,1,1,20,0,0),
+                    Tuesday = Instant.FromUtc(1,1,1,20,0,0),
                     Wednesday = null,
                     Thursday = null,
-                    Friday = new DateTime(1,1,1,20,0,0),
-                    Saturday = new DateTime(1,1,1,16,0,0),
-                    Sunday = new DateTime(1,1,1,16,0,0),
+                    Friday = Instant.FromUtc(1,1,1,20,0,0),
+                    Saturday = Instant.FromUtc(1,1,1,16,0,0),
+                    Sunday = Instant.FromUtc(1,1,1,16,0,0),
                 },
             };
 

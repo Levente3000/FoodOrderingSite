@@ -8,10 +8,10 @@ namespace FoodOrderWebApi.Repository
     {
         private readonly FoodOrderDbContext _context;
 
-        public CategoryRepository(FoodOrderDbContext context, IRepository<Category> repository)
+        public CategoryRepository(FoodOrderDbContext context)
         {
             _context = context;
-            
+
         }
 
         public List<Category> GetAll()
@@ -21,10 +21,10 @@ namespace FoodOrderWebApi.Repository
                 .ToList();
         }
 
-        public Category? GetById(object key)
+        public Category? GetByIdOrName(object key)
         {
             return _context.Categories
-                .Where(c => c.Name == key)
+                .Where(c => c.Name == (string)key)
                 .AsNoTracking()
                 .SingleOrDefault();
         }
