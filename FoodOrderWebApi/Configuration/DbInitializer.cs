@@ -11,7 +11,7 @@ namespace FoodOrderWebApi.Configuration
         {
             _context = serviceProvider.GetRequiredService<FoodOrderDbContext>();
 
-            if (!_context.Database.EnsureCreated())
+            if (!_context.Database.EnsureCreated() && !_context.Categories.Any())
             {
                 return;
             }
@@ -23,34 +23,31 @@ namespace FoodOrderWebApi.Configuration
         }
         private static void SeedCategories()
         {
-            var categories = new Category[]
+            var categories = new FoodCategory[]
             {
-                new Category
+                new FoodCategory
                 {
                     Name = "Soup",
                     PictureName = "soup.jpg"
                 },
-                new Category
+                new FoodCategory
                 {
                     Name = "Drink",
                     PictureName = "drink.jpg"
                 },
-                new Category
+                new FoodCategory
                 {
                     Name = "Pizza",
                     PictureName = "pizza.jpg"
                 },
-                new Category
+                new FoodCategory
                 {
                     Name = "Pasta",
                     PictureName = "pasta.jpg"
                 },
             };
 
-            foreach (Category c in categories)
-            {
-                _context.Categories.Add(c);
-            }
+            _context.Categories.AddRange(categories);
 
             _context.SaveChanges();
         }
@@ -81,10 +78,7 @@ namespace FoodOrderWebApi.Configuration
                 },
             };
 
-            foreach (Restaurant r in restaurants)
-            {
-                _context.Restaurants.Add(r);
-            }
+            _context.Restaurants.AddRange(restaurants);
 
             _context.SaveChanges();
         }
@@ -149,10 +143,7 @@ namespace FoodOrderWebApi.Configuration
                 },
             };
 
-            foreach (Product p in products)
-            {
-                _context.Products.Add(p);
-            }
+            _context.Products.AddRange(products);
 
             _context.SaveChanges();
         }
@@ -203,10 +194,7 @@ namespace FoodOrderWebApi.Configuration
                 },
             };
 
-            foreach (OpeningHour o in openingHours)
-            {
-                _context.OpeningHours.Add(o);
-            }
+            _context.OpeningHours.AddRange(openingHours);
 
             _context.SaveChanges();
         }

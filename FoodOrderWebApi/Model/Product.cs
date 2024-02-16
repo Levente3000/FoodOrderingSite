@@ -20,9 +20,12 @@ namespace FoodOrderWebApi.Model
         public string PictureName { get; set; } = null!;
 
         [Required]
+        public bool IsEnabled { get; set; }
+
+        [Required]
         [ForeignKey("Category")]
         public string CategoryName { get; set; } = null!;
-        public virtual Category Category { get; set; } = null!;
+        public virtual FoodCategory Category { get; set; } = null!;
 
         [Required]
         [ForeignKey("Restaurant")]

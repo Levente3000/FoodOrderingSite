@@ -4,27 +4,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FoodOrderWebApi.Repository
 {
-    public class CategoryRepository : IRepository<Category>
+    public class FoodCategoryRepository : IRepository<FoodCategory, string>
     {
         private readonly FoodOrderDbContext _context;
 
-        public CategoryRepository(FoodOrderDbContext context)
+        public FoodCategoryRepository(FoodOrderDbContext context)
         {
             _context = context;
 
         }
 
-        public List<Category> GetAll()
+        public List<FoodCategory> GetAll()
         {
             return _context.Categories
                 .AsNoTracking()
                 .ToList();
         }
 
-        public Category? GetByIdOrName(object key)
+        public FoodCategory? GetByIdOrName(string key)
         {
             return _context.Categories
-                .Where(c => c.Name == (string)key)
+                .Where(c => c.Name == key)
                 .AsNoTracking()
                 .SingleOrDefault();
         }
