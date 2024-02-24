@@ -11,7 +11,7 @@ namespace FoodOrderWebApi.Configuration
         {
             _context = serviceProvider.GetRequiredService<FoodOrderDbContext>();
 
-            if (!_context.Database.EnsureCreated() && !_context.Categories.Any())
+            if (!_context.Database.EnsureCreated() && _context.FoodCategories.Any())
             {
                 return;
             }
@@ -47,7 +47,7 @@ namespace FoodOrderWebApi.Configuration
                 },
             };
 
-            _context.Categories.AddRange(categories);
+            _context.FoodCategories.AddRange(categories);
 
             _context.SaveChanges();
         }
