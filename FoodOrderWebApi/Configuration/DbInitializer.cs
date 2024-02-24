@@ -11,7 +11,7 @@ namespace FoodOrderWebApi.Configuration
         {
             _context = serviceProvider.GetRequiredService<FoodOrderDbContext>();
 
-            if (!_context.Database.EnsureCreated() && !_context.FoodCategories.Any())
+            if (!_context.Database.EnsureCreated() && _context.FoodCategories.Any())
             {
                 return;
             }

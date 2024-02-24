@@ -11,7 +11,6 @@ namespace FoodOrderWebApi.Repository
         public FoodCategoryRepository(FoodOrderDbContext context)
         {
             _context = context;
-
         }
 
         public List<FoodCategory> GetAll()
