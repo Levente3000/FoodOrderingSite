@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<IRepository<Restaurant, int>, RestaurantRepository>();
 builder.Services.AddScoped<IRepository<FoodCategory, string>, FoodCategoryRepository>();
 
 builder.Services.AddDbContext<FoodOrderDbContext>(options =>
@@ -27,6 +28,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors(x => x
+    .WithOrigins("http://localhost",
+        "http://localhost:4200",
+        "https://localhost:7233")
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 app.UseStaticFiles();
 
 app.UseAuthorization();

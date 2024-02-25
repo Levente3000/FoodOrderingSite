@@ -1,8 +1,8 @@
 ﻿namespace FoodOrderWebApi.Repository
 {
-    public interface IRepository<Entity, KeyType> where Entity : class
+    public interface IRepository<TEntity, in TKeyType> where TEntity : class
     {
-        public List<Entity> GetAll();
-        public Entity? GetByIdOrName(KeyType key);
+        public List<TEntity> GetAll();
+        public TEntity? GetByIdOrName(TKeyType key);
     }
 }
