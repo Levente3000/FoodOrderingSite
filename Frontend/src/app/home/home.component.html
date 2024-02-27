@@ -1,8 +1,8 @@
 <div>
   <h1>New restaurants:</h1>
-  <div class="new-restaurants-list">
-    @for(restaurant of allRestaurants; track restaurant.id) {
-      <p>{{restaurant.name}}</p>
+  <div class="restaurants-list">
+    @for (restaurant of allRestaurants; track restaurant.id) {
+      <app-restaurant-card [restaurant]="restaurant"></app-restaurant-card>
     }
   </div>
 </div>

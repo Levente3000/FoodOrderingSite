@@ -1,0 +1,17 @@
+<a class="card" [routerLink]="['/valami']">
+  <div class="image-panel">
+    <img ngSrc='assets/{{ restaurant?.logoName }}' alt="Here should be the restaurant's logo" fill>
+  </div>
+  <div class="info-panel">
+    <div class="restaurant-name-and-shor-desc">
+      <div class="restaurant-name">{{ restaurant?.name }}</div>
+      <div>
+        Valami
+      </div>
+    </div>
+    <div>
+      <span class="material-icons">star_rate</span>
+      <p>(RATING)</p>
+    </div>
+  </div>
+</a>

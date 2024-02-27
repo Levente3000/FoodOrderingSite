@@ -23,13 +23,14 @@ if (app.Environment.IsDevelopment())
     {
         DbInitializer.Initialize(serviceScope.ServiceProvider);
     }
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 app.UseCors(x => x
-    .WithOrigins("http://localhost",
+    .WithOrigins(
         "http://localhost:4200",
         "https://localhost:7233")
     .AllowAnyOrigin()

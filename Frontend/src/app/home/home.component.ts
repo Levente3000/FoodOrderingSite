@@ -3,11 +3,12 @@ import { RouterLink } from '@angular/router';
 import { HomeService } from '../services/home.service';
 import { Restaurant } from '../model/restaurant.model';
 import { Subject, takeUntil } from 'rxjs';
+import { RestaurantCardComponent } from '../restaurant-card/restaurant-card.component';
 
 @Component({
 	selector: 'app-home',
 	standalone: true,
-	imports: [RouterLink],
+	imports: [RouterLink, RestaurantCardComponent],
 	templateUrl: './home.component.html',
 	styleUrl: './home.component.scss',
 })
