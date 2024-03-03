@@ -1,203 +1,199 @@
-﻿using FoodOrderWebApi.Model;
+﻿using FoodOrderWebApi.Models;
 using NodaTime;
 
-namespace FoodOrderWebApi.Configuration
+namespace FoodOrderWebApi.Configuration;
+
+public class DbInitializer
 {
-    public class DbInitializer
+    private static FoodOrderDbContext _context = null!;
+
+    public static void Initialize(IServiceProvider serviceProvider)
     {
-        private static FoodOrderDbContext _context = null!;
+        _context = serviceProvider.GetRequiredService<FoodOrderDbContext>();
 
-        public static void Initialize(IServiceProvider serviceProvider)
+        if (!_context.Database.EnsureCreated() && _context.FoodCategories.Any()) return;
+
+        SeedCategories();
+        SeedOpeningHours();
+        SeedRestaurants();
+        SeedProducts();
+    }
+
+    private static void SeedCategories()
+    {
+        var categories = new FoodCategory[]
         {
-            _context = serviceProvider.GetRequiredService<FoodOrderDbContext>();
-
-            if (!_context.Database.EnsureCreated() && _context.FoodCategories.Any())
+            new()
             {
-                return;
+                Name = "Soup",
+                PictureName = "soup.jpg"
+            },
+            new()
+            {
+                Name = "Drink",
+                PictureName = "drink.jpg"
+            },
+            new()
+            {
+                Name = "Pizza",
+                PictureName = "pizza.jpg"
+            },
+            new()
+            {
+                Name = "Pasta",
+                PictureName = "pasta.jpg"
             }
+        };
 
-            SeedCategories();
-            SeedOpeningHours();
-            SeedRestaurants();
-            SeedProducts();
-        }
-        private static void SeedCategories()
+        _context.FoodCategories.AddRange(categories);
+
+        _context.SaveChanges();
+    }
+
+    private static void SeedRestaurants()
+    {
+        var restaurants = new Restaurant[]
         {
-            var categories = new FoodCategory[]
+            new()
             {
-                new FoodCategory
-                {
-                    Name = "Soup",
-                    PictureName = "soup.jpg"
-                },
-                new FoodCategory
-                {
-                    Name = "Drink",
-                    PictureName = "drink.jpg"
-                },
-                new FoodCategory
-                {
-                    Name = "Pizza",
-                    PictureName = "pizza.jpg"
-                },
-                new FoodCategory
-                {
-                    Name = "Pasta",
-                    PictureName = "pasta.jpg"
-                },
-            };
+                Name = "Karen bar",
+                Description = "something",
+                Address = "Budapest, Lágymányosi campus",
+                PhoneNumber = "06300000001",
+                LogoName = "karen_bar.jpg",
+                OpeningHourId = 1,
+                ClosingHourId = 2
+            },
+            new()
+            {
+                Name = "Blue Parrot",
+                Description = "soemthing",
+                Address = "Budapest, Wesselényi street",
+                PhoneNumber = "06300000002",
+                LogoName = "blue_parrot.jpg",
+                OpeningHourId = 3,
+                ClosingHourId = 4
+            }
+        };
 
-            _context.FoodCategories.AddRange(categories);
+        _context.Restaurants.AddRange(restaurants);
 
-            _context.SaveChanges();
-        }
+        _context.SaveChanges();
+    }
 
-        private static void SeedRestaurants()
+    private static void SeedProducts()
+    {
+        var products = new Product[]
         {
-            var restaurants = new Restaurant[]
+            new()
             {
-                new Restaurant
-                {
-                    Name = "Karen bar",
-                    Description = "something",
-                    Address = "Budapest, Lágymányosi campus",
-                    PhoneNumber = "06300000001",
-                    LogoName = "karen_bar.jpg",
-                    OpeningHourId = 1,
-                    ClosingHourId = 2,
-                },
-                new Restaurant
-                {
-                    Name = "Blue Parrot",
-                    Description = "soemthing",
-                    Address = "Budapest, Wesselényi street",
-                    PhoneNumber = "06300000002",
-                    LogoName = "blue_parrot.jpg",
-                    OpeningHourId = 3,
-                    ClosingHourId = 4,
-                },
-            };
+                Name = "Goulash Soup",
+                Description = "0,5L soup",
+                Price = 1200,
+                PictureName = "",
+                CategoryName = "Soup",
+                RestaurantId = 1
+            },
+            new()
+            {
+                Name = "Margherita",
+                Description = "32cm",
+                Price = 2000,
+                PictureName = "",
+                CategoryName = "Pizza",
+                RestaurantId = 1
+            },
+            new()
+            {
+                Name = "BBQ",
+                Description = "32cm",
+                Price = 2300,
+                PictureName = "",
+                CategoryName = "Pizza",
+                RestaurantId = 1
+            },
+            new()
+            {
+                Name = "Pesto pasta",
+                Description = "one serving",
+                Price = 1800,
+                PictureName = "",
+                CategoryName = "Pasta",
+                RestaurantId = 2
+            },
+            new()
+            {
+                Name = "Bolognese pasta",
+                Description = "one serving",
+                Price = 1900,
+                PictureName = "",
+                CategoryName = "Pasta",
+                RestaurantId = 2
+            },
+            new()
+            {
+                Name = "Coca Cola",
+                Description = "0,33L",
+                Price = 600,
+                PictureName = "",
+                CategoryName = "Drink",
+                RestaurantId = 2
+            }
+        };
 
-            _context.Restaurants.AddRange(restaurants);
+        _context.Products.AddRange(products);
 
-            _context.SaveChanges();
-        }
+        _context.SaveChanges();
+    }
 
-        private static void SeedProducts()
+    private static void SeedOpeningHours()
+    {
+        var openingHours = new OpeningHour[]
         {
-            var products = new Product[]
+            new()
             {
-                new Product
-                {
-                    Name = "Goulash Soup",
-                    Description = "0,5L soup",
-                    Price= 1200,
-                    PictureName = "",
-                    CategoryName = "Soup",
-                    RestaurantId = 1,
-                },
-                new Product
-                {
-                    Name = "Margherita",
-                    Description = "32cm",
-                    Price= 2000,
-                    PictureName = "",
-                    CategoryName = "Pizza",
-                    RestaurantId = 1,
-                },
-                new Product
-                {
-                    Name = "BBQ",
-                    Description = "32cm",
-                    Price= 2300,
-                    PictureName = "",
-                    CategoryName = "Pizza",
-                    RestaurantId = 1,
-                },
-                new Product
-                {
-                    Name = "Pesto pasta",
-                    Description = "one serving",
-                    Price= 1800,
-                    PictureName = "",
-                    CategoryName = "Pasta",
-                    RestaurantId = 2,
-                },
-                new Product
-                {
-                    Name = "Bolognese pasta",
-                    Description = "one serving",
-                    Price= 1900,
-                    PictureName = "",
-                    CategoryName = "Pasta",
-                    RestaurantId = 2,
-                },
-                new Product
-                {
-                    Name = "Coca Cola",
-                    Description = "0,33L",
-                    Price= 600,
-                    PictureName = "",
-                    CategoryName = "Drink",
-                    RestaurantId = 2,
-                },
-            };
-
-            _context.Products.AddRange(products);
-
-            _context.SaveChanges();
-        }
-
-        private static void SeedOpeningHours()
-        {
-            var openingHours = new OpeningHour[]
+                Monday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Wednesday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Thursday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Friday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Saturday = null,
+                Sunday = null
+            },
+            new()
             {
-                new OpeningHour
-                {
-                    Monday = Instant.FromUtc(1,1,1,8,0,0),
-                    Tuesday = Instant.FromUtc(1,1,1,8,0,0),
-                    Wednesday = Instant.FromUtc(1,1,1,8,0,0),
-                    Thursday = Instant.FromUtc(1,1,1,8,0,0),
-                    Friday = Instant.FromUtc(1,1,1,8,0,0),
-                    Saturday = null,
-                    Sunday = null,
-                },
-                new OpeningHour
-                {
-                    Monday = Instant.FromUtc(1,1,1,18,0,0),
-                    Tuesday = Instant.FromUtc(1,1,1,20,0,0),
-                    Wednesday = Instant.FromUtc(1,1,1,19,0,0),
-                    Thursday = Instant.FromUtc(1,1,1,18,0,0),
-                    Friday = Instant.FromUtc(1,1,1,16,0,0),
-                    Saturday = null,
-                    Sunday = null,
-                },
-                new OpeningHour
-                {
-                    Monday = Instant.FromUtc(1,1,1,8,0,0),
-                    Tuesday = Instant.FromUtc(1,1,1,8,0,0),
-                    Wednesday = null,
-                    Thursday = null,
-                    Friday = Instant.FromUtc(1,1,1,8,0,0),
-                    Saturday = Instant.FromUtc(1,1,1,10,0,0),
-                    Sunday = Instant.FromUtc(1,1,1,10,0,0),
-                },
-                new OpeningHour
-                {
-                    Monday = Instant.FromUtc(1,1,1,20,0,0),
-                    Tuesday = Instant.FromUtc(1,1,1,20,0,0),
-                    Wednesday = null,
-                    Thursday = null,
-                    Friday = Instant.FromUtc(1,1,1,20,0,0),
-                    Saturday = Instant.FromUtc(1,1,1,16,0,0),
-                    Sunday = Instant.FromUtc(1,1,1,16,0,0),
-                },
-            };
+                Monday = Instant.FromUtc(1, 1, 1, 18, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Wednesday = Instant.FromUtc(1, 1, 1, 19, 0, 0),
+                Thursday = Instant.FromUtc(1, 1, 1, 18, 0, 0),
+                Friday = Instant.FromUtc(1, 1, 1, 16, 0, 0),
+                Saturday = null,
+                Sunday = null
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 10, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 10, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 16, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 16, 0, 0)
+            }
+        };
 
-            _context.OpeningHours.AddRange(openingHours);
+        _context.OpeningHours.AddRange(openingHours);
 
-            _context.SaveChanges();
-        }
-
+        _context.SaveChanges();
     }
 }

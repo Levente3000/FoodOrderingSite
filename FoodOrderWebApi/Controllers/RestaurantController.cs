@@ -1,5 +1,5 @@
-﻿using FoodOrderWebApi.Model;
-using FoodOrderWebApi.Repository;
+﻿using FoodOrderWebApi.Models;
+using FoodOrderWebApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodOrderWebApi.Controllers;
@@ -14,7 +14,7 @@ public class RestaurantController : Controller
     {
         _restaurantRepository = restaurantRepository;
     }
-    
+
     [HttpGet]
     public List<Restaurant> GetAllRestaurants()
     {

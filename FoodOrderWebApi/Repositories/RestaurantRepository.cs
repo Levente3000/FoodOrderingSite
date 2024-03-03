@@ -1,8 +1,8 @@
 ﻿using FoodOrderWebApi.Configuration;
-using FoodOrderWebApi.Model;
+using FoodOrderWebApi.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FoodOrderWebApi.Repository;
+namespace FoodOrderWebApi.Repositories;
 
 public class RestaurantRepository : IRepository<Restaurant, int>
 {
@@ -12,7 +12,7 @@ public class RestaurantRepository : IRepository<Restaurant, int>
     {
         _context = context;
     }
-    
+
     public List<Restaurant> GetAll()
     {
         return _context.Restaurants

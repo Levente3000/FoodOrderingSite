@@ -1,12 +1,14 @@
 using FoodOrderWebApi.Configuration;
-using FoodOrderWebApi.Model;
-using FoodOrderWebApi.Repository;
+using FoodOrderWebApi.Models;
+using FoodOrderWebApi.Repositories;
+using FoodOrderWebApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IRepository<Restaurant, int>, RestaurantRepository>();
 builder.Services.AddScoped<IRepository<FoodCategory, string>, FoodCategoryRepository>();
+builder.Services.AddScoped<AssetsService>();
 
 builder.Services.AddDbContext<FoodOrderDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"), o => o.UseNodaTime()));

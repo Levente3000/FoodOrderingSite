@@ -1,9 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { HomeService } from '../services/home.service';
 import { Restaurant } from '../model/restaurant.model';
-import { Subject, takeUntil } from 'rxjs';
 import { RestaurantCardComponent } from '../restaurant-card/restaurant-card.component';
+import { RestaurantService } from '../services/restaurant.service';
 
 @Component({
 	selector: 'app-home',
@@ -12,22 +11,15 @@ import { RestaurantCardComponent } from '../restaurant-card/restaurant-card.comp
 	templateUrl: './home.component.html',
 	styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
 	protected allRestaurants: Restaurant[] = [];
 
-	private onDestroy$ = new Subject<void>();
-
-	constructor(private homeService: HomeService) {}
+	constructor(private restaurantService: RestaurantService) {}
 
 	ngOnInit() {
-		this.homeService
-			.getAllRestaurants()
-			.pipe(takeUntil(this.onDestroy$))
-			.subscribe(restaurant => (this.allRestaurants = restaurant));
-	}
-
-	ngOnDestroy() {
-		this.onDestroy$.next();
-		this.onDestroy$.complete();
+		this.restaurantService.getRestaurantsWithLogo().subscribe(restaurants => {
+			this.allRestaurants = restaurants;
+			console.log(restaurants);
+		});
 	}
 }
