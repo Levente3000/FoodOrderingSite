@@ -1,0 +1,40 @@
+.slider-container {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-left: 0.5rem;
+
+}
+
+.slider-wrapper {
+  overflow: scroll;
+  scroll-behavior: smooth;
+  white-space: nowrap;
+  padding-left: 1rem;
+}
+
+.slider-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.slider-content {
+  display: inline-block;
+  white-space: nowrap;
+  transition: transform 0.5s ease;
+}
+
+.scroll-btn {
+  cursor: pointer;
+  user-select: none;
+
+}
+
+.visible {
+  visibility: hidden;
+}
+
+.slider-items {
+  display: inline-flex;
+  padding-right: 1rem;
+}

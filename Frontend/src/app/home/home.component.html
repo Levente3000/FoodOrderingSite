@@ -1,8 +1,1 @@
-<div>
-  <h1>New restaurants:</h1>
-  <div class="restaurants-list">
-    @for (restaurant of allRestaurants; track restaurant.id) {
-      <app-restaurant-card [restaurant]="restaurant"></app-restaurant-card>
-    }
-  </div>
-</div>
+<app-new-restaurants-carousel [allRestaurants]="allRestaurants"></app-new-restaurants-carousel>
