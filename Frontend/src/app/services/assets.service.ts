@@ -11,7 +11,7 @@ export class AssetsService {
 
 	public getAsset(fileName: string): Observable<string> {
 		return this.httpClient
-			.get(`${baseUrl}/assets?companyLogoName=${fileName}`, {
+			.get(`${baseUrl}/assets?assetName=${fileName}`, {
 				responseType: 'blob',
 			})
 			.pipe(map(asset => URL.createObjectURL(asset)));

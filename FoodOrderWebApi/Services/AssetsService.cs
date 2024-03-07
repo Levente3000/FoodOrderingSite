@@ -16,9 +16,9 @@ public class AssetsService
         return File.ReadAllBytes($@"{_env.ContentRootPath}\assets\{companyLogoName}");
     }
 
-    public (Stream fileStream, string contentType) GetLogos(string companyLogoName)
+    public (Stream fileStream, string contentType) GetAssets(string assetName)
     {
-        var filePath = Path.Combine(_env.ContentRootPath, "assets", companyLogoName);
+        var filePath = Path.Combine(_env.ContentRootPath, "assets", assetName);
         var contentType = MimeHelper.GetMimeType(filePath);
         var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
         return (fileStream, contentType);

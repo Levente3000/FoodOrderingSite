@@ -16,9 +16,9 @@ public class AssetsController : Controller
     }
 
     [HttpGet]
-    public FileStreamResult GetLogo(string companyLogoName)
+    public FileStreamResult GetAsset(string assetName)
     {
-        var (fileStream, contentType) = _assetsService.GetLogos(companyLogoName);
+        var (fileStream, contentType) = _assetsService.GetAssets(assetName);
 
         return File(fileStream, contentType);
     }

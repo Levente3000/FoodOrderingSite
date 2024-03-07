@@ -7,29 +7,33 @@ import {
 	OnChanges,
 	ViewChild,
 } from '@angular/core';
-import { RestaurantCardComponent } from '../../restaurant-card/restaurant-card.component';
-import { Restaurant } from '../../model/restaurant.model';
 import { NgClass, NgOptimizedImage } from '@angular/common';
+import { RestaurantCardComponent } from '../../restaurant-card/restaurant-card.component';
+import { Category } from '../../model/category.model';
+import { CategoryCardComponent } from '../../category-card/category-card.component';
 
 @Component({
-	selector: 'app-new-restaurants-carousel',
+	selector: 'app-category-carousel',
 	standalone: true,
-	imports: [RestaurantCardComponent, NgClass, NgOptimizedImage],
-	templateUrl: './new-restaurants-carousel.component.html',
-	styleUrl: './new-restaurants-carousel.component.scss',
+	imports: [
+		NgOptimizedImage,
+		RestaurantCardComponent,
+		NgClass,
+		CategoryCardComponent,
+	],
+	templateUrl: './category-carousel.component.html',
+	styleUrl: './category-carousel.component.scss',
 })
-export class NewRestaurantsCarouselComponent
-	implements AfterViewInit, OnChanges
-{
+export class CategoryCarouselComponent implements AfterViewInit, OnChanges {
 	@ViewChild('sliderWrapper') sliderWrapper!: ElementRef<HTMLDivElement>;
 	scrollPosition = 0;
 	maxScroll = 0;
 
-	protected _allRestaurants: Restaurant[] = [];
+	protected _allCategories: Category[] = [];
 
 	@Input()
-	public set allRestaurants(allRestaurants: Restaurant[]) {
-		this._allRestaurants = allRestaurants;
+	public set allCategories(allCategories: Category[]) {
+		this._allCategories = allCategories;
 
 		this.cd.detectChanges();
 	}
