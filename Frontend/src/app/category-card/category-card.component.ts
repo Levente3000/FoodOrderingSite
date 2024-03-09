@@ -10,5 +10,5 @@ import { RouterLink } from '@angular/router';
 	styleUrl: './category-card.component.scss',
 })
 export class CategoryCardComponent {
-	@Input() category?: Category;
+	@Input({ required: true }) category?: Category;
 }

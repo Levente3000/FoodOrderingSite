@@ -9,9 +9,17 @@ import { baseUrl } from '../../global';
 export class AssetsService {
 	constructor(private readonly httpClient: HttpClient) {}
 
-	public getAsset(fileName: string): Observable<string> {
+	public getAssetForRestaurant(fileName: string): Observable<string> {
 		return this.httpClient
-			.get(`${baseUrl}/assets?assetName=${fileName}`, {
+			.get(`${baseUrl}/assets/restaurant?assetName=${fileName}`, {
+				responseType: 'blob',
+			})
+			.pipe(map(asset => URL.createObjectURL(asset)));
+	}
+
+	public getAssetForCategory(fileName: string): Observable<string> {
+		return this.httpClient
+			.get(`${baseUrl}/assets/category?assetName=${fileName}`, {
 				responseType: 'blob',
 			})
 			.pipe(map(asset => URL.createObjectURL(asset)));

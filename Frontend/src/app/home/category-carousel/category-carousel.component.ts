@@ -31,7 +31,7 @@ export class CategoryCarouselComponent implements AfterViewInit, OnChanges {
 
 	protected _allCategories: Category[] = [];
 
-	@Input()
+	@Input({ required: true })
 	public set allCategories(allCategories: Category[]) {
 		this._allCategories = allCategories;
 

@@ -9,29 +9,37 @@ import { AssetsService } from './assets.service';
 	providedIn: 'root',
 })
 export class RestaurantService {
+	private controllerUrl = 'restaurant';
+
 	constructor(
 		private readonly httpClient: HttpClient,
 		private readonly assetsService: AssetsService
 	) {}
 
 	public getAllRestaurants(): Observable<Restaurant[]> {
-		return this.httpClient.get<Restaurant[]>(`${baseUrl}/restaurant`);
+		return this.httpClient.get<Restaurant[]>(
+			`${baseUrl}/${this.controllerUrl}`
+		);
 	}
 
 	public getRestaurantsWithLogo(): Observable<Restaurant[]> {
-		return this.httpClient.get<Restaurant[]>(`${baseUrl}/restaurant`).pipe(
-			mergeMap(restaurants =>
-				forkJoin(
-					restaurants.map(restaurant => {
-						return this.assetsService.getAsset(restaurant.logoName).pipe(
-							map(asset => {
-								restaurant.logo = asset;
-								return restaurant;
-							})
-						);
-					})
+		return this.httpClient
+			.get<Restaurant[]>(`${baseUrl}/${this.controllerUrl}`)
+			.pipe(
+				mergeMap(restaurants =>
+					forkJoin(
+						restaurants.map(restaurant => {
+							return this.assetsService
+								.getAssetForRestaurant(restaurant.logoName)
+								.pipe(
+									map(asset => {
+										restaurant.logo = asset;
+										return restaurant;
+									})
+								);
+						})
+					)
 				)
-			)
-		);
+			);
 	}
 }

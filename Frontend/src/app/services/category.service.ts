@@ -9,25 +9,31 @@ import { AssetsService } from './assets.service';
 	providedIn: 'root',
 })
 export class CategoryService {
+	private controllerUrl = 'category';
+
 	constructor(
 		private readonly httpClient: HttpClient,
 		private readonly assetsService: AssetsService
 	) {}
 
 	public getCategoriesWithLogo(): Observable<Category[]> {
-		return this.httpClient.get<Category[]>(`${baseUrl}/category`).pipe(
-			mergeMap(categories =>
-				forkJoin(
-					categories.map(category => {
-						return this.assetsService.getAsset(category.pictureName).pipe(
-							map(asset => {
-								category.logo = asset;
-								return category;
-							})
-						);
-					})
+		return this.httpClient
+			.get<Category[]>(`${baseUrl}/${this.controllerUrl}`)
+			.pipe(
+				mergeMap(categories =>
+					forkJoin(
+						categories.map(category => {
+							return this.assetsService
+								.getAssetForCategory(category.pictureName)
+								.pipe(
+									map(asset => {
+										category.logo = asset;
+										return category;
+									})
+								);
+						})
+					)
 				)
-			)
-		);
+			);
 	}
 }

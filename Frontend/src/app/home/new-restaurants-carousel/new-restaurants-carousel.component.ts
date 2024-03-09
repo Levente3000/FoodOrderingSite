@@ -27,7 +27,7 @@ export class NewRestaurantsCarouselComponent
 
 	protected _allRestaurants: Restaurant[] = [];
 
-	@Input()
+	@Input({ required: true })
 	public set allRestaurants(allRestaurants: Restaurant[]) {
 		this._allRestaurants = allRestaurants;
 

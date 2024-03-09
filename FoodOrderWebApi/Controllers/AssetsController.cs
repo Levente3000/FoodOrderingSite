@@ -15,10 +15,26 @@ public class AssetsController : Controller
         _assetsService = assetsService;
     }
 
-    [HttpGet]
-    public FileStreamResult GetAsset(string assetName)
+    [HttpGet("restaurant")]
+    public FileStreamResult GetAssetForRestaurant(string assetName)
     {
-        var (fileStream, contentType) = _assetsService.GetAssets(assetName);
+        var (fileStream, contentType) = _assetsService.GetAssetForRestaurant(assetName);
+
+        return File(fileStream, contentType);
+    }
+
+    [HttpGet("category")]
+    public FileStreamResult GetAssetForCategory(string assetName)
+    {
+        var (fileStream, contentType) = _assetsService.GetAssetForCategory(assetName);
+
+        return File(fileStream, contentType);
+    }
+
+    [HttpGet("product")]
+    public FileStreamResult GetAssetForProduct(string assetName)
+    {
+        var (fileStream, contentType) = _assetsService.GetAssetForProduct(assetName);
 
         return File(fileStream, contentType);
     }

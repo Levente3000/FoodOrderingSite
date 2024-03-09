@@ -31,7 +31,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors(x => x
+app.UseCors(policyBuilder => policyBuilder
     .WithOrigins(
         "http://localhost:4200",
         "https://localhost:7233")
