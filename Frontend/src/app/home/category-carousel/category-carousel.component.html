@@ -1,0 +1,18 @@
+<h1>Categories:</h1>
+<div class="slider-container">
+  <img ngSrc="./assets/left-arrow.svg" alt="left navigational arrow" height="36" width="36"
+       [ngClass]="scrollPosition <= 0 ? 'visible' : ''"
+       class="scroll-btn left"
+       (click)="scrollLeft()" />
+  <div class="slider-wrapper" #sliderWrapper [scrollLeft]="scrollPosition">
+    <div class="slider-content">
+      @for (category of _allCategories; track category.name) {
+        <app-category-card class="slider-items" [category]="category"></app-category-card>
+      }
+    </div>
+  </div>
+  <img ngSrc="./assets/right-arrow.svg" alt="right navigational arrow" height="36" width="36"
+       [ngClass]="scrollPosition >= maxScroll ? 'visible' : ''"
+       class="scroll-btn right"
+       (click)="scrollRight()" />
+</div>
