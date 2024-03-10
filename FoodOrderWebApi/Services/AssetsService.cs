@@ -5,6 +5,7 @@ namespace FoodOrderWebApi.Services;
 public class AssetsService
 {
     private readonly IWebHostEnvironment _env;
+    private const string Assetpath = "assets";
 
     public AssetsService(IWebHostEnvironment env)
     {
@@ -13,7 +14,7 @@ public class AssetsService
 
     public (Stream fileStream, string contentType) GetAssetForRestaurant(string assetName)
     {
-        var filePath = Path.Combine(_env.ContentRootPath, "assets/restaurant", assetName);
+        var filePath = Path.Combine(_env.ContentRootPath, Assetpath + "/restaurant", assetName);
         var contentType = GetMimeType(filePath);
         var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
         return (fileStream, contentType);
@@ -21,7 +22,7 @@ public class AssetsService
 
     public (Stream fileStream, string contentType) GetAssetForCategory(string assetName)
     {
-        var filePath = Path.Combine(_env.ContentRootPath, "assets/category", assetName);
+        var filePath = Path.Combine(_env.ContentRootPath, Assetpath + "/category", assetName);
         var contentType = GetMimeType(filePath);
         var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
         return (fileStream, contentType);
@@ -29,7 +30,7 @@ public class AssetsService
 
     public (Stream fileStream, string contentType) GetAssetForProduct(string assetName)
     {
-        var filePath = Path.Combine(_env.ContentRootPath, "assets/product", assetName);
+        var filePath = Path.Combine(_env.ContentRootPath, Assetpath + "/product", assetName);
         var contentType = GetMimeType(filePath);
         var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
         return (fileStream, contentType);
