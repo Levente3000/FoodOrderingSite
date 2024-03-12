@@ -1,16 +1,20 @@
+.title {
+  margin-left: 1rem;
+}
+
 .slider-container {
   width: 90%;
   display: flex;
   align-items: center;
   flex-direction: row;
   margin-left: 0.5rem;
+  gap: 1rem;
 }
 
 .slider-wrapper {
   overflow: scroll;
   scroll-behavior: smooth;
   white-space: nowrap;
-  padding-left: 1rem;
 }
 
 .slider-wrapper::-webkit-scrollbar {
