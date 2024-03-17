@@ -216,6 +216,9 @@ namespace FoodOrderWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("PriceCategory")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ClosingHourId");
