@@ -9,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IRepository<Restaurant, int>, RestaurantRepository>();
 builder.Services.AddScoped<IRepository<FoodCategory, string>, FoodCategoryRepository>();
 builder.Services.AddScoped<AssetsService>();
+builder.Services.AddScoped<RestaurantService>();
+
+builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddDbContext<FoodOrderDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"), o => o.UseNodaTime()));

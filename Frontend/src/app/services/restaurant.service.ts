@@ -16,12 +16,6 @@ export class RestaurantService {
 		private readonly assetsService: AssetsService
 	) {}
 
-	public getAllRestaurants(): Observable<Restaurant[]> {
-		return this.httpClient.get<Restaurant[]>(
-			`${baseUrl}/${this.controllerUrl}`
-		);
-	}
-
 	public getRestaurantsWithLogo(): Observable<Restaurant[]> {
 		return this.httpClient
 			.get<Restaurant[]>(`${baseUrl}/${this.controllerUrl}`)

@@ -4,4 +4,9 @@ public interface IRepository<TEntity, in TKeyType> where TEntity : class
 {
     public List<TEntity> GetAll();
     public TEntity? GetByIdOrName(TKeyType key);
+
+    List<TEntity> GetAllRestaurantsWithProductsAndCategories()
+    {
+        return null;
+    }
 }

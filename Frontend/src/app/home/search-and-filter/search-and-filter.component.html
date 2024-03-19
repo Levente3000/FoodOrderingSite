@@ -1,7 +1,7 @@
 <div class="search-filter-container">
   <div class="search-container">
     <mat-icon class="material-symbols-outlined search-icon">search</mat-icon>
-    <input type="text" placeholder="Type to filter..." class="search-input">
+    <input type="text" placeholder="Type to filter..." class="search-input" (input)="applyFilterText($event)">
   </div>
   <button mat-button class="filter-button" (click)="openFilterDialog()">
     <mat-icon>filter_list</mat-icon>

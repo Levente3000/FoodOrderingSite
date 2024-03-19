@@ -188,7 +188,7 @@ public class DbInitializer
                 Description = "0,5L soup",
                 Price = 1200,
                 PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[0] },
+                Categories = new List<FoodCategory> { categories[9] },
                 RestaurantId = 1
             },
             new()
@@ -197,7 +197,7 @@ public class DbInitializer
                 Description = "32cm",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[2] },
+                Categories = new List<FoodCategory> { categories[6] },
                 RestaurantId = 1
             },
             new()
@@ -206,7 +206,7 @@ public class DbInitializer
                 Description = "32cm",
                 Price = 2300,
                 PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[2] },
+                Categories = new List<FoodCategory> { categories[6] },
                 RestaurantId = 1
             },
             new()
@@ -215,7 +215,7 @@ public class DbInitializer
                 Description = "one serving",
                 Price = 1800,
                 PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[3] },
+                Categories = new List<FoodCategory> { categories[4] },
                 RestaurantId = 2
             },
             new()
@@ -224,7 +224,7 @@ public class DbInitializer
                 Description = "one serving",
                 Price = 1900,
                 PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[3] },
+                Categories = new List<FoodCategory> { categories[4] },
                 RestaurantId = 2
             },
             new()
@@ -242,7 +242,7 @@ public class DbInitializer
                 Description = "",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[4], categories[6] },
+                Categories = new List<FoodCategory> { categories[0], categories[10] },
                 RestaurantId = 3
             },
             new()
@@ -251,7 +251,7 @@ public class DbInitializer
                 Description = "",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[4], categories[6] },
+                Categories = new List<FoodCategory> { categories[0], categories[10] },
                 RestaurantId = 3
             },
             new()
@@ -260,7 +260,7 @@ public class DbInitializer
                 Description = "",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[8] },
+                Categories = new List<FoodCategory> { categories[7] },
                 RestaurantId = 5
             },
             new()
@@ -269,7 +269,7 @@ public class DbInitializer
                 Description = "",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[8] },
+                Categories = new List<FoodCategory> { categories[7] },
                 RestaurantId = 5
             },
             new()
@@ -278,7 +278,7 @@ public class DbInitializer
                 Description = "Salmon fillet grilled to perfection, served with steamed vegetables",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[9], categories[10] },
+                Categories = new List<FoodCategory> { categories[8], categories[3] },
                 RestaurantId = 7
             },
 
@@ -288,7 +288,7 @@ public class DbInitializer
                 Description = "",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[9], categories[10] },
+                Categories = new List<FoodCategory> { categories[8], categories[3] },
                 RestaurantId = 7
             },
             new()
@@ -333,7 +333,7 @@ public class DbInitializer
                 Description = "",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[10] },
+                Categories = new List<FoodCategory> { categories[3] },
                 RestaurantId = 8
             },
             new()
@@ -342,7 +342,7 @@ public class DbInitializer
                 Description = "",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[10] },
+                Categories = new List<FoodCategory> { categories[3] },
                 RestaurantId = 8
             },
         };
