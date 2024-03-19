@@ -1,4 +1,5 @@
 ﻿using FoodOrderWebApi.Models;
+using Microsoft.EntityFrameworkCore;
 using NodaTime;
 
 namespace FoodOrderWebApi.Configuration;
@@ -178,6 +179,7 @@ public class DbInitializer
 
     private static void SeedProducts()
     {
+        var categories = _context.FoodCategories.ToList();
         var products = new Product[]
         {
             new()
@@ -186,7 +188,7 @@ public class DbInitializer
                 Description = "0,5L soup",
                 Price = 1200,
                 PictureName = "bbq.jpg",
-                CategoryName = "Soup",
+                Categories = new List<FoodCategory> { categories[0] },
                 RestaurantId = 1
             },
             new()
@@ -195,7 +197,7 @@ public class DbInitializer
                 Description = "32cm",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                CategoryName = "Pizza",
+                Categories = new List<FoodCategory> { categories[2] },
                 RestaurantId = 1
             },
             new()
@@ -204,7 +206,7 @@ public class DbInitializer
                 Description = "32cm",
                 Price = 2300,
                 PictureName = "bbq.jpg",
-                CategoryName = "Pizza",
+                Categories = new List<FoodCategory> { categories[2] },
                 RestaurantId = 1
             },
             new()
@@ -213,7 +215,7 @@ public class DbInitializer
                 Description = "one serving",
                 Price = 1800,
                 PictureName = "bbq.jpg",
-                CategoryName = "Pasta",
+                Categories = new List<FoodCategory> { categories[3] },
                 RestaurantId = 2
             },
             new()
@@ -222,7 +224,7 @@ public class DbInitializer
                 Description = "one serving",
                 Price = 1900,
                 PictureName = "bbq.jpg",
-                CategoryName = "Pasta",
+                Categories = new List<FoodCategory> { categories[3] },
                 RestaurantId = 2
             },
             new()
@@ -231,7 +233,7 @@ public class DbInitializer
                 Description = "0,33L",
                 Price = 600,
                 PictureName = "bbq.jpg",
-                CategoryName = "Drink",
+                Categories = new List<FoodCategory> { categories[1] },
                 RestaurantId = 2
             },
             new()
@@ -240,7 +242,7 @@ public class DbInitializer
                 Description = "",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                CategoryName = "Sushi",
+                Categories = new List<FoodCategory> { categories[4], categories[6] },
                 RestaurantId = 3
             },
             new()
@@ -249,7 +251,7 @@ public class DbInitializer
                 Description = "",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                CategoryName = "Sushi",
+                Categories = new List<FoodCategory> { categories[4], categories[6] },
                 RestaurantId = 3
             },
             new()
@@ -258,7 +260,7 @@ public class DbInitializer
                 Description = "",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                CategoryName = "Salad",
+                Categories = new List<FoodCategory> { categories[8] },
                 RestaurantId = 5
             },
             new()
@@ -267,7 +269,7 @@ public class DbInitializer
                 Description = "",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                CategoryName = "Salad",
+                Categories = new List<FoodCategory> { categories[8] },
                 RestaurantId = 5
             },
             new()
@@ -276,16 +278,17 @@ public class DbInitializer
                 Description = "Salmon fillet grilled to perfection, served with steamed vegetables",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                CategoryName = "Seafood",
+                Categories = new List<FoodCategory> { categories[9], categories[10] },
                 RestaurantId = 7
             },
+
             new()
             {
                 Name = "Lobster Linguine",
                 Description = "",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                CategoryName = "Seafood",
+                Categories = new List<FoodCategory> { categories[9], categories[10] },
                 RestaurantId = 7
             },
             new()
@@ -294,7 +297,7 @@ public class DbInitializer
                 Description = "",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                CategoryName = "Drink",
+                Categories = new List<FoodCategory> { categories[1] },
                 RestaurantId = 6
             },
             new()
@@ -303,7 +306,7 @@ public class DbInitializer
                 Description = "A dark, rich beer with flavors of roasted malt, chocolate, and coffee.",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                CategoryName = "Drink",
+                Categories = new List<FoodCategory> { categories[1] },
                 RestaurantId = 6
             },
             new()
@@ -312,7 +315,7 @@ public class DbInitializer
                 Description = "",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                CategoryName = "Pastry",
+                Categories = new List<FoodCategory> { categories[5] },
                 RestaurantId = 4
             },
             new()
@@ -321,7 +324,7 @@ public class DbInitializer
                 Description = "",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                CategoryName = "Pastry",
+                Categories = new List<FoodCategory> { categories[5] },
                 RestaurantId = 4
             },
             new()
@@ -330,7 +333,7 @@ public class DbInitializer
                 Description = "",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                CategoryName = "Fine Dining",
+                Categories = new List<FoodCategory> { categories[10] },
                 RestaurantId = 8
             },
             new()
@@ -339,7 +342,7 @@ public class DbInitializer
                 Description = "",
                 Price = 2000,
                 PictureName = "bbq.jpg",
-                CategoryName = "Fine Dining",
+                Categories = new List<FoodCategory> { categories[10] },
                 RestaurantId = 8
             },
         };

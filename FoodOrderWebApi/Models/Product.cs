@@ -22,11 +22,7 @@ public class Product
     [Required]
     public bool IsEnabled { get; set; }
 
-    [Required]
-    [ForeignKey("Category")]
-    public string CategoryName { get; set; } = null!;
-
-    public virtual ICollection<FoodCategory> Category { get; set; } = null!;
+    public virtual ICollection<FoodCategory> Categories { get; set; } = null!;
 
     [Required]
     [ForeignKey("Restaurant")]
@@ -34,5 +30,5 @@ public class Product
 
     public virtual Restaurant Restaurant { get; set; } = null!;
 
-    public virtual ICollection<ProductOrder> ProductOrders { get; set; } = null!;
+    public virtual ICollection<Order> Orders { get; set; } = null!;
 }

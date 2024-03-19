@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FoodOrderWebApi.Migrations
 {
     [DbContext(typeof(FoodOrderDbContext))]
-    [Migration("20240317104728_addPriceCategoryToRestaurant")]
-    partial class addPriceCategoryToRestaurant
+    [Migration("20240319190355_InitDatabase")]
+    partial class InitDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,13 +28,13 @@ namespace FoodOrderWebApi.Migrations
 
             modelBuilder.Entity("FoodCategoryProduct", b =>
                 {
-                    b.Property<string>("CategoryName")
+                    b.Property<string>("CategoriesName")
                         .HasColumnType("text");
 
                     b.Property<int>("ProductsId")
                         .HasColumnType("integer");
 
-                    b.HasKey("CategoryName", "ProductsId");
+                    b.HasKey("CategoriesName", "ProductsId");
 
                     b.HasIndex("ProductsId");
 
@@ -130,10 +130,6 @@ namespace FoodOrderWebApi.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
@@ -160,29 +156,6 @@ namespace FoodOrderWebApi.Migrations
                     b.HasIndex("RestaurantId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("FoodOrderWebApi.Models.ProductOrder", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductOrders");
                 });
 
             modelBuilder.Entity("FoodOrderWebApi.Models.Restaurant", b =>
@@ -231,11 +204,26 @@ namespace FoodOrderWebApi.Migrations
                     b.ToTable("Restaurants");
                 });
 
+            modelBuilder.Entity("OrderProduct", b =>
+                {
+                    b.Property<int>("OrdersId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ProductsId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("OrdersId", "ProductsId");
+
+                    b.HasIndex("ProductsId");
+
+                    b.ToTable("OrderProduct");
+                });
+
             modelBuilder.Entity("FoodCategoryProduct", b =>
                 {
                     b.HasOne("FoodOrderWebApi.Models.FoodCategory", null)
                         .WithMany()
-                        .HasForeignKey("CategoryName")
+                        .HasForeignKey("CategoriesName")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -264,25 +252,6 @@ namespace FoodOrderWebApi.Migrations
                     b.Navigation("Restaurant");
                 });
 
-            modelBuilder.Entity("FoodOrderWebApi.Models.ProductOrder", b =>
-                {
-                    b.HasOne("FoodOrderWebApi.Models.Order", "Order")
-                        .WithMany("ProductOrders")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FoodOrderWebApi.Models.Product", "Product")
-                        .WithMany("ProductOrders")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("FoodOrderWebApi.Models.Restaurant", b =>
                 {
                     b.HasOne("FoodOrderWebApi.Models.OpeningHour", "ClosingHours")
@@ -302,14 +271,19 @@ namespace FoodOrderWebApi.Migrations
                     b.Navigation("OpeningHours");
                 });
 
-            modelBuilder.Entity("FoodOrderWebApi.Models.Order", b =>
+            modelBuilder.Entity("OrderProduct", b =>
                 {
-                    b.Navigation("ProductOrders");
-                });
+                    b.HasOne("FoodOrderWebApi.Models.Order", null)
+                        .WithMany()
+                        .HasForeignKey("OrdersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("FoodOrderWebApi.Models.Product", b =>
-                {
-                    b.Navigation("ProductOrders");
+                    b.HasOne("FoodOrderWebApi.Models.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FoodOrderWebApi.Models.Restaurant", b =>

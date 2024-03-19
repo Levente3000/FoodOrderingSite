@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FoodOrderWebApi.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialDatabase : Migration
+    public partial class InitDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -54,6 +54,7 @@ namespace FoodOrderWebApi.Migrations
                     Address = table.Column<string>(type: "text", nullable: false),
                     PhoneNumber = table.Column<string>(type: "text", nullable: false),
                     LogoName = table.Column<string>(type: "text", nullable: false),
+                    PriceCategory = table.Column<int>(type: "integer", nullable: false),
                     OpeningHourId = table.Column<int>(type: "integer", nullable: false),
                     ClosingHourId = table.Column<int>(type: "integer", nullable: false)
                 },
@@ -107,7 +108,6 @@ namespace FoodOrderWebApi.Migrations
                     Price = table.Column<int>(type: "integer", nullable: false),
                     PictureName = table.Column<string>(type: "text", nullable: false),
                     IsEnabled = table.Column<bool>(type: "boolean", nullable: false),
-                    CategoryName = table.Column<string>(type: "text", nullable: false),
                     RestaurantId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -125,15 +125,15 @@ namespace FoodOrderWebApi.Migrations
                 name: "FoodCategoryProduct",
                 columns: table => new
                 {
-                    CategoryName = table.Column<string>(type: "text", nullable: false),
+                    CategoriesName = table.Column<string>(type: "text", nullable: false),
                     ProductsId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FoodCategoryProduct", x => new { x.CategoryName, x.ProductsId });
+                    table.PrimaryKey("PK_FoodCategoryProduct", x => new { x.CategoriesName, x.ProductsId });
                     table.ForeignKey(
-                        name: "FK_FoodCategoryProduct_FoodCategories_CategoryName",
-                        column: x => x.CategoryName,
+                        name: "FK_FoodCategoryProduct_FoodCategories_CategoriesName",
+                        column: x => x.CategoriesName,
                         principalTable: "FoodCategories",
                         principalColumn: "Name",
                         onDelete: ReferentialAction.Cascade);
@@ -146,26 +146,24 @@ namespace FoodOrderWebApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductOrders",
+                name: "OrderProduct",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ProductId = table.Column<int>(type: "integer", nullable: false),
-                    OrderId = table.Column<int>(type: "integer", nullable: false)
+                    OrdersId = table.Column<int>(type: "integer", nullable: false),
+                    ProductsId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductOrders", x => x.Id);
+                    table.PrimaryKey("PK_OrderProduct", x => new { x.OrdersId, x.ProductsId });
                     table.ForeignKey(
-                        name: "FK_ProductOrders_Orders_OrderId",
-                        column: x => x.OrderId,
+                        name: "FK_OrderProduct_Orders_OrdersId",
+                        column: x => x.OrdersId,
                         principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProductOrders_Products_ProductId",
-                        column: x => x.ProductId,
+                        name: "FK_OrderProduct_Products_ProductsId",
+                        column: x => x.ProductsId,
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -177,19 +175,14 @@ namespace FoodOrderWebApi.Migrations
                 column: "ProductsId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderProduct_ProductsId",
+                table: "OrderProduct",
+                column: "ProductsId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders_RestaurantId",
                 table: "Orders",
                 column: "RestaurantId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductOrders_OrderId",
-                table: "ProductOrders",
-                column: "OrderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductOrders_ProductId",
-                table: "ProductOrders",
-                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_RestaurantId",
@@ -214,7 +207,7 @@ namespace FoodOrderWebApi.Migrations
                 name: "FoodCategoryProduct");
 
             migrationBuilder.DropTable(
-                name: "ProductOrders");
+                name: "OrderProduct");
 
             migrationBuilder.DropTable(
                 name: "FoodCategories");
