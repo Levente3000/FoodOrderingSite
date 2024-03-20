@@ -9,12 +9,7 @@ import {
 import { FilterDialogData } from '../../model/filter-dialog-data.model';
 import { MatActionList, MatList, MatListItem } from '@angular/material/list';
 import { MatFormField, MatOption, MatSelect } from '@angular/material/select';
-import {
-	FormBuilder,
-	FormControl,
-	FormGroup,
-	ReactiveFormsModule,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 
 @Component({
@@ -63,7 +58,7 @@ export class FilterDialogComponent implements OnInit {
 			});
 		}
 
-		this.dialogRef.backdropClick().subscribe(_ => this.dialogRef.close());
+		this.dialogRef.backdropClick().subscribe(() => this.dialogRef.close());
 	}
 
 	public onFilterClick(): void {
