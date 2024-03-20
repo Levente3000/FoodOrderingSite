@@ -1,4 +1,5 @@
 ﻿using FoodOrderWebApi.Models;
+using Microsoft.EntityFrameworkCore;
 using NodaTime;
 
 namespace FoodOrderWebApi.Configuration;
@@ -42,7 +43,42 @@ public class DbInitializer
             {
                 Name = "Pasta",
                 PictureName = "pasta.jpg"
-            }
+            },
+            new()
+            {
+                Name = "Sushi",
+                PictureName = "pizza.jpg"
+            },
+            new()
+            {
+                Name = "Pastry",
+                PictureName = "pizza.jpg"
+            },
+            new()
+            {
+                Name = "Asian",
+                PictureName = "pizza.jpg"
+            },
+            new()
+            {
+                Name = "Exotic",
+                PictureName = "pizza.jpg"
+            },
+            new()
+            {
+                Name = "Salad",
+                PictureName = "pizza.jpg"
+            },
+            new()
+            {
+                Name = "Seafood",
+                PictureName = "pizza.jpg"
+            },
+            new()
+            {
+                Name = "Fine Dining",
+                PictureName = "pizza.jpg"
+            },
         };
 
         _context.FoodCategories.AddRange(categories);
@@ -67,13 +103,73 @@ public class DbInitializer
             new()
             {
                 Name = "Blue Parrot",
-                Description = "soemthing",
+                Description = "a long description for a restaurant which will be displayed in a card",
                 Address = "Budapest, Wesselényi street",
                 PhoneNumber = "06300000002",
                 LogoName = "blue_parrot.jpg",
                 OpeningHourId = 3,
                 ClosingHourId = 4
-            }
+            },
+            new()
+            {
+                Name = "Red Dragon",
+                Description = "Sushi and Japanese cuisine",
+                Address = "New York, Times Square",
+                PhoneNumber = "06300000003",
+                LogoName = "karen_bar.jpg",
+                OpeningHourId = 1,
+                ClosingHourId = 2
+            },
+            new()
+            {
+                Name = "Golden Spoon",
+                Description = "Delicious desserts and pastries",
+                Address = "Budapest, Lágymányosi campus",
+                PhoneNumber = "06300000004",
+                LogoName = "karen_bar.jpg",
+                OpeningHourId = 1,
+                ClosingHourId = 2
+            },
+            new()
+            {
+                Name = "Orange Orchid",
+                Description = "Fresh and healthy salads",
+                Address = "Budapest, Lágymányosi campus",
+                PhoneNumber = "06300000001",
+                LogoName = "karen_bar.jpg",
+                OpeningHourId = 1,
+                ClosingHourId = 2
+            },
+            new()
+            {
+                Name = "Black Raven",
+                Description = "Pub with a selection of craft beers",
+                Address = "Budapest, Lágymányosi campus",
+                PhoneNumber = "06300000001",
+                LogoName = "karen_bar.jpg",
+                OpeningHourId = 1,
+                ClosingHourId = 2
+            },
+            new()
+            {
+                Name = "Pink Flamingo",
+                Description = "Tropical cocktails and seafood",
+                Address = "Budapest, Lágymányosi campus",
+                PhoneNumber = "06300000001",
+                LogoName = "karen_bar.jpg",
+                OpeningHourId = 1,
+                ClosingHourId = 2
+            },
+            new()
+            {
+                Name = "Crimson Fox",
+                Description = "Fine dining experience",
+                Address = "Budapest, Lágymányosi campus",
+                PhoneNumber = "06300000001",
+                LogoName = "karen_bar.jpg",
+                OpeningHourId = 1,
+                ClosingHourId = 2
+            },
         };
 
         _context.Restaurants.AddRange(restaurants);
@@ -83,6 +179,7 @@ public class DbInitializer
 
     private static void SeedProducts()
     {
+        var categories = _context.FoodCategories.ToList();
         var products = new Product[]
         {
             new()
@@ -90,26 +187,26 @@ public class DbInitializer
                 Name = "Goulash Soup",
                 Description = "0,5L soup",
                 Price = 1200,
-                PictureName = "",
-                CategoryName = "Soup",
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[9] },
                 RestaurantId = 1
             },
             new()
             {
-                Name = "Margherita",
+                Name = "Margherita pizza",
                 Description = "32cm",
                 Price = 2000,
-                PictureName = "",
-                CategoryName = "Pizza",
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[6] },
                 RestaurantId = 1
             },
             new()
             {
-                Name = "BBQ",
+                Name = "BBQ pizza",
                 Description = "32cm",
                 Price = 2300,
-                PictureName = "",
-                CategoryName = "Pizza",
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[6] },
                 RestaurantId = 1
             },
             new()
@@ -117,8 +214,8 @@ public class DbInitializer
                 Name = "Pesto pasta",
                 Description = "one serving",
                 Price = 1800,
-                PictureName = "",
-                CategoryName = "Pasta",
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[4] },
                 RestaurantId = 2
             },
             new()
@@ -126,8 +223,8 @@ public class DbInitializer
                 Name = "Bolognese pasta",
                 Description = "one serving",
                 Price = 1900,
-                PictureName = "",
-                CategoryName = "Pasta",
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[4] },
                 RestaurantId = 2
             },
             new()
@@ -135,10 +232,119 @@ public class DbInitializer
                 Name = "Coca Cola",
                 Description = "0,33L",
                 Price = 600,
-                PictureName = "",
-                CategoryName = "Drink",
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[1] },
                 RestaurantId = 2
-            }
+            },
+            new()
+            {
+                Name = "Sushi Platter",
+                Description = "",
+                Price = 2000,
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[0], categories[10] },
+                RestaurantId = 3
+            },
+            new()
+            {
+                Name = "Vegetarian Sushi Roll",
+                Description = "",
+                Price = 2000,
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[0], categories[10] },
+                RestaurantId = 3
+            },
+            new()
+            {
+                Name = "Greek Salad",
+                Description = "",
+                Price = 2000,
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[7] },
+                RestaurantId = 5
+            },
+            new()
+            {
+                Name = "Caesar Salad",
+                Description = "",
+                Price = 2000,
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[7] },
+                RestaurantId = 5
+            },
+            new()
+            {
+                Name = "Grilled Salmon",
+                Description = "Salmon fillet grilled to perfection, served with steamed vegetables",
+                Price = 2000,
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[8], categories[3] },
+                RestaurantId = 7
+            },
+
+            new()
+            {
+                Name = "Lobster Linguine",
+                Description = "",
+                Price = 2000,
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[8], categories[3] },
+                RestaurantId = 7
+            },
+            new()
+            {
+                Name = "IPA",
+                Description = "",
+                Price = 2000,
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[1] },
+                RestaurantId = 6
+            },
+            new()
+            {
+                Name = "Stout",
+                Description = "A dark, rich beer with flavors of roasted malt, chocolate, and coffee.",
+                Price = 2000,
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[1] },
+                RestaurantId = 6
+            },
+            new()
+            {
+                Name = "Croissant",
+                Description = "",
+                Price = 2000,
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[5] },
+                RestaurantId = 4
+            },
+            new()
+            {
+                Name = "Danish Pastry",
+                Description = "",
+                Price = 2000,
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[5] },
+                RestaurantId = 4
+            },
+            new()
+            {
+                Name = "Filet Mignon",
+                Description = "",
+                Price = 2000,
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[3] },
+                RestaurantId = 8
+            },
+            new()
+            {
+                Name = "Lobster Risotto",
+                Description = "",
+                Price = 2000,
+                PictureName = "bbq.jpg",
+                Categories = new List<FoodCategory> { categories[3] },
+                RestaurantId = 8
+            },
         };
 
         _context.Products.AddRange(products);

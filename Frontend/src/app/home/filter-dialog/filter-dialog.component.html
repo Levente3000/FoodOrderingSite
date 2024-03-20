@@ -1,0 +1,35 @@
+<form [formGroup]="formGroup" mat-dialog-content class="dialog-container" (submit)="onFilterClick()">
+  <h1>Filter restaurants</h1>
+  <div>
+    <h2>Price Category:</h2>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-select class="select" formControlName="priceCategoryControl" multiple
+                  [value]="formGroup.get('priceCategoryControl')">
+        @for (priceCategory of priceCategories; track priceCategory) {
+          <mat-option class="option" [value]="priceCategory">
+            @for (_ of [].constructor(priceCategory); track $index) {
+              $
+            }
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <h2>Food Category:</h2>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-select class="select" formControlName="foodCategoryControl" multiple
+                  [value]="formGroup.get('foodCategoryControl')">
+        @for (foodCategory of foodCategories; track foodCategory) {
+          <mat-option class="option" [value]="foodCategory">{{ foodCategory }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-dialog-actions class="dialog-actions">
+    <button mat-raised-button type="submit">Filter</button>
+    <button mat-raised-button type="button" (click)="onCancelClick()">Cancel</button>
+  </mat-dialog-actions>
+</form>
+

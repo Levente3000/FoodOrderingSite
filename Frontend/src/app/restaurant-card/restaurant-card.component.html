@@ -1,4 +1,4 @@
-<a [routerLink]="['/valami']" class="card">
+<div [routerLink]="['/valami']" class="card">
   <div class="image-panel">
     <img [src]='restaurant?.logo' alt="Here should be the restaurant's logo">
   </div>
@@ -10,8 +10,9 @@
       </div>
     </div>
     <div class="rating">
-      <span class="material-icons">star_rate</span>
-      <p>(2.4)</p>
+      @for (_ of [].constructor(restaurant?.priceCategory); track $index) {
+        $
+      }
     </div>
   </div>
-</a>
+</div>

@@ -1,4 +1,5 @@
 ﻿using FoodOrderWebApi.Configuration;
+using FoodOrderWebApi.DTOs;
 using FoodOrderWebApi.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,8 @@ public class RestaurantRepository : IRepository<Restaurant, int>
     public List<Restaurant> GetAll()
     {
         return _context.Restaurants
+            .Include(r => r.Products)
+            .ThenInclude(p => p.Categories)
             .AsNoTracking()
             .ToList();
     }

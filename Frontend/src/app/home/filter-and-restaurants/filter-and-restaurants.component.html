@@ -1,0 +1,7 @@
+<app-search-and-filter [filter]="filterData" (filterApplied)="onFilter($event)"></app-search-and-filter>
+<div class="restaurant-grid">
+  @for (restaurant of filteredRestaurants; track restaurant.id) {
+    <app-restaurant-card class="grid-items" [restaurant]="restaurant"></app-restaurant-card>
+  }
+</div>
+
