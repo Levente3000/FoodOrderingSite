@@ -38,7 +38,6 @@ import { MatButton } from '@angular/material/button';
 })
 export class FilterDialogComponent implements OnInit {
 	protected formGroup: FormGroup;
-	protected priceCategoryControl = new FormControl('');
 	protected priceCategories: number[] = [];
 	protected foodCategories: string[] = [];
 
@@ -57,13 +56,14 @@ export class FilterDialogComponent implements OnInit {
 		if (this.data) {
 			this.foodCategories = this.data.foodCategories;
 			this.priceCategories = this.data.priceCategories;
-			this.formGroup
-				.get('foodCategoryControl')
-				?.patchValue(this.data.selectedFoodCategories);
-			this.formGroup
-				.get('priceCategoryControl')
-				?.patchValue(this.data.selectedPriceCategories);
+
+			this.formGroup.patchValue({
+				foodCategoryControl: this.data.selectedFoodCategories,
+				priceCategoryControl: this.data.selectedPriceCategories,
+			});
 		}
+
+		this.dialogRef.backdropClick().subscribe(_ => this.dialogRef.close());
 	}
 
 	public onFilterClick(): void {

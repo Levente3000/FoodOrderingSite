@@ -4,7 +4,6 @@ import { NewRestaurantsCarouselComponent } from '../new-restaurants-carousel/new
 import { Restaurant } from '../../model/restaurant.model';
 import { RestaurantCardComponent } from '../../restaurant-card/restaurant-card.component';
 import { FilterData } from '../../model/filter-data.model';
-import { log } from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
 
 @Component({
 	selector: 'app-filter-and-restaurants',
@@ -20,7 +19,7 @@ import { log } from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
 export class FilterAndRestaurantsComponent {
 	protected _allRestaurants: Restaurant[] = [];
 	protected filteredRestaurants: Restaurant[] = [];
-	private filterData: FilterData;
+	protected filterData: FilterData;
 
 	@Input({ required: true })
 	public set allRestaurants(allRestaurants: Restaurant[]) {

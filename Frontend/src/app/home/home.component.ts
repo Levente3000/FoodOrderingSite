@@ -30,7 +30,6 @@ import { FilterAndRestaurantsComponent } from './filter-and-restaurants/filter-a
 export class HomeComponent implements OnInit {
 	protected allRestaurants: Restaurant[] = [];
 	protected allCategories: Category[] = [];
-	protected filteredRestaurants: Restaurant[] = [];
 
 	constructor(
 		private restaurantService: RestaurantService,

@@ -8,7 +8,7 @@ export type Restaurant = {
 	address: string;
 	phoneNumber: string;
 	logoName: string;
-	logo: string | null;
+	logo?: string;
 	priceCategory: number;
 	openingHours: OpeningHours;
 	closingHours: OpeningHours;

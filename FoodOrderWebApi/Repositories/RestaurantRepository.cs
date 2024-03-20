@@ -30,12 +30,4 @@ public class RestaurantRepository : IRepository<Restaurant, int>
             .AsNoTracking()
             .FirstOrDefault();
     }
-
-    public List<Restaurant> GetAllRestaurantsWithProductsAndCategories()
-    {
-        return _context.Restaurants
-            .Include(r => r.Products)
-            .ThenInclude(p => p.Categories)
-            .ToList();
-    }
 }

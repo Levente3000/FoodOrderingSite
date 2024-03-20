@@ -1,4 +1,4 @@
-<div [formGroup]="formGroup" mat-dialog-content class="dialog-container">
+<form [formGroup]="formGroup" mat-dialog-content class="dialog-container" (submit)="onFilterClick()">
   <h1>Filter restaurants</h1>
   <div>
     <h2>Price Category:</h2>
@@ -28,8 +28,8 @@
   </div>
 
   <mat-dialog-actions class="dialog-actions">
-    <button mat-raised-button (click)="onFilterClick()">Filter</button>
-    <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+    <button mat-raised-button type="submit">Filter</button>
+    <button mat-raised-button type="button" (click)="onCancelClick()">Cancel</button>
   </mat-dialog-actions>
-</div>
+</form>
 

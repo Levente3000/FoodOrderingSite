@@ -18,7 +18,7 @@ public class RestaurantService
 
     public List<RestaurantDto> GetAllRestaurantsWithProductsAndCategories()
     {
-        var restaurants = _restaurantRepository.GetAllRestaurantsWithProductsAndCategories();
+        var restaurants = _restaurantRepository.GetAll();
         return _mapper.Map<List<RestaurantDto>>(restaurants);
     }
 }

@@ -11,14 +11,12 @@ namespace FoodOrderWebApi.Controllers;
 [ApiController]
 public class RestaurantController : Controller
 {
-    private readonly IRepository<Restaurant, int> _restaurantRepository;
     private readonly RestaurantService _restaurantService;
     private readonly IMapper _mapper;
 
-    public RestaurantController(IRepository<Restaurant, int> restaurantRepository, RestaurantService restaurantService,
+    public RestaurantController(RestaurantService restaurantService,
         IMapper mapper)
     {
-        _restaurantRepository = restaurantRepository;
         _restaurantService = restaurantService;
         _mapper = mapper;
     }
@@ -28,6 +26,6 @@ public class RestaurantController : Controller
     {
         var restaurants = _restaurantService.GetAllRestaurantsWithProductsAndCategories();
 
-        return _mapper.Map<List<RestaurantDto>>(restaurants);
+        return restaurants;
     }
 }

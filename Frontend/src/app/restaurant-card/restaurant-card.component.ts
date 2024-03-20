@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
 	styleUrl: './restaurant-card.component.scss',
 })
 export class RestaurantCardComponent {
-	@Input({ required: true }) restaurant?: Restaurant;
+	@Input({ required: true }) public restaurant?: Restaurant;
 
 	constructor() {}
 }
