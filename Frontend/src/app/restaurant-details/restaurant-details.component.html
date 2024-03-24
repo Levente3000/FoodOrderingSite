@@ -1,0 +1,13 @@
+﻿<div class="restaurant-page">
+  <div class="header">
+    <div class="name-description">
+      <h1 class="restaurant-name">{{ restaurant?.name }}</h1>
+      <p class="description"> {{ restaurant?.description }} </p>
+    </div>
+    <img [src]='restaurant?.logo' alt="Here should be the restaurant's logo" class="header-image">
+  </div>
+  <div class="more-information" (click)="moreInfoDialogOpen()">
+    <mat-icon>info</mat-icon>
+    More information
+  </div>
+</div>

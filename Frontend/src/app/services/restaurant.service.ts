@@ -36,4 +36,19 @@ export class RestaurantService {
 				)
 			);
 	}
+
+	public getRestaurantByIdWithLogo(id: number): Observable<Restaurant> {
+		return this.httpClient
+			.get<Restaurant>(`${baseUrl}/${this.controllerUrl}/details/${id}`)
+			.pipe(
+				mergeMap(restaurant =>
+					this.assetsService.getAssetForRestaurant(restaurant.logoName).pipe(
+						map(asset => {
+							restaurant.logo = asset;
+							return restaurant;
+						})
+					)
+				)
+			);
+	}
 }

@@ -27,6 +27,10 @@ public class RestaurantRepository : IRepository<Restaurant, int>
     {
         return _context.Restaurants
             .Where(r => r.Id == key)
+            .Include(r => r.OpeningHours)
+            .Include(r => r.ClosingHours)
+            .Include(r => r.Products)
+            .ThenInclude(p => p.Categories)
             .AsNoTracking()
             .FirstOrDefault();
     }

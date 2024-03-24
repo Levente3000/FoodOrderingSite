@@ -1,0 +1,76 @@
+﻿<div mat-dialog-content class="dialog-container">
+  <h1>More information about {{ data.restaurantName }}</h1>
+  <div>
+    <h2>Contact</h2>
+    <div class="contact-grid">
+      <div class="contact">Address:</div>
+      <div>
+        {{ data.address }}
+      </div>
+
+      <div class="contact">PhoneNumber:</div>
+      <div>
+        {{ data.phoneNumber }}
+      </div>
+    </div>
+  </div>
+
+  <div class="opening-hours">
+    <h2>Opening hours:</h2>
+    <div class="time-grid">
+      <div class="day">Monday:</div>
+      <div>
+        <ng-container *ngIf="openingHours.monday && closingHours.monday; else closed">
+          {{ openingHours.monday | date: 'HH:mm':'UTC' }} - {{ closingHours.monday | date: 'HH:mm':'UTC' }}
+        </ng-container>
+        <ng-template #closed>Closed</ng-template>
+      </div>
+
+      <div class="day">Tuesday:</div>
+      <div>
+        <ng-container *ngIf="openingHours.tuesday && closingHours.tuesday; else closed">
+          {{ openingHours.tuesday | date: 'HH:mm':'UTC' }} - {{ closingHours.tuesday | date: 'HH:mm':'UTC' }}
+        </ng-container>
+      </div>
+
+      <div class="day">Wednesday:</div>
+      <div>
+        <ng-container *ngIf="openingHours.wednesday && closingHours.wednesday; else closed">
+          {{ openingHours.wednesday | date: 'HH:mm':'UTC' }} - {{ closingHours.wednesday | date: 'HH:mm':'UTC' }}
+        </ng-container>
+      </div>
+
+      <div class="day">Thursday:</div>
+      <div>
+        <ng-container *ngIf="openingHours.thursday && closingHours.thursday; else closed">
+          {{ openingHours.thursday | date: 'HH:mm':'UTC' }} - {{ closingHours.thursday | date: 'HH:mm':'UTC' }}
+        </ng-container>
+      </div>
+
+      <div class="day">Friday:</div>
+      <div>
+        <ng-container *ngIf="openingHours.friday && closingHours.friday; else closed">
+          {{ openingHours.friday | date: 'HH:mm':'UTC' }} - {{ closingHours.friday | date: 'HH:mm':'UTC' }}
+        </ng-container>
+      </div>
+
+      <div class="day">Saturday:</div>
+      <div>
+        <ng-container *ngIf="openingHours.saturday && closingHours.saturday; else closed">
+          {{ openingHours.saturday | date: 'HH:mm':'UTC' }} - {{ closingHours.saturday | date: 'HH:mm':'UTC' }}
+        </ng-container>
+      </div>
+
+      <div class="day">Sunday:</div>
+      <div>
+        <ng-container *ngIf="openingHours.sunday && closingHours.sunday; else closed">
+          {{ openingHours.sunday | date: 'HH:mm':'UTC' }} - {{ closingHours.sunday | date: 'HH:mm':'UTC' }}
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  
+  <mat-dialog-actions class="dialog-actions">
+    <button mat-raised-button type="button" (click)="onCancelClick()">Cancel</button>
+  </mat-dialog-actions>
+</div>

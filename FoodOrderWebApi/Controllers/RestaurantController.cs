@@ -28,4 +28,12 @@ public class RestaurantController : Controller
 
         return restaurants;
     }
+
+    [HttpGet("details/{id}")]
+    public RestaurantDto GetRestaurantById(int id)
+    {
+        var restaurant = _restaurantService.GetRestaurantByIdWithProductsAndCategories(id);
+
+        return restaurant;
+    }
 }

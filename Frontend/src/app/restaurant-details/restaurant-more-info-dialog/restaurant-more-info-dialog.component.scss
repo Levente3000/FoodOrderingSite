@@ -1,0 +1,38 @@
+﻿.dialog-container {
+  background-color: rgba(45, 45, 45, 1);
+  color: rgba(245, 245, 245, 0.9);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 8em auto;
+  gap: 0.5em;
+}
+
+.contact {
+  text-align: left;
+  padding-right: 10px;
+}
+
+.opening-hours {
+  padding-top: 2em;
+}
+
+.time-grid {
+  display: grid;
+  grid-template-columns: 8em auto;
+  gap: 0.5em;
+}
+
+.day {
+  text-align: left;
+  padding-right: 10px;
+}
+
+.dialog-actions {
+  padding-top: 20px;
+}
+
+.dialog-actions button {
+  background-color: rgba(245, 245, 245, 0.9);
+}
