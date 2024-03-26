@@ -1,5 +1,4 @@
 ﻿using FoodOrderWebApi.Enum;
-using FoodOrderWebApi.Models;
 
 namespace FoodOrderWebApi.DTOs;
 
@@ -16,6 +15,8 @@ public class RestaurantDto
     public string PhoneNumber { get; set; } = null!;
 
     public string LogoName { get; set; } = null!;
+
+    public string BannerName { get; set; } = null!;
 
     public PriceCategory PriceCategory { get; set; }
 

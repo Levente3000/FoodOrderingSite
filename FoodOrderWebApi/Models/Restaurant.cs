@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FoodOrderWebApi.Enum;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using FoodOrderWebApi.Enum;
 
 namespace FoodOrderWebApi.Models;
 
@@ -22,6 +22,9 @@ public class Restaurant
 
     [Required]
     public string LogoName { get; set; } = null!;
+
+    [Required]
+    public string BannerName { get; set; } = null!;
 
     public PriceCategory PriceCategory { get; set; }
 
