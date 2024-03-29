@@ -9,6 +9,8 @@ export type Restaurant = {
 	phoneNumber: string;
 	logoName: string;
 	logo?: string;
+	bannerName: string;
+	banner?: string;
 	priceCategory: number;
 	openingHours: OpeningHours;
 	closingHours: OpeningHours;

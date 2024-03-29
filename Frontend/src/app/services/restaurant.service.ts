@@ -42,9 +42,15 @@ export class RestaurantService {
 			.get<Restaurant>(`${baseUrl}/${this.controllerUrl}/details/${id}`)
 			.pipe(
 				mergeMap(restaurant =>
-					this.assetsService.getAssetForRestaurant(restaurant.logoName).pipe(
-						map(asset => {
-							restaurant.logo = asset;
+					forkJoin({
+						logo: this.assetsService.getAssetForRestaurant(restaurant.logoName),
+						banner: this.assetsService.getAssetForRestaurant(
+							restaurant.bannerName
+						),
+					}).pipe(
+						map(({ logo, banner }) => {
+							restaurant.logo = logo;
+							restaurant.banner = banner;
 							return restaurant;
 						})
 					)
