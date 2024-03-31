@@ -1,22 +1,24 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RestaurantService } from '../services/restaurant.service';
-import { Restaurant } from '../model/restaurant.model';
 import { MatIcon } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { RestaurantMoreInfo } from '../model/restaurant-more-info.model';
 import { OpeningHours } from '../model/opening-hours.model';
 import { RestaurantMoreInfoDialogComponent } from './restaurant-more-info-dialog/restaurant-more-info-dialog.component';
+import { RestaurantDetail } from '../model/restaurant-detail.model';
+import { MatFabButton } from '@angular/material/button';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @Component({
 	selector: 'app-restaurant-details',
 	standalone: true,
-	imports: [MatIcon],
+	imports: [MatIcon, MatFabButton, ProductCardComponent],
 	templateUrl: './restaurant-details.component.html',
 	styleUrl: './restaurant-details.component.scss',
 })
 export class RestaurantDetailsComponent implements OnInit {
-	protected restaurant?: Restaurant;
+	protected restaurant?: RestaurantDetail;
 	protected dialogData: RestaurantMoreInfo;
 
 	constructor(
@@ -49,16 +51,13 @@ export class RestaurantDetailsComponent implements OnInit {
 	}
 
 	public moreInfoDialogOpen(): void {
-		this.dialog
-			.open(RestaurantMoreInfoDialogComponent, {
-				maxWidth: '80vw',
-				width: 'auto',
-				maxHeight: '80vh',
-				height: 'auto',
-				autoFocus: false,
-				data: this.dialogData,
-			})
-			.afterClosed()
-			.subscribe(() => {});
+		this.dialog.open(RestaurantMoreInfoDialogComponent, {
+			maxWidth: '80vw',
+			width: 'auto',
+			maxHeight: '80vh',
+			height: 'auto',
+			autoFocus: false,
+			data: this.dialogData,
+		});
 	}
 }

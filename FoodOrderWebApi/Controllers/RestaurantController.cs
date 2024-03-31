@@ -12,25 +12,20 @@ namespace FoodOrderWebApi.Controllers;
 public class RestaurantController : Controller
 {
     private readonly RestaurantService _restaurantService;
-    private readonly IMapper _mapper;
 
-    public RestaurantController(RestaurantService restaurantService,
-        IMapper mapper)
+    public RestaurantController(RestaurantService restaurantService)
     {
         _restaurantService = restaurantService;
-        _mapper = mapper;
     }
 
     [HttpGet]
     public List<RestaurantDto> GetAllRestaurants()
     {
-        var restaurants = _restaurantService.GetAllRestaurantsWithProductsAndCategories();
-
-        return restaurants;
+        return _restaurantService.GetAllRestaurantsWithProductsAndCategories();
     }
 
     [HttpGet("details/{id}")]
-    public RestaurantDto GetRestaurantById(int id)
+    public RestaurantDetailsDto GetRestaurantById(int id)
     {
         var restaurant = _restaurantService.GetRestaurantByIdWithProductsAndCategories(id);
 

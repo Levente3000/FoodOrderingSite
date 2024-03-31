@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FoodOrderWebApi.Repositories;
 
-public class RestaurantRepository : IRepository<Restaurant, int>
+public class RestaurantRepository : IRestaurantRepository
 {
     private readonly FoodOrderDbContext _context;
 
@@ -29,9 +29,16 @@ public class RestaurantRepository : IRepository<Restaurant, int>
             .Where(r => r.Id == key)
             .Include(r => r.OpeningHours)
             .Include(r => r.ClosingHours)
-            .Include(r => r.Products)
-            .ThenInclude(p => p.Categories)
             .AsNoTracking()
             .FirstOrDefault();
+    }
+
+    public ICollection<FoodCategory> GetRestaurantFoodCategoriesWithProducts(int restaurantId)
+    {
+        return _context.FoodCategories
+            .Where(c => c.Products.Any(p => p.RestaurantId == restaurantId))
+            .Include(c => c.Products)
+            .AsNoTracking()
+            .ToList();
     }
 }

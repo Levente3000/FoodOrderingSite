@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<IRepository<Restaurant, int>, RestaurantRepository>();
+builder.Services.AddScoped<IRestaurantRepository, RestaurantRepository>();
 builder.Services.AddScoped<IRepository<FoodCategory, string>, FoodCategoryRepository>();
 builder.Services.AddScoped<AssetsService>();
 builder.Services.AddScoped<RestaurantService>();

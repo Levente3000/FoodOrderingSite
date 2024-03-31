@@ -1,0 +1,44 @@
+.product {
+  display: flex;
+  border: 1px solid rgba(245, 245, 245, 0.3);
+  border-radius: 1em;
+  padding: 0.5rem;
+  gap: 1rem;
+  width: 300px;
+}
+
+.product-image {
+  display: flex;
+  object-fit: cover;
+  max-width: 25%;
+  height: 5rem;
+  border-radius: 0.5em;
+}
+
+.product-details {
+  display: flex;
+  width: 55%;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.product-name, .product-desc, .product-price {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  background-color: rgba(245, 245, 245, 0.9);
+  border: none;
+  padding: 0.8em 0.5em;
+  border-radius: 0.3em;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+

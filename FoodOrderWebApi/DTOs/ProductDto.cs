@@ -1,4 +1,6 @@
-﻿namespace FoodOrderWebApi.DTOs;
+﻿using FoodOrderWebApi.Models;
+
+namespace FoodOrderWebApi.DTOs;
 
 public class ProductDto
 {
@@ -9,4 +11,19 @@ public class ProductDto
     public string PictureName { get; set; } = null!;
     public bool IsEnabled { get; set; }
     public ICollection<string> CategoryNames { get; set; } = new List<string>();
+
+    public ProductDto()
+    {
+    }
+
+    public ProductDto(Product product)
+    {
+        Id = product.Id;
+        Name = product.Name;
+        Description = product.Description;
+        Price = product.Price;
+        PictureName = product.PictureName;
+        IsEnabled = product.IsEnabled;
+        CategoryNames = product.Categories.Select(c => c.Name).ToList();
+    }
 }

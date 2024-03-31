@@ -11,9 +11,14 @@ public class AutoMapper : Profile
     public AutoMapper()
     {
         CreateMap<Restaurant, RestaurantDto>();
+        CreateMap<Restaurant, RestaurantDetailsDto>();
+
         CreateMap<Product, ProductDto>()
             .ForMember(dest => dest.CategoryNames, opt => opt.MapFrom(src => src.Categories.Select(c => c.Name)));
+
         CreateMap<FoodCategory, FoodCategoryDto>();
+        CreateMap<FoodCategory, ProductsInCategoryDto>();
+
         CreateMap<OpeningHour, OpeningHourDto>()
             .ForMember(dto => dto.Monday, conf => conf.MapFrom(oh => FormatInstant(oh.Monday)))
             .ForMember(dto => dto.Tuesday, conf => conf.MapFrom(oh => FormatInstant(oh.Tuesday)))

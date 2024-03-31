@@ -19,6 +19,14 @@ export class AssetsService {
 			.pipe(map(asset => URL.createObjectURL(asset)));
 	}
 
+	public getAssetForProduct(fileName: string): Observable<string> {
+		return this.httpClient
+			.get(`${baseUrl}/${this.AssetPath}/product?assetName=${fileName}`, {
+				responseType: 'blob',
+			})
+			.pipe(map(asset => URL.createObjectURL(asset)));
+	}
+
 	public getAssetForCategory(fileName: string): Observable<string> {
 		return this.httpClient
 			.get(`${baseUrl}/${this.AssetPath}/category?assetName=${fileName}`, {

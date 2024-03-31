@@ -1,0 +1,9 @@
+<div class="product" (click)="productDetailDialogOpen()" tabindex="0" (keydown.enter)="productDetailDialogOpen()">
+  <img [src]='product?.picture' alt="Product picture" class="product-image">
+  <div class="product-details">
+    <div class="product-name">{{ product?.name }}</div>
+    <div class="product-desc">{{ product?.description }}</div>
+    <div class="product-price">{{ product?.price }} Ft</div>
+  </div>
+  <button [disabled]="product?.isEnabled" class="add-button">+</button>
+</div>

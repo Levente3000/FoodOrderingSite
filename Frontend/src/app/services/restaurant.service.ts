@@ -4,6 +4,10 @@ import { forkJoin, map, mergeMap, Observable } from 'rxjs';
 import { Restaurant } from '../model/restaurant.model';
 import { baseUrl } from '../../global';
 import { AssetsService } from './assets.service';
+import {
+	CategoriesWithProducts,
+	RestaurantDetail,
+} from '../model/restaurant-detail.model';
 
 @Injectable({
 	providedIn: 'root',
@@ -37,9 +41,9 @@ export class RestaurantService {
 			);
 	}
 
-	public getRestaurantByIdWithLogo(id: number): Observable<Restaurant> {
+	public getRestaurantByIdWithLogo(id: number): Observable<RestaurantDetail> {
 		return this.httpClient
-			.get<Restaurant>(`${baseUrl}/${this.controllerUrl}/details/${id}`)
+			.get<RestaurantDetail>(`${baseUrl}/${this.controllerUrl}/details/${id}`)
 			.pipe(
 				mergeMap(restaurant =>
 					forkJoin({
@@ -47,14 +51,40 @@ export class RestaurantService {
 						banner: this.assetsService.getAssetForRestaurant(
 							restaurant.bannerName
 						),
+						categoriesWithProducts: this.fetchProductPicturesForCategories(
+							restaurant.categoriesWithProducts
+						),
 					}).pipe(
-						map(({ logo, banner }) => {
+						map(({ logo, banner, categoriesWithProducts }) => {
 							restaurant.logo = logo;
 							restaurant.banner = banner;
+							restaurant.categoriesWithProducts = categoriesWithProducts;
 							return restaurant;
 						})
 					)
 				)
 			);
+	}
+
+	private fetchProductPicturesForCategories(
+		categories: CategoriesWithProducts[]
+	): Observable<CategoriesWithProducts[]> {
+		return forkJoin(
+			categories.map(category =>
+				forkJoin(
+					category.products.map(product =>
+						this.assetsService.getAssetForProduct(product.pictureName).pipe(
+							map(pictureUrl => {
+								return { ...product, picture: pictureUrl };
+							})
+						)
+					)
+				).pipe(
+					map(productsWithPictures => {
+						return { ...category, products: productsWithPictures };
+					})
+				)
+			)
+		);
 	}
 }

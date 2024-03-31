@@ -20,16 +20,8 @@
   z-index: -1;
 }
 
-.header-image {
-  display: flex;
-  width: 10%;
-  max-height: 10em;
-  height: auto;
-  z-index: 2;
-}
-
 .name-description {
-  width: 90%;
+  width: 100%;
   height: auto;
   padding-top: 20px;
   display: flex;
@@ -66,6 +58,22 @@ mat-icon {
 
 .menu {
   display: flex;
-  width: 100%;
+  flex-direction: column;
   height: auto;
+  padding-left: 2em;
 }
+
+.menu-category-with-products {
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
+
+}
+
+.products-in-category {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+
