@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../model/product.model';
-import { RestaurantMoreInfoDialogComponent } from '../restaurant-more-info-dialog/restaurant-more-info-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductDetailDialogComponent } from '../product-detail-dialog/product-detail-dialog.component';
 
