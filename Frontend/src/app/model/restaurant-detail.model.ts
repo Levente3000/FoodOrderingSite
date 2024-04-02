@@ -1,8 +1,7 @@
 import { OpeningHours } from './opening-hours.model';
 import { Product } from './product.model';
 
-export type Restaurant = {
-	id: number;
+export type RestaurantDetail = {
 	name: string;
 	description: string;
 	address: string;
@@ -12,7 +11,12 @@ export type Restaurant = {
 	bannerName: string;
 	banner?: string;
 	priceCategory: number;
+	categoriesWithProducts: CategoriesWithProducts[];
 	openingHours: OpeningHours;
 	closingHours: OpeningHours;
+};
+
+export type CategoriesWithProducts = {
+	name: string;
 	products: Product[];
 };

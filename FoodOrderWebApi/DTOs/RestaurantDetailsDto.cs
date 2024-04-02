@@ -2,10 +2,8 @@
 
 namespace FoodOrderWebApi.DTOs;
 
-public class RestaurantDto
+public class RestaurantDetailsDto
 {
-    public int Id { get; set; }
-
     public string Name { get; set; } = null!;
 
     public string Description { get; set; } = null!;
@@ -20,7 +18,7 @@ public class RestaurantDto
 
     public PriceCategory PriceCategory { get; set; }
 
-    public ICollection<ProductDto> Products { get; set; } = new List<ProductDto>();
+    public ICollection<ProductsInCategoryDto>? CategoriesWithProducts { get; set; } = new List<ProductsInCategoryDto>();
 
     public virtual OpeningHourDto OpeningHours { get; set; } = null!;
 

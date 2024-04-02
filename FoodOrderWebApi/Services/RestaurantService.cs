@@ -7,10 +7,10 @@ namespace FoodOrderWebApi.Services;
 
 public class RestaurantService
 {
-    private readonly IRepository<Restaurant, int> _restaurantRepository;
+    private readonly IRestaurantRepository _restaurantRepository;
     private readonly IMapper _mapper;
 
-    public RestaurantService(IRepository<Restaurant, int> restaurantRepository, IMapper mapper)
+    public RestaurantService(IRestaurantRepository restaurantRepository, IMapper mapper)
     {
         _restaurantRepository = restaurantRepository;
         _mapper = mapper;
@@ -20,5 +20,14 @@ public class RestaurantService
     {
         var restaurants = _restaurantRepository.GetAll();
         return _mapper.Map<List<RestaurantDto>>(restaurants);
+    }
+
+    public RestaurantDetailsDto GetRestaurantByIdWithProductsAndCategories(int id)
+    {
+        var restaurant = _mapper.Map<RestaurantDetailsDto>(_restaurantRepository.GetByIdOrName(id));
+        restaurant.CategoriesWithProducts =
+            _mapper.Map<ICollection<ProductsInCategoryDto>>(_restaurantRepository
+                .GetRestaurantFoodCategoriesWithProducts(id));
+        return restaurant;
     }
 }

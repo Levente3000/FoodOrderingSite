@@ -12,7 +12,7 @@ public class DbInitializer
     {
         _context = serviceProvider.GetRequiredService<FoodOrderDbContext>();
 
-        if (!_context.Database.EnsureCreated() && _context.FoodCategories.Any()) return;
+        if (_context.FoodCategories.Any()) return;
 
         SeedCategories();
         SeedOpeningHours();
@@ -97,6 +97,7 @@ public class DbInitializer
                 Address = "Budapest, Lágymányosi campus",
                 PhoneNumber = "06300000001",
                 LogoName = "karen_bar.jpg",
+                BannerName = "banner.jpg",
                 OpeningHourId = 1,
                 ClosingHourId = 2
             },
@@ -107,6 +108,7 @@ public class DbInitializer
                 Address = "Budapest, Wesselényi street",
                 PhoneNumber = "06300000002",
                 LogoName = "blue_parrot.jpg",
+                BannerName = "banner.jpg",
                 OpeningHourId = 3,
                 ClosingHourId = 4
             },
@@ -117,6 +119,7 @@ public class DbInitializer
                 Address = "New York, Times Square",
                 PhoneNumber = "06300000003",
                 LogoName = "karen_bar.jpg",
+                BannerName = "banner.jpg",
                 OpeningHourId = 1,
                 ClosingHourId = 2
             },
@@ -127,6 +130,7 @@ public class DbInitializer
                 Address = "Budapest, Lágymányosi campus",
                 PhoneNumber = "06300000004",
                 LogoName = "karen_bar.jpg",
+                BannerName = "banner.jpg",
                 OpeningHourId = 1,
                 ClosingHourId = 2
             },
@@ -137,6 +141,7 @@ public class DbInitializer
                 Address = "Budapest, Lágymányosi campus",
                 PhoneNumber = "06300000001",
                 LogoName = "karen_bar.jpg",
+                BannerName = "banner.jpg",
                 OpeningHourId = 1,
                 ClosingHourId = 2
             },
@@ -147,6 +152,7 @@ public class DbInitializer
                 Address = "Budapest, Lágymányosi campus",
                 PhoneNumber = "06300000001",
                 LogoName = "karen_bar.jpg",
+                BannerName = "banner.jpg",
                 OpeningHourId = 1,
                 ClosingHourId = 2
             },
@@ -157,6 +163,7 @@ public class DbInitializer
                 Address = "Budapest, Lágymányosi campus",
                 PhoneNumber = "06300000001",
                 LogoName = "karen_bar.jpg",
+                BannerName = "banner.jpg",
                 OpeningHourId = 1,
                 ClosingHourId = 2
             },
@@ -167,6 +174,7 @@ public class DbInitializer
                 Address = "Budapest, Lágymányosi campus",
                 PhoneNumber = "06300000001",
                 LogoName = "karen_bar.jpg",
+                BannerName = "banner.jpg",
                 OpeningHourId = 1,
                 ClosingHourId = 2
             },

@@ -19,3 +19,20 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.custom-dialog {
+  mat-dialog-container {
+    width: 80vw;
+    max-width: 80vw;
+  }
+}
+
+@media (min-width: 960px) {
+  .custom-dialog {
+    mat-dialog-container {
+      width: auto;
+      max-width: 30vw;
+    }
+
+  }
+}
