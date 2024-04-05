@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using FoodOrderWebApi.DTOs;
-using FoodOrderWebApi.Models;
-using FoodOrderWebApi.Repositories;
+﻿using FoodOrderWebApi.DTOs;
 using FoodOrderWebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 

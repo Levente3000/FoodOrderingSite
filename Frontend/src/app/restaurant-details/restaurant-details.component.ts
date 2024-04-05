@@ -7,6 +7,7 @@ import { RestaurantMoreInfoDialogComponent } from './restaurant-more-info-dialog
 import { RestaurantDetail } from '../model/restaurant-detail.model';
 import { MatFabButton } from '@angular/material/button';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
 	selector: 'app-restaurant-details',
