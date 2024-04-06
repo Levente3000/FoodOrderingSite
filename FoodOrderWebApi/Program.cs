@@ -1,7 +1,9 @@
+using System.Security.Claims;
 using FoodOrderWebApi.Configuration;
 using FoodOrderWebApi.Models;
 using FoodOrderWebApi.Repositories;
 using FoodOrderWebApi.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +21,19 @@ builder.Services.AddDbContext<FoodOrderDbContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// KeyCloak
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(o =>
+{
+    o.Authority = builder.Configuration["Jwt:Authority"];
+    o.Audience = builder.Configuration["Jwt:Audience"];
+    o.RequireHttpsMetadata = false;
+    o.TokenValidationParameters.RoleClaimType = ClaimTypes.Role;
+});
 
 var app = builder.Build();
 
@@ -41,10 +56,9 @@ app.UseCors(policyBuilder => policyBuilder
     .AllowAnyOrigin()
     .AllowAnyMethod()
     .AllowAnyHeader());
-app.UseStaticFiles();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 
