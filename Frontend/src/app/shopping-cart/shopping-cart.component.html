@@ -1,0 +1,17 @@
+<div>
+  <h1>My shopping cart</h1>
+  @for (shoppingCartItem of shoppingCart; track shoppingCartItem) {
+    <div class="product-card">
+      <img [src]='shoppingCartItem.product?.picture' alt="Product picture" class="product-image">
+      <div class="product-information">
+
+      </div>
+      <div class="add-quantity-remove">
+
+      </div>
+      <div class="product-price">
+
+      </div>
+    </div>
+  }
+</div>

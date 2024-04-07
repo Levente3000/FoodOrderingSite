@@ -17,10 +17,9 @@
         +
       </button>
     </div>
-    <button [disabled]="data.isEnabled" type="submit" class="submit-button">
+    <button [disabled]="data.isEnabled" type="submit" class="submit-button" (click)="addProductToShoppingCart()">
       <div class="submit-text">Add to cart</div>
       <div class="submit-price">{{ quantity * data.price }} Ft</div>
     </button>
   </div>
-
 </div>

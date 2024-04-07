@@ -7,6 +7,7 @@ import {
 } from '@angular/material/dialog';
 import { Product } from '../../model/product.model';
 import { MatFabButton } from '@angular/material/button';
+import { ShoppingCartService } from '../../services/shopping-cart.service';
 
 @Component({
 	selector: 'app-product-detail-dialog',
@@ -20,7 +21,8 @@ export class ProductDetailDialogComponent {
 
 	constructor(
 		public dialogRef: MatDialogRef<ProductDetailDialogComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: Product
+		@Inject(MAT_DIALOG_DATA) public data: Product,
+		private shoppingCartService: ShoppingCartService
 	) {
 		this.dialogRef
 			.backdropClick()
@@ -41,5 +43,9 @@ export class ProductDetailDialogComponent {
 		} else {
 			this.quantity = 1;
 		}
+	}
+
+	public addProductToShoppingCart(): void {
+		this.shoppingCartService.addProduct(this.data.id, this.quantity);
 	}
 }

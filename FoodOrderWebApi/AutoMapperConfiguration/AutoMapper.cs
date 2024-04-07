@@ -27,6 +27,8 @@ public class AutoMapper : Profile
             .ForMember(dto => dto.Friday, conf => conf.MapFrom(oh => FormatInstant(oh.Friday)))
             .ForMember(dto => dto.Saturday, conf => conf.MapFrom(oh => FormatInstant(oh.Saturday)))
             .ForMember(dto => dto.Sunday, conf => conf.MapFrom(oh => FormatInstant(oh.Sunday)));
+
+        CreateMap<ShoppingCartItem, ShoppingCartItemDto>();
     }
 
     private static string? FormatInstant(Instant? instant) =>
