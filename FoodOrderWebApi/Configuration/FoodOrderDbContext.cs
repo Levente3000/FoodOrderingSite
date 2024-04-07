@@ -16,6 +16,10 @@ public class FoodOrderDbContext : DbContext
 
     public DbSet<Restaurant> Restaurants { get; set; }
 
+    public DbSet<ShoppingCart> ShoppingCart { get; set; }
+
+    public DbSet<ShoppingCartItem> ShoppingCartItem { get; set; }
+
     public FoodOrderDbContext(DbContextOptions<FoodOrderDbContext> options) : base(options)
     {
     }
