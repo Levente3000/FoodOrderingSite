@@ -8,10 +8,7 @@ public class ShoppingCartItem
     public int ShoppingCartItemId { get; set; }
 
     [Required]
-    [ForeignKey("ShoppingCart")]
-    public int ShoppingCartId { get; set; }
-
-    public virtual ShoppingCart ShoppingCart { get; set; } = null!;
+    public string UserId { get; set; }
 
     [Required]
     [ForeignKey("Product")]

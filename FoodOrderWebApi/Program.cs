@@ -10,8 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IRestaurantRepository, RestaurantRepository>();
 builder.Services.AddScoped<IRepository<FoodCategory, string>, FoodCategoryRepository>();
+builder.Services.AddScoped<ShoppingCartRepository>();
+
 builder.Services.AddScoped<AssetsService>();
 builder.Services.AddScoped<RestaurantService>();
+builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 

@@ -205,23 +205,6 @@ namespace FoodOrderWebApi.Migrations
                     b.ToTable("Restaurants");
                 });
 
-            modelBuilder.Entity("FoodOrderWebApi.Models.ShoppingCart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ShoppingCart");
-                });
-
             modelBuilder.Entity("FoodOrderWebApi.Models.ShoppingCartItem", b =>
                 {
                     b.Property<int>("ShoppingCartItemId")
@@ -236,14 +219,13 @@ namespace FoodOrderWebApi.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ShoppingCartId")
-                        .HasColumnType("integer");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("ShoppingCartItemId");
 
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("ShoppingCartId");
 
                     b.ToTable("ShoppingCartItem");
                 });
@@ -323,15 +305,7 @@ namespace FoodOrderWebApi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FoodOrderWebApi.Models.ShoppingCart", "ShoppingCart")
-                        .WithMany("Items")
-                        .HasForeignKey("ShoppingCartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Product");
-
-                    b.Navigation("ShoppingCart");
                 });
 
             modelBuilder.Entity("OrderProduct", b =>
@@ -354,11 +328,6 @@ namespace FoodOrderWebApi.Migrations
                     b.Navigation("Orders");
 
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("FoodOrderWebApi.Models.ShoppingCart", b =>
-                {
-                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }
