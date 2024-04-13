@@ -24,7 +24,7 @@ export class ShoppingCartService {
 					forkJoin(
 						shoppingCartItems.map(shoppingCartItem => {
 							return this.assetsService
-								.getAssetForRestaurant(shoppingCartItem.product.pictureName)
+								.getAssetForProduct(shoppingCartItem.product.pictureName)
 								.pipe(
 									map(asset => {
 										shoppingCartItem.product.picture = asset;
@@ -37,15 +37,33 @@ export class ShoppingCartService {
 			);
 	}
 
-	public addProduct(productId: number, quantity: number): void {
+	public addProduct(productId: number, quantity: number) {
 		const bodyParams = {
 			productId: productId,
 			quantity: quantity,
 		};
 
-		this.httpClient.post(
+		return this.httpClient.post(
 			`${baseUrl}/${this.controllerUrl}/add-product`,
 			bodyParams
+		);
+	}
+
+	public updateQuantity(shoppingCartItemId: number, quantity: number) {
+		const bodyParams = {
+			shoppingCartItemId: shoppingCartItemId,
+			quantity: quantity,
+		};
+
+		return this.httpClient.patch(
+			`${baseUrl}/${this.controllerUrl}/update-quantity`,
+			bodyParams
+		);
+	}
+
+	public removeItem(itemId: number) {
+		return this.httpClient.delete(
+			`${baseUrl}/${this.controllerUrl}/remove-item/${itemId}`
 		);
 	}
 }

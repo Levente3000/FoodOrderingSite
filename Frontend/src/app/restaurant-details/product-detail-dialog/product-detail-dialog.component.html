@@ -6,18 +6,8 @@
     <p>{{ data.description }}</p>
   </div>
   <div class="product-actions">
-    <div class="minus-div-add">
-      <button [disabled]="data.isEnabled" class="quantity-button" (click)="subtractProduct()">
-        -
-      </button>
-      <div class="quantity">
-        {{ quantity }}
-      </div>
-      <button [disabled]="data.isEnabled" class="quantity-button" (click)="addProduct()">
-        +
-      </button>
-    </div>
-    <button [disabled]="data.isEnabled" type="submit" class="submit-button" (click)="addProductToShoppingCart()">
+    <app-quantity [(quantity)]="quantity" [isEnabled]="data.isEnabled"></app-quantity>
+    <button [disabled]="!data.isEnabled" type="submit" class="submit-button" (click)="addProductToShoppingCart()">
       <div class="submit-text">Add to cart</div>
       <div class="submit-price">{{ quantity * data.price }} Ft</div>
     </button>

@@ -1,17 +1,57 @@
-<div>
-  <h1>My shopping cart</h1>
-  @for (shoppingCartItem of shoppingCart; track shoppingCartItem) {
-    <div class="product-card">
-      <img [src]='shoppingCartItem.product?.picture' alt="Product picture" class="product-image">
-      <div class="product-information">
-
-      </div>
-      <div class="add-quantity-remove">
-
-      </div>
-      <div class="product-price">
-
-      </div>
+<div class="shopping-cart">
+  <div class="shopping-cart-item-container">
+    <div class="shopping-cart-header">
+      <div class="header-title">My shopping cart</div>
+      <div class="header-item">{{ shoppingCart.length }} item</div>
     </div>
-  }
+    <div class="shopping-cart-items">
+      <div class="items-column-header">
+        <div class="column-header-detail">Product details</div>
+        <div class="column-header-quantity">Quantity</div>
+        <div class="column-header-price">Total</div>
+      </div>
+      @for (shoppingCartItem of shoppingCart; track shoppingCartItem) {
+        <div class="product">
+          <div class="product-information">
+            <img [src]='shoppingCartItem.product.picture' alt="Product picture" class="product-image">
+            <div class="product-details">
+              <div class="product-name">{{ shoppingCartItem.product.name }}</div>
+              <div class="product-desc">{{ shoppingCartItem.product.description }}</div>
+              <div class="product-remove"
+                   (click)="removeItem(shoppingCartItem.shoppingCartItemId)"
+                   (keydown.enter)="removeItem(shoppingCartItem.shoppingCartItemId)"
+                   tabindex="0">
+                Remove
+              </div>
+            </div>
+          </div>
+          <div class="quantity-app-div">
+            <app-quantity
+              [(quantity)]="shoppingCartItem.quantity"
+              (quantityChange)="onQuantityChange(shoppingCartItem)"
+              [isEnabled]="shoppingCartItem.product.isEnabled"
+              [isResponsive]="true">
+            </app-quantity>
+          </div>
+          <div class="product-price">
+            {{ shoppingCartItem.quantity * shoppingCartItem.product.price }} Ft
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+  <div class="order-summary">
+    <div>
+      <div class="order-summary-header">Order summary</div>
+    </div>
+    <div class="promo">
+      <div class="promo-code-title">Promo code</div>
+      <input type="text" placeholder="Write the promo code here..." class="promo-code-input" [(ngModel)]="promoCode">
+      <button mat-raised-button class="promo-code-button" (click)="applyPromoCode()">Apply</button>
+    </div>
+    <div class="total-cost">
+      <div class="total-cost-title">Total cost</div>
+      <div class="total-cost-money">{{ totalCost }} Ft</div>
+    </div>
+  </div>
 </div>

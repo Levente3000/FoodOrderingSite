@@ -8,7 +8,7 @@ html, body {
   height: 100%;
   background-color: rgba(18, 18, 18, 1);
   color: rgba(245, 245, 245, 0.9);
-  --mat-select-panel-background-color: rgba(45, 45, 45, 1);
+  --mat-select-panel-background-color: rgba(245, 245, 245, 0.9);
   --mat-select-enabled-arrow-color: rgba(245, 245, 245, 0.9);
   --mat-option-label-text-color: rgba(245, 245, 245, 0.9);
   --mdc-outlined-text-field-outline-color: rgba(245, 245, 245, 0.9);
@@ -33,6 +33,5 @@ body {
       width: auto;
       max-width: 30vw;
     }
-
   }
 }

@@ -3,6 +3,7 @@ import { Product } from '../../model/product.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductDetailDialogComponent } from '../product-detail-dialog/product-detail-dialog.component';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'app-product-card',
@@ -16,6 +17,7 @@ export class ProductCardComponent {
 
 	constructor(
 		private dialog: MatDialog,
+		private snackBar: MatSnackBar,
 		private shoppingCartService: ShoppingCartService
 	) {}
 
@@ -31,9 +33,15 @@ export class ProductCardComponent {
 		});
 	}
 
-	public addProductToShoppingCart(): void {
+	public addProductToShoppingCart(event: Event): void {
+		event.stopPropagation();
 		if (this.product) {
-			this.shoppingCartService.addProduct(this.product?.id, 1);
+			console.log(1);
+			this.shoppingCartService.addProduct(this.product?.id, 1).subscribe(() => {
+				this.snackBar.open('Product successfully added!', 'Ok', {
+					duration: 5000,
+				});
+			});
 		}
 	}
 }

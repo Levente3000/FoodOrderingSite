@@ -8,11 +8,17 @@ import {
 import { Product } from '../../model/product.model';
 import { MatFabButton } from '@angular/material/button';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
+import { QuantityComponent } from '../../shared/quantity/quantity.component';
 
 @Component({
 	selector: 'app-product-detail-dialog',
 	standalone: true,
-	imports: [MatDialogContent, MatFabButton, MatDialogActions],
+	imports: [
+		MatDialogContent,
+		MatFabButton,
+		MatDialogActions,
+		QuantityComponent,
+	],
 	templateUrl: './product-detail-dialog.component.html',
 	styleUrl: './product-detail-dialog.component.scss',
 })
@@ -31,18 +37,6 @@ export class ProductDetailDialogComponent {
 
 	public onCancelClick(): void {
 		this.dialogRef.close();
-	}
-
-	public addProduct(): void {
-		this.quantity++;
-	}
-
-	public subtractProduct(): void {
-		if (this.quantity > 1) {
-			this.quantity--;
-		} else {
-			this.quantity = 1;
-		}
 	}
 
 	public addProductToShoppingCart(): void {
