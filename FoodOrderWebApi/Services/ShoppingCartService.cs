@@ -26,9 +26,14 @@ public class ShoppingCartService : IShoppingCartService
         _shoppingCartRepository.RemoveOneProduct(userId, productId);
     }
 
-    public void RemoveProduct(string userId, int productId)
+    public void UpdateQuantity(int shoppingCartItemId, int quantity)
     {
-        _shoppingCartRepository.RemoveProduct(userId, productId);
+        _shoppingCartRepository.UpdateQuantity(shoppingCartItemId, quantity);
+    }
+
+    public void RemoveProduct(int itemId)
+    {
+        _shoppingCartRepository.RemoveProduct(itemId);
     }
 
     public List<ShoppingCartItemDto> GetCartByUserId(string userId)

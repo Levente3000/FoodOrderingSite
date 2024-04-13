@@ -55,17 +55,18 @@ public class ShoppingCartController : ControllerBase
         return StatusCode(200);
     }
 
-    [HttpDelete("remove-product")]
-    public IActionResult RemoveProductFromShoppingCart([FromBody] AddOrRemoveProductDto addOrRemoveProduct)
+    [HttpPatch("update-quantity")]
+    public IActionResult UpdateQuantityInShoppingCart([FromBody] UpdateItemQuantityDto updateItemQuantity)
     {
-        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        _shoppingCartService.UpdateQuantity(updateItemQuantity.ShoppingCartItemId, updateItemQuantity.Quantity);
 
-        if (userId.IsNullOrEmpty())
-        {
-            return StatusCode(401);
-        }
+        return StatusCode(200);
+    }
 
-        _shoppingCartService.RemoveProduct(userId, addOrRemoveProduct.ProductId);
+    [HttpDelete("remove-item/{itemid}")]
+    public IActionResult RemoveProductFromShoppingCart(int itemid)
+    {
+        _shoppingCartService.RemoveProduct(itemid);
 
         return StatusCode(200);
     }

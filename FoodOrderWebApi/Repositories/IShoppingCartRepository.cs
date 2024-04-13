@@ -1,14 +1,18 @@
-﻿using FoodOrderWebApi.DTOs;
-using FoodOrderWebApi.Models;
+﻿using FoodOrderWebApi.Models;
 
-namespace FoodOrderWebApi.Services;
+namespace FoodOrderWebApi.Repositories;
 
-public interface IShoppingCartService
+public interface IShoppingCartRepository
 {
+    public List<ShoppingCartItem> GetAllItemByUserId(string userId);
+
     public void AddProduct(string userId, int productId, int quantity);
+
     public void RemoveOneProduct(string userId, int productId);
+
     public void UpdateQuantity(int shoppingCartItemId, int quantity);
-    public void RemoveProduct(int productId);
-    public List<ShoppingCartItemDto> GetCartByUserId(string userId);
+
+    public void RemoveProduct(int itemid);
+
     public void ClearCart(string userId);
 }
