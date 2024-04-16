@@ -21,13 +21,21 @@
     justify-content: flex-start;
     width: 50%;
     font-size: 1.5rem;
+    gap: 2rem;
+  }
+
+  .clear-cart {
+    display: flex;
+    font-size: 1rem;
+    text-decoration: underline;
+    cursor: pointer;
   }
 
   .header-item {
     display: flex;
     justify-content: flex-end;
     width: 50%;
-    padding-right: 2rem;
+    padding-right: 6rem;
   }
 }
 
@@ -93,6 +101,8 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    text-decoration: underline;
+    cursor: pointer;
   }
 
   .product-desc {
@@ -162,19 +172,54 @@
     color: #AAAAAA;
   }
 
-  .promo-code-button {
+  .promo-button-clear {
     display: flex;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .promo-code-button {
+      display: flex;
+      justify-content: center;
+      width: 50%;
+      border-radius: 10px;
+      background-color: rgba(245, 245, 245, 0.9);
+    }
+
+    .clear-promo-code {
+      display: flex;
+      justify-content: center;
+      text-decoration: underline;
+      cursor: pointer;
+      width: 50%;
+    }
+  }
+}
+
+.applied-promo {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-top: 2rem;
+
+  .applied-promo-code {
+    display: flex;
+    justify-content: flex-start;
     width: 50%;
-    border-radius: 10px;
-    background-color: rgba(245, 245, 245, 0.9);
+  }
+
+  .applied-promo-code-price {
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
   }
 }
 
 .total-cost {
   display: flex;
   width: 100%;
-  padding-top: 2rem;
+  padding-top: 1rem;
 
   .total-cost-title {
     display: flex;
@@ -189,6 +234,16 @@
   }
 }
 
+.place-order {
+  display: flex;
+  padding-top: 1rem;
+
+  .place-order-button {
+    display: flex;
+    width: 100%;
+  }
+}
+
 @media (max-width: 600px) {
   .shopping-cart {
     flex-direction: column;
@@ -197,6 +252,12 @@
 
   .shopping-cart-item-container {
     width: 100%;
+  }
+
+  .shopping-cart-header {
+    .header-item {
+      padding-right: 3rem;
+    }
   }
 
   .product-information {
@@ -226,6 +287,12 @@
 
     .column-header-price {
       width: 30%;
+    }
+  }
+
+  .shopping-cart-header {
+    .header-item {
+      padding-right: 1rem;
     }
   }
 

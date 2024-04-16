@@ -7,10 +7,10 @@ namespace FoodOrderWebApi.Services;
 
 public class ShoppingCartService : IShoppingCartService
 {
-    private readonly ShoppingCartRepository _shoppingCartRepository;
+    private readonly IShoppingCartRepository _shoppingCartRepository;
     private readonly IMapper _mapper;
 
-    public ShoppingCartService(ShoppingCartRepository shoppingCartRepository, IMapper mapper)
+    public ShoppingCartService(IShoppingCartRepository shoppingCartRepository, IMapper mapper)
     {
         _shoppingCartRepository = shoppingCartRepository;
         _mapper = mapper;

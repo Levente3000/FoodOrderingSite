@@ -4,6 +4,7 @@ import { baseUrl } from '../../global';
 import { forkJoin, map, mergeMap, Observable } from 'rxjs';
 import { ShoppingCartItem } from '../model/shopping-cart.model';
 import { AssetsService } from './assets.service';
+import { log } from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
 
 @Injectable({
 	providedIn: 'root',
@@ -64,6 +65,12 @@ export class ShoppingCartService {
 	public removeItem(itemId: number) {
 		return this.httpClient.delete(
 			`${baseUrl}/${this.controllerUrl}/remove-item/${itemId}`
+		);
+	}
+
+	public clearCart() {
+		return this.httpClient.delete(
+			`${baseUrl}/${this.controllerUrl}/clear-cart`
 		);
 	}
 }

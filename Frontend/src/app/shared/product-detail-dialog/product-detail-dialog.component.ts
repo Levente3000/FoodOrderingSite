@@ -8,7 +8,9 @@ import {
 import { Product } from '../../model/product.model';
 import { MatFabButton } from '@angular/material/button';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
-import { QuantityComponent } from '../../shared/quantity/quantity.component';
+import { QuantityComponent } from '../quantity/quantity.component';
+import { NgIf } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'app-product-detail-dialog',
@@ -18,6 +20,7 @@ import { QuantityComponent } from '../../shared/quantity/quantity.component';
 		MatFabButton,
 		MatDialogActions,
 		QuantityComponent,
+		NgIf,
 	],
 	templateUrl: './product-detail-dialog.component.html',
 	styleUrl: './product-detail-dialog.component.scss',
@@ -27,8 +30,10 @@ export class ProductDetailDialogComponent {
 
 	constructor(
 		public dialogRef: MatDialogRef<ProductDetailDialogComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: Product,
-		private shoppingCartService: ShoppingCartService
+		@Inject(MAT_DIALOG_DATA)
+		public data: { product: Product; showActions: boolean },
+		private shoppingCartService: ShoppingCartService,
+		private snackBar: MatSnackBar
 	) {
 		this.dialogRef
 			.backdropClick()
@@ -40,6 +45,13 @@ export class ProductDetailDialogComponent {
 	}
 
 	public addProductToShoppingCart(): void {
-		this.shoppingCartService.addProduct(this.data.id, this.quantity);
+		this.shoppingCartService
+			.addProduct(this.data.product.id, this.quantity)
+			.subscribe(() => {
+				this.snackBar.open('Product successfully added!', 'Ok', {
+					duration: 5000,
+				});
+				this.dialogRef.close();
+			});
 	}
 }

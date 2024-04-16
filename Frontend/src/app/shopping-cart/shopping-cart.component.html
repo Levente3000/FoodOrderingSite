@@ -1,7 +1,12 @@
 <div class="shopping-cart">
   <div class="shopping-cart-item-container">
     <div class="shopping-cart-header">
-      <div class="header-title">My shopping cart</div>
+      <div class="header-title">My shopping cart
+        <div class="clear-cart" (click)="clearCart()"
+             (keydown.enter)="clearCart()"
+             tabindex="0">Clear cart
+        </div>
+      </div>
       <div class="header-item">{{ shoppingCart.length }} item</div>
     </div>
     <div class="shopping-cart-items">
@@ -15,7 +20,10 @@
           <div class="product-information">
             <img [src]='shoppingCartItem.product.picture' alt="Product picture" class="product-image">
             <div class="product-details">
-              <div class="product-name">{{ shoppingCartItem.product.name }}</div>
+              <div class="product-name" (click)="productDetailDialogOpen(shoppingCartItem.product)"
+                   (keydown.enter)="productDetailDialogOpen(shoppingCartItem.product)"
+                   tabindex="0">{{ shoppingCartItem.product.name }}
+              </div>
               <div class="product-desc">{{ shoppingCartItem.product.description }}</div>
               <div class="product-remove"
                    (click)="removeItem(shoppingCartItem.shoppingCartItemId)"
@@ -47,11 +55,24 @@
     <div class="promo">
       <div class="promo-code-title">Promo code</div>
       <input type="text" placeholder="Write the promo code here..." class="promo-code-input" [(ngModel)]="promoCode">
-      <button mat-raised-button class="promo-code-button" (click)="applyPromoCode()">Apply</button>
+      <div class="promo-button-clear">
+        <button mat-raised-button class="promo-code-button" (click)="applyPromoCode()">Apply</button>
+        <div class="clear-promo-code" (click)="removePromoCode()"
+             (keydown.enter)="removePromoCode()"
+             tabindex="0">Clear code
+        </div>
+      </div>
+    </div>
+    <div class="applied-promo" *ngIf="this.appliedPromoCode">
+      <div class="applied-promo-code">{{ this.appliedPromoCode.code }}</div>
+      <div class="applied-promo-code-price">-{{ totalCost * this.appliedPromoCode.percentage }}</div>
     </div>
     <div class="total-cost">
       <div class="total-cost-title">Total cost</div>
-      <div class="total-cost-money">{{ totalCost }} Ft</div>
+      <div class="total-cost-money">{{ totalCostWithPromo }} Ft</div>
+    </div>
+    <div class="place-order">
+      <button mat-raised-button class="place-order-button" (click)="placeOrder()">Place order</button>
     </div>
   </div>
 </div>

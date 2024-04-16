@@ -13,5 +13,6 @@
   </div>
   <img ngSrc="./assets/right-arrow.svg" alt="right navigational arrow" height="36" width="36"
        [ngClass]="scrollPosition >= maxScroll ? 'visible' : ''"
+       class="scroll-btn"
        (click)="scrollRight()" (keyup.enter)="scrollLeft()" [tabindex]="0" />
 </div>
