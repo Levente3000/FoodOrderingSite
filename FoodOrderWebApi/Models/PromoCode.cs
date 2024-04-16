@@ -10,5 +10,6 @@ public class PromoCode
     public string Code { get; set; }
 
     [Required]
-    public int Percentage { get; set; }
+    [Range(0.0, 1.0)]
+    public double Percentage { get; set; }
 }

@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FoodOrderWebApi.Migrations
 {
     [DbContext(typeof(FoodOrderDbContext))]
-    [Migration("20240413212818_AddPromoCodeToDb")]
-    partial class AddPromoCodeToDb
+    [Migration("20240414184055_AddPromoCodeEntity")]
+    partial class AddPromoCodeEntity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -170,8 +170,8 @@ namespace FoodOrderWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Percentage")
-                        .HasColumnType("integer");
+                    b.Property<double>("Percentage")
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
 

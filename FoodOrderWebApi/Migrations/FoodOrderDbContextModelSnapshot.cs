@@ -167,8 +167,8 @@ namespace FoodOrderWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Percentage")
-                        .HasColumnType("integer");
+                    b.Property<double>("Percentage")
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
 
