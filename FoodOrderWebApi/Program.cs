@@ -10,7 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IRestaurantRepository, RestaurantRepository>();
 builder.Services.AddScoped<IRepository<FoodCategory, string>, FoodCategoryRepository>();
-builder.Services.AddScoped<ShoppingCartRepository>();
+builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
+builder.Services.AddScoped<IRepository<PromoCode, int>, PromoCodeRepository>();
 
 builder.Services.AddScoped<AssetsService>();
 builder.Services.AddScoped<RestaurantService>();
