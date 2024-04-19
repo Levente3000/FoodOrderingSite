@@ -11,6 +11,11 @@
       </div>
     </div>
   </div>
+  <div>
+    <button (click)="onEdit()">
+      edit
+    </button>
+  </div>
 
   <div class="menu">
     @for (productsInCategory of restaurant?.categoriesWithProducts; track productsInCategory) {

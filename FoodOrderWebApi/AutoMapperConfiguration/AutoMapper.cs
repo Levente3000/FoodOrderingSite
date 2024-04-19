@@ -1,8 +1,11 @@
-﻿using AutoMapper;
+﻿using System.Globalization;
+using AutoMapper;
 using FoodOrderWebApi.DTOs;
+using FoodOrderWebApi.DTOs.CreateRestaurant;
 using FoodOrderWebApi.Models;
 using Microsoft.OpenApi.Models;
 using NodaTime;
+using NodaTime.Text;
 
 namespace FoodOrderWebApi.AutoMapperConfiguration;
 
@@ -28,9 +31,91 @@ public class AutoMapper : Profile
             .ForMember(dto => dto.Saturday, conf => conf.MapFrom(oh => FormatInstant(oh.Saturday)))
             .ForMember(dto => dto.Sunday, conf => conf.MapFrom(oh => FormatInstant(oh.Sunday)));
 
+        CreateMap<CreateRestaurantOpeningHoursDto, OpeningHour>()
+            .ForMember(dto => dto.Monday, conf => conf.MapFrom(oh => ConvertTimeToInstant(oh.Monday)))
+            .ForMember(dto => dto.Tuesday, conf => conf.MapFrom(oh => ConvertTimeToInstant(oh.Tuesday)))
+            .ForMember(dto => dto.Wednesday, conf => conf.MapFrom(oh => ConvertTimeToInstant(oh.Wednesday)))
+            .ForMember(dto => dto.Thursday, conf => conf.MapFrom(oh => ConvertTimeToInstant(oh.Thursday)))
+            .ForMember(dto => dto.Friday, conf => conf.MapFrom(oh => ConvertTimeToInstant(oh.Friday)))
+            .ForMember(dto => dto.Saturday, conf => conf.MapFrom(oh => ConvertTimeToInstant(oh.Saturday)))
+            .ForMember(dto => dto.Sunday, conf => conf.MapFrom(oh => ConvertTimeToInstant(oh.Sunday)));
+
         CreateMap<ShoppingCartItem, ShoppingCartItemDto>();
+
+        CreateMap<CreateEditRestaurantDto, Restaurant>()
+            .ForMember(dest => dest.LogoName, opt => opt.MapFrom(src => src.Logo.FileName))
+            .ForMember(dest => dest.BannerName, opt => opt.MapFrom(src => src.Banner.FileName))
+            .ForMember(dest => dest.OpeningHours, opt => opt.MapFrom(src => MapOpeningHours(src.OpeningHours)))
+            .ForMember(dest => dest.ClosingHours, opt => opt.MapFrom(src => MapOpeningHours(src.ClosingHours)));
+
+        CreateMap<Restaurant, CreateEditRestaurantDto>()
+            .ForMember(dest => dest.OpeningHours,
+                opt => opt.MapFrom(src => MapOpeningHoursFromInstantToString(src.OpeningHours)))
+            .ForMember(dest => dest.ClosingHours,
+                opt => opt.MapFrom(src => MapOpeningHoursFromInstantToString(src.ClosingHours)));
     }
 
     private static string? FormatInstant(Instant? instant) =>
         instant?.ToDateTimeOffset().ToString("o");
+
+    private static OpeningHour MapOpeningHours(CreateRestaurantOpeningHoursDto dto)
+    {
+        return new OpeningHour
+        {
+            Monday = ConvertTimeToInstant(dto.Monday),
+            Tuesday = ConvertTimeToInstant(dto.Tuesday),
+            Wednesday = ConvertTimeToInstant(dto.Wednesday),
+            Thursday = ConvertTimeToInstant(dto.Thursday),
+            Friday = ConvertTimeToInstant(dto.Friday),
+            Saturday = ConvertTimeToInstant(dto.Saturday),
+            Sunday = ConvertTimeToInstant(dto.Sunday)
+        };
+    }
+
+    private static Instant? ConvertTimeToInstant(string? time)
+    {
+        if (time is "null" or null)
+        {
+            return null;
+        }
+
+        var pattern = LocalTimePattern.CreateWithInvariantCulture("h:mm tt");
+        var parseResult = pattern.Parse(time);
+
+        if (!parseResult.Success)
+        {
+            throw new ArgumentException($"Invalid time format: {time}");
+        }
+
+        var referenceDate = new LocalDate(2000, 1, 1);
+        var dateTime = referenceDate.At(parseResult.Value);
+
+        return dateTime.InUtc().ToInstant();
+    }
+
+    private static CreateRestaurantOpeningHoursDto MapOpeningHoursFromInstantToString(OpeningHour openingHour)
+    {
+        return new CreateRestaurantOpeningHoursDto
+        {
+            Monday = FormatTimeFromInstantToString(openingHour.Monday),
+            Tuesday = FormatTimeFromInstantToString(openingHour.Tuesday),
+            Wednesday = FormatTimeFromInstantToString(openingHour.Wednesday),
+            Thursday = FormatTimeFromInstantToString(openingHour.Thursday),
+            Friday = FormatTimeFromInstantToString(openingHour.Friday),
+            Saturday = FormatTimeFromInstantToString(openingHour.Saturday),
+            Sunday = FormatTimeFromInstantToString(openingHour.Sunday)
+        };
+    }
+
+    private static string FormatTimeFromInstantToString(Instant? instant)
+    {
+        if (!instant.HasValue)
+        {
+            return string.Empty;
+        }
+
+        LocalDateTime localDateTime = instant.Value.InUtc().LocalDateTime;
+        var pattern = LocalTimePattern.CreateWithInvariantCulture("hh:mm tt");
+        return pattern.Format(localDateTime.TimeOfDay);
+    }
 }

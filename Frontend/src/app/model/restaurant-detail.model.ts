@@ -2,6 +2,7 @@ import { OpeningHours } from './opening-hours.model';
 import { Product } from './product.model';
 
 export type RestaurantDetail = {
+	id: number;
 	name: string;
 	description: string;
 	address: string;

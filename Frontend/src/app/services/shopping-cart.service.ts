@@ -4,7 +4,6 @@ import { baseUrl } from '../../global';
 import { forkJoin, map, mergeMap, Observable } from 'rxjs';
 import { ShoppingCartItem } from '../model/shopping-cart.model';
 import { AssetsService } from './assets.service';
-import { log } from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
 
 @Injectable({
 	providedIn: 'root',
@@ -43,6 +42,8 @@ export class ShoppingCartService {
 			productId: productId,
 			quantity: quantity,
 		};
+
+		console.log(bodyParams);
 
 		return this.httpClient.post(
 			`${baseUrl}/${this.controllerUrl}/add-product`,

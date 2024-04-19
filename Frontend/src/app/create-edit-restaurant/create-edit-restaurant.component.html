@@ -1,0 +1,46 @@
+<form class="form" [formGroup]="restaurantForm">
+  <div class="restaurant-info">
+    <h1>{{ title }}</h1>
+    <mat-form-field>
+      <mat-label>Restaurant's Name</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Restaurant's Description</mat-label>
+      <textarea class="description" matInput formControlName="description"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Restaurant's Address</mat-label>
+      <input matInput formControlName="address">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Restaurant's Phone Number</mat-label>
+      <input matInput formControlName="phoneNumber">
+    </mat-form-field>
+    <div class="file-uploads">
+      <app-file-upload [title]="'Restaurant\'s logo'" [(file)]="restaurantLogo"></app-file-upload>
+      <app-file-upload [title]="'Restaurant\'s banner'" [(file)]="restaurantBanner"></app-file-upload>
+    </div>
+  </div>
+  <div class="time-table">
+    @for (day of days; track day) {
+      <div class="time-row">
+        <div class="day">{{ day }}</div>
+        <div class="time-inputs">
+          <mat-form-field>
+            <mat-label>{{ day }} opening time</mat-label>
+            <input matInput [ngxTimepicker]="openPicker" formControlName="{{ day }}Opening">
+            <ngx-material-timepicker #openPicker></ngx-material-timepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>{{ day }} closing time</mat-label>
+            <input matInput [ngxTimepicker]="closePicker" formControlName="{{ day }}Closing">
+            <ngx-material-timepicker #closePicker></ngx-material-timepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    }
+  </div>
+  <button mat-raised-button type="submit" [disabled]="!restaurantForm" (click)="submitForm()">Submit</button>
+</form>

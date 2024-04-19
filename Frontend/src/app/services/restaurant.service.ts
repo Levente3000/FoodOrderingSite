@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { forkJoin, map, mergeMap, Observable } from 'rxjs';
+import { forkJoin, map, mergeMap, Observable, of } from 'rxjs';
 import { Restaurant } from '../model/restaurant.model';
 import { baseUrl } from '../../global';
 import { AssetsService } from './assets.service';
@@ -8,6 +8,7 @@ import {
 	CategoriesWithProducts,
 	RestaurantDetail,
 } from '../model/restaurant-detail.model';
+import { EditRestaurant } from '../model/edit-restaurant.model';
 
 @Injectable({
 	providedIn: 'root',
@@ -66,9 +67,33 @@ export class RestaurantService {
 			);
 	}
 
+	public getRestaurantById(id: number): Observable<EditRestaurant> {
+		return this.httpClient.get<EditRestaurant>(
+			`${baseUrl}/${this.controllerUrl}/edit-details/${id}`
+		);
+	}
+
+	public createRestaurant(formData: FormData) {
+		return this.httpClient.post(
+			`${baseUrl}/${this.controllerUrl}/create-restaurant`,
+			formData
+		);
+	}
+
+	public editRestaurant(formData: FormData) {
+		return this.httpClient.post(
+			`${baseUrl}/${this.controllerUrl}/edit-restaurant`,
+			formData
+		);
+	}
+
 	private fetchProductPicturesForCategories(
 		categories: CategoriesWithProducts[]
 	): Observable<CategoriesWithProducts[]> {
+		if (categories.length === 0) {
+			return of([]);
+		}
+
 		return forkJoin(
 			categories.map(category =>
 				forkJoin(
