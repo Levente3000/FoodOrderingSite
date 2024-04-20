@@ -37,23 +37,21 @@ public class RestaurantController : Controller
     }
 
     [HttpPost("create-restaurant")]
-    public IActionResult CreateRestaurant([FromForm] CreateEditRestaurantDto createEditRestaurant)
+    public int? CreateRestaurant([FromForm] CreateEditRestaurantDto createEditRestaurant)
     {
         var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
         if (userId.IsNullOrEmpty())
         {
-            return StatusCode(401);
+            return null;
         }
 
-        _restaurantService.CreateRestaurant(createEditRestaurant, userId);
-        return StatusCode(201);
+        return _restaurantService.CreateRestaurant(createEditRestaurant, userId);
     }
 
     [HttpPost("edit-restaurant")]
-    public IActionResult EditRestaurant([FromForm] CreateEditRestaurantDto createEditRestaurant)
+    public int? EditRestaurant([FromForm] CreateEditRestaurantDto createEditRestaurant)
     {
-        _restaurantService.EditRestaurant(createEditRestaurant);
-        return StatusCode(201);
+        return _restaurantService.EditRestaurant(createEditRestaurant);
     }
 }

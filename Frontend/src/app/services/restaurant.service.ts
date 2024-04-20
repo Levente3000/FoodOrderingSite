@@ -80,8 +80,8 @@ export class RestaurantService {
 		);
 	}
 
-	public editRestaurant(formData: FormData) {
-		return this.httpClient.post(
+	public editRestaurant(formData: FormData): Observable<number | null> {
+		return this.httpClient.post<number | null>(
 			`${baseUrl}/${this.controllerUrl}/edit-restaurant`,
 			formData
 		);

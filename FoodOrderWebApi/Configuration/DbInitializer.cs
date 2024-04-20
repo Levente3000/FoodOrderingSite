@@ -122,8 +122,8 @@ public class DbInitializer
                 PhoneNumber = "06300000003",
                 LogoName = "karen_bar.jpg",
                 BannerName = "banner.jpg",
-                OpeningHourId = 1,
-                ClosingHourId = 2
+                OpeningHourId = 5,
+                ClosingHourId = 6
             },
             new()
             {
@@ -133,8 +133,8 @@ public class DbInitializer
                 PhoneNumber = "06300000004",
                 LogoName = "karen_bar.jpg",
                 BannerName = "banner.jpg",
-                OpeningHourId = 1,
-                ClosingHourId = 2
+                OpeningHourId = 7,
+                ClosingHourId = 8
             },
             new()
             {
@@ -144,8 +144,8 @@ public class DbInitializer
                 PhoneNumber = "06300000001",
                 LogoName = "karen_bar.jpg",
                 BannerName = "banner.jpg",
-                OpeningHourId = 1,
-                ClosingHourId = 2
+                OpeningHourId = 9,
+                ClosingHourId = 10
             },
             new()
             {
@@ -155,8 +155,8 @@ public class DbInitializer
                 PhoneNumber = "06300000001",
                 LogoName = "karen_bar.jpg",
                 BannerName = "banner.jpg",
-                OpeningHourId = 1,
-                ClosingHourId = 2
+                OpeningHourId = 11,
+                ClosingHourId = 12
             },
             new()
             {
@@ -166,8 +166,8 @@ public class DbInitializer
                 PhoneNumber = "06300000001",
                 LogoName = "karen_bar.jpg",
                 BannerName = "banner.jpg",
-                OpeningHourId = 1,
-                ClosingHourId = 2
+                OpeningHourId = 13,
+                ClosingHourId = 14
             },
             new()
             {
@@ -177,8 +177,8 @@ public class DbInitializer
                 PhoneNumber = "06300000001",
                 LogoName = "karen_bar.jpg",
                 BannerName = "banner.jpg",
-                OpeningHourId = 1,
-                ClosingHourId = 2
+                OpeningHourId = 15,
+                ClosingHourId = 16
             },
         };
 
@@ -401,6 +401,126 @@ public class DbInitializer
                 Friday = Instant.FromUtc(1, 1, 1, 16, 0, 0),
                 Saturday = null,
                 Sunday = null
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 10, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 10, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 16, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 16, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 10, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 10, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 16, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 16, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 10, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 10, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 16, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 16, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 10, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 10, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 16, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 16, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 10, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 10, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 16, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 16, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 10, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 10, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 16, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 16, 0, 0)
             },
             new()
             {

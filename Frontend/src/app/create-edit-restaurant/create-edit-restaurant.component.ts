@@ -14,6 +14,7 @@ import { RestaurantService } from '../services/restaurant.service';
 import { MatDialogContent } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditRestaurant } from '../model/edit-restaurant.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'app-create-restaurant',
@@ -53,7 +54,8 @@ export class CreateEditRestaurantComponent implements OnInit {
 		private fb: FormBuilder,
 		private restaurantService: RestaurantService,
 		private _activatedRoute: ActivatedRoute,
-		private router: Router
+		private router: Router,
+		private snackBar: MatSnackBar
 	) {
 		this.restaurantForm = this.fb.group({
 			id: [null],
@@ -95,10 +97,16 @@ export class CreateEditRestaurantComponent implements OnInit {
 				!this.restaurantBanner) &&
 			!this.isEditMode
 		) {
+			if (!this.restaurantForm.valid) {
+				this.snackBarMessage('The form is invalid!');
+			} else {
+				this.snackBarMessage('The logo or banner is missing!');
+			}
 			return;
 		}
 
 		if (!this.restaurantForm.valid && this.isEditMode) {
+			this.snackBarMessage('The form is invalid!');
 			return;
 		}
 
@@ -108,8 +116,10 @@ export class CreateEditRestaurantComponent implements OnInit {
 		formData.append('address', this.restaurantForm.value.address);
 		formData.append('phoneNumber', this.restaurantForm.value.phoneNumber);
 
-		if (this.restaurantLogo && this.restaurantBanner) {
+		if (this.restaurantLogo) {
 			formData.append('logo', this.restaurantLogo);
+		}
+		if (this.restaurantBanner) {
 			formData.append('banner', this.restaurantBanner);
 		}
 
@@ -125,10 +135,28 @@ export class CreateEditRestaurantComponent implements OnInit {
 		});
 		if (this.isEditMode) {
 			formData.append('id', this.restaurantForm.value.id);
-			this.restaurantService.editRestaurant(formData).subscribe();
+			this.restaurantService.editRestaurant(formData).subscribe(result => {
+				if (result) {
+					this.router.navigate(['/restaurants/details', result]);
+				} else {
+					this.router.navigate(['/home']);
+				}
+			});
 		} else {
-			this.restaurantService.createRestaurant(formData).subscribe();
+			this.restaurantService.createRestaurant(formData).subscribe(result => {
+				if (result) {
+					this.router.navigate(['/restaurants/details', result]);
+				} else {
+					this.router.navigate(['/home']);
+				}
+			});
 		}
+	}
+
+	private snackBarMessage(message: string): void {
+		this.snackBar.open(message, 'Ok', {
+			duration: 5000,
+		});
 	}
 
 	private populateForm(details: EditRestaurant): void {

@@ -50,7 +50,7 @@ public class RestaurantService
         return a;
     }
 
-    public void CreateRestaurant(CreateEditRestaurantDto createEditRestaurant, string userId)
+    public int CreateRestaurant(CreateEditRestaurantDto createEditRestaurant, string userId)
     {
         if (createEditRestaurant.Logo != null && createEditRestaurant.Banner != null)
         {
@@ -77,9 +77,11 @@ public class RestaurantService
         };
 
         _restaurantPermissionRepository.AddPermissionToUser(restaurantPermission);
+
+        return restaurant.Id;
     }
 
-    public void EditRestaurant(CreateEditRestaurantDto createEditRestaurant)
+    public int? EditRestaurant(CreateEditRestaurantDto createEditRestaurant)
     {
         Restaurant? restaurant = null;
         if (createEditRestaurant.Id.HasValue)
@@ -89,11 +91,13 @@ public class RestaurantService
 
         if (restaurant == null)
         {
-            return;
+            return null;
         }
 
         var openingHoursToRemove = restaurant.OpeningHours;
         var closingHoursToRemove = restaurant.ClosingHours;
+
+        _mapper.Map(createEditRestaurant, restaurant);
 
         var openingHours = _mapper.Map<OpeningHour>(createEditRestaurant.OpeningHours);
         var closingHours = _mapper.Map<OpeningHour>(createEditRestaurant.ClosingHours);
@@ -101,14 +105,14 @@ public class RestaurantService
         _openingHourRepository.CreateOpeningHour(openingHours);
         _openingHourRepository.CreateOpeningHour(closingHours);
 
-        restaurant.OpeningHours = openingHours;
         restaurant.OpeningHourId = openingHours.Id;
-        restaurant.ClosingHours = closingHours;
         restaurant.ClosingHourId = closingHours.Id;
 
         _restaurantRepository.UpdateRestaurant(restaurant);
 
         _openingHourRepository.RemoveOpeningHour(openingHoursToRemove);
         _openingHourRepository.RemoveOpeningHour(closingHoursToRemove);
+
+        return restaurant.Id;
     }
 }

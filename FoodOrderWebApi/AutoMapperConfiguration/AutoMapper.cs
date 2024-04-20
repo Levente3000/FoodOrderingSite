@@ -43,8 +43,10 @@ public class AutoMapper : Profile
         CreateMap<ShoppingCartItem, ShoppingCartItemDto>();
 
         CreateMap<CreateEditRestaurantDto, Restaurant>()
-            .ForMember(dest => dest.LogoName, opt => opt.MapFrom(src => src.Logo.FileName))
-            .ForMember(dest => dest.BannerName, opt => opt.MapFrom(src => src.Banner.FileName))
+            .ForMember(dest => dest.LogoName, opt => opt.MapFrom((src, dest) =>
+                src.Logo != null ? src.Logo.FileName : dest.LogoName))
+            .ForMember(dest => dest.BannerName, opt => opt.MapFrom((src, dest) =>
+                src.Banner != null ? src.Banner.FileName : dest.BannerName))
             .ForMember(dest => dest.OpeningHours, opt => opt.MapFrom(src => MapOpeningHours(src.OpeningHours)))
             .ForMember(dest => dest.ClosingHours, opt => opt.MapFrom(src => MapOpeningHours(src.ClosingHours)));
 

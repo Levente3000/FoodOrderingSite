@@ -12,7 +12,7 @@ namespace FoodOrderWebApi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ShoppingCartItem",
+                name: "ShoppingCartItems",
                 columns: table => new
                 {
                     ShoppingCartItemId = table.Column<int>(type: "integer", nullable: false)
@@ -23,9 +23,9 @@ namespace FoodOrderWebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShoppingCartItem", x => x.ShoppingCartItemId);
+                    table.PrimaryKey("PK_ShoppingCartItems", x => x.ShoppingCartItemId);
                     table.ForeignKey(
-                        name: "FK_ShoppingCartItem_Products_ProductId",
+                        name: "FK_ShoppingCartItems_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -33,8 +33,8 @@ namespace FoodOrderWebApi.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShoppingCartItem_ProductId",
-                table: "ShoppingCartItem",
+                name: "IX_ShoppingCartItems_ProductId",
+                table: "ShoppingCartItems",
                 column: "ProductId");
         }
 
@@ -42,7 +42,7 @@ namespace FoodOrderWebApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ShoppingCartItem");
+                name: "ShoppingCartItems");
         }
     }
 }
