@@ -41,7 +41,6 @@ export class FilterAndRestaurantsComponent {
 
 	public onFilter($event: FilterData): void {
 		this.filterData = $event;
-		console.log(this.filterData);
 		this.filteredRestaurants = this._allRestaurants.filter(
 			restaurant =>
 				this.filterName(restaurant) &&
