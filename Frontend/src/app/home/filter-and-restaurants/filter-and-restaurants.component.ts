@@ -41,6 +41,7 @@ export class FilterAndRestaurantsComponent {
 
 	public onFilter($event: FilterData): void {
 		this.filterData = $event;
+		console.log(this.filterData);
 		this.filteredRestaurants = this._allRestaurants.filter(
 			restaurant =>
 				this.filterName(restaurant) &&
@@ -53,7 +54,9 @@ export class FilterAndRestaurantsComponent {
 		if (this.filterData.text === '') {
 			return true;
 		}
-		return restaurant.name.includes(this.filterData.text);
+		return restaurant.name
+			.toLowerCase()
+			.includes(this.filterData.text.toLowerCase());
 	}
 
 	private filterPriceCategories(restaurant: Restaurant): boolean {
