@@ -1,5 +1,6 @@
 ﻿using FoodOrderWebApi.Models;
 using FoodOrderWebApi.Repositories;
+using FoodOrderWebApi.Repositories.Interfaces;
 
 namespace FoodOrderWebApi.Services;
 
@@ -17,7 +18,7 @@ public class RestaurantPermissionService : IRestaurantPermissionService
         return _restaurantPermissionRepository.GetAllPermissionByUserId(userId);
     }
 
-    public RestaurantPermission? GetPermissionByUserIdAndRestaurantId(string userId, int restaurantId)
+    public bool GetPermissionByUserIdAndRestaurantId(string userId, int restaurantId)
     {
         return _restaurantPermissionRepository.GetPermissionByUserIdAndRestaurantId(userId, restaurantId);
     }

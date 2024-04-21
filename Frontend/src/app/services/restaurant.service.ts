@@ -14,7 +14,8 @@ import { EditRestaurant } from '../model/edit-restaurant.model';
 	providedIn: 'root',
 })
 export class RestaurantService {
-	private controllerUrl = 'restaurant';
+	private restaurantControllerUrl = 'restaurant';
+	private restaurantPermissionControllerUrl = 'restaurant-permission';
 
 	constructor(
 		private readonly httpClient: HttpClient,
@@ -23,7 +24,7 @@ export class RestaurantService {
 
 	public getRestaurantsWithLogo(): Observable<Restaurant[]> {
 		return this.httpClient
-			.get<Restaurant[]>(`${baseUrl}/${this.controllerUrl}`)
+			.get<Restaurant[]>(`${baseUrl}/${this.restaurantControllerUrl}`)
 			.pipe(
 				mergeMap(restaurants =>
 					forkJoin(
@@ -44,7 +45,9 @@ export class RestaurantService {
 
 	public getRestaurantByIdWithLogo(id: number): Observable<RestaurantDetail> {
 		return this.httpClient
-			.get<RestaurantDetail>(`${baseUrl}/${this.controllerUrl}/details/${id}`)
+			.get<RestaurantDetail>(
+				`${baseUrl}/${this.restaurantControllerUrl}/details/${id}`
+			)
 			.pipe(
 				mergeMap(restaurant =>
 					forkJoin({
@@ -69,21 +72,27 @@ export class RestaurantService {
 
 	public getRestaurantById(id: number): Observable<EditRestaurant> {
 		return this.httpClient.get<EditRestaurant>(
-			`${baseUrl}/${this.controllerUrl}/edit-details/${id}`
+			`${baseUrl}/${this.restaurantControllerUrl}/edit-details/${id}`
 		);
 	}
 
 	public createRestaurant(formData: FormData) {
 		return this.httpClient.post(
-			`${baseUrl}/${this.controllerUrl}/create-restaurant`,
+			`${baseUrl}/${this.restaurantControllerUrl}/create-restaurant`,
 			formData
 		);
 	}
 
 	public editRestaurant(formData: FormData): Observable<number | null> {
 		return this.httpClient.post<number | null>(
-			`${baseUrl}/${this.controllerUrl}/edit-restaurant`,
+			`${baseUrl}/${this.restaurantControllerUrl}/edit-restaurant`,
 			formData
+		);
+	}
+
+	public isAuthorized(restaurantId: number): Observable<boolean> {
+		return this.httpClient.get<boolean>(
+			`${baseUrl}/${this.restaurantPermissionControllerUrl}/${restaurantId}`
 		);
 	}
 

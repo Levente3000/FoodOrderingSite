@@ -5,6 +5,7 @@
   align-items: center;
   width: 100%;
   padding-top: 2rem;
+  padding-bottom: 2rem;
   gap: 2rem;
 
   .description {
@@ -19,11 +20,13 @@
 
     h1 {
       align-self: center;
+      font-size: 38px;
     }
   }
 
   .file-uploads {
     display: flex;
+    justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 2rem;
@@ -34,6 +37,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
+    padding: 2rem;
 
     .time-row {
       display: flex;
@@ -46,7 +50,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 24px;
+      font-size: 32px;
     }
 
     .time-inputs {

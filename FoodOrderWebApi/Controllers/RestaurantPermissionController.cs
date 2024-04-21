@@ -26,12 +26,12 @@ public class RestaurantPermissionController : Controller
     }
 
     [HttpGet("{restaurantId}")]
-    public RestaurantPermission? GetRestaurantById(int restaurantId)
+    public bool GetRestaurantById(int restaurantId)
     {
         var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
         return userId.IsNullOrEmpty()
-            ? null
+            ? false
             : _restaurantPermissionService.GetPermissionByUserIdAndRestaurantId(userId, restaurantId);
     }
 }

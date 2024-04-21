@@ -1,5 +1,6 @@
 ﻿using FoodOrderWebApi.Configuration;
 using FoodOrderWebApi.Models;
+using FoodOrderWebApi.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace FoodOrderWebApi.Repositories;
@@ -21,12 +22,10 @@ public class RestaurantPermissionRepository : IRestaurantPermissionRepository
             .ToList();
     }
 
-    public RestaurantPermission? GetPermissionByUserIdAndRestaurantId(string userId, int restaurantId)
+    public bool GetPermissionByUserIdAndRestaurantId(string userId, int restaurantId)
     {
         return _context.RestaurantPermissions
-            .Where(permission => permission.UserId == userId && permission.RestaurantId == restaurantId)
-            .AsNoTracking()
-            .FirstOrDefault();
+            .Any(permission => permission.UserId == userId && permission.RestaurantId == restaurantId);
     }
 
     public void AddPermissionToUser(RestaurantPermission restaurantPermission)

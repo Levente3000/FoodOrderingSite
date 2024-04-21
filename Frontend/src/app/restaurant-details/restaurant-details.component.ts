@@ -17,6 +17,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
 })
 export class RestaurantDetailsComponent implements OnInit {
 	protected restaurant?: RestaurantDetail;
+	protected isAuthorized: boolean = false;
 
 	constructor(
 		private restaurantService: RestaurantService,
@@ -33,6 +34,9 @@ export class RestaurantDetailsComponent implements OnInit {
 					this.restaurant = restaurant;
 					this.restaurant.id = params['id'];
 				});
+			this.restaurantService
+				.isAuthorized(params['id'])
+				.subscribe(result => (this.isAuthorized = result));
 		});
 	}
 
@@ -53,7 +57,7 @@ export class RestaurantDetailsComponent implements OnInit {
 		});
 	}
 
-	public onEdit(): void {
+	public routeToEditRestaurant(): void {
 		this.router.navigate(['/edit-restaurant', this.restaurant?.id]);
 	}
 }

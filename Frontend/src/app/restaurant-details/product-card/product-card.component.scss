@@ -6,27 +6,27 @@
   gap: 1rem;
   width: 300px;
   z-index: 0;
-}
 
-.product-image {
-  display: flex;
-  object-fit: cover;
-  max-width: 25%;
-  height: 5rem;
-  border-radius: 0.5em;
-}
+  .product-image {
+    display: flex;
+    object-fit: cover;
+    max-width: 25%;
+    height: 5rem;
+    border-radius: 0.5em;
+  }
 
-.product-details {
-  display: flex;
-  width: 55%;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
+  .product-details {
+    display: flex;
+    width: 55%;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
 
-.product-name, .product-desc, .product-price {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+  .product-name, .product-desc, .product-price {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }
 
 .add-button {
@@ -38,7 +38,7 @@
   border: none;
   padding: 0.8em 0.5em;
   border-radius: 0.3em;
-  font-size: 24px;
+  font-size: 32px;
   cursor: pointer;
   z-index: 1;
 }
