@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using FoodOrderWebApi.DTOs;
-using FoodOrderWebApi.Models;
+using FoodOrderWebApi.DTOs.ShoppingCart;
 using FoodOrderWebApi.Repositories;
 
 namespace FoodOrderWebApi.Services;
@@ -16,24 +16,46 @@ public class ShoppingCartService : IShoppingCartService
         _mapper = mapper;
     }
 
-    public void AddProduct(string userId, int productId, int quantity)
+    public void AddProduct(string userId, ShoppingCartProductDto shoppingCartProductDto)
     {
-        _shoppingCartRepository.AddProduct(userId, productId, quantity);
+        var shoppingCartItem =
+            _shoppingCartRepository.GetItemByUserIdAndProductId(userId, shoppingCartProductDto.ProductId);
+        if (shoppingCartItem == null)
+        {
+            _shoppingCartRepository.AddProduct(userId, shoppingCartProductDto.ProductId,
+                shoppingCartProductDto.Quantity);
+        }
+        else
+        {
+            shoppingCartItem.Quantity += shoppingCartProductDto.Quantity;
+            _shoppingCartRepository.UpdateProduct(shoppingCartItem);
+        }
     }
 
-    public void RemoveOneProduct(string userId, int productId)
+    public void UpdateQuantity(UpdateItemQuantityDto updateItemQuantity)
     {
-        _shoppingCartRepository.RemoveOneProduct(userId, productId);
+        var cartItem = _shoppingCartRepository.GetItemByCartItemId(updateItemQuantity.ShoppingCartItemId);
+
+        if (cartItem == null)
+        {
+            throw new Exception();
+        }
+
+        cartItem.Quantity = updateItemQuantity.Quantity;
+
+        _shoppingCartRepository.UpdateProduct(cartItem);
     }
 
-    public void UpdateQuantity(int shoppingCartItemId, int quantity)
+    public void RemoveProduct(int shoppingCartItemId)
     {
-        _shoppingCartRepository.UpdateQuantity(shoppingCartItemId, quantity);
-    }
+        var product = _shoppingCartRepository.GetItemByCartItemId(shoppingCartItemId);
 
-    public void RemoveProduct(int itemId)
-    {
-        _shoppingCartRepository.RemoveProduct(itemId);
+        if (product == null)
+        {
+            throw new Exception();
+        }
+
+        _shoppingCartRepository.RemoveProduct(product);
     }
 
     public List<ShoppingCartItemDto> GetCartByUserId(string userId)

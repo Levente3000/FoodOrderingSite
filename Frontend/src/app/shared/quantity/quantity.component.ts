@@ -15,7 +15,7 @@ export class QuantityComponent {
 	@Input() isResponsive: boolean = false;
 
 	protected get isQuantityOne(): boolean {
-		return this.quantity == 1;
+		return this.quantity === 1;
 	}
 
 	public addProduct(): void {

@@ -23,73 +23,38 @@ public class ShoppingCartRepository : IShoppingCartRepository
             .ToList();
     }
 
+    public ShoppingCartItem? GetItemByCartItemId(int shoppingCartItemId)
+    {
+        return _context.ShoppingCartItems
+            .FirstOrDefault(item => item.ShoppingCartItemId == shoppingCartItemId);
+    }
+
+    public ShoppingCartItem? GetItemByUserIdAndProductId(string userId, int productId)
+    {
+        return _context.ShoppingCartItems
+            .FirstOrDefault(item => item.UserId == userId && item.ProductId == productId);
+    }
+
     public void AddProduct(string userId, int productId, int quantity)
     {
-        var item = _context.ShoppingCartItems.FirstOrDefault(
-            item => item.UserId == userId && item.ProductId == productId);
-
-        if (item == null)
+        _context.ShoppingCartItems.Add(new ShoppingCartItem
         {
-            _context.ShoppingCartItems
-                .Add(new ShoppingCartItem
-                {
-                    UserId = userId,
-                    ProductId = productId,
-                    Quantity = quantity,
-                });
-        }
-        else
-        {
-            item.Quantity += quantity;
-            _context.ShoppingCartItems.Update(item);
-        }
-
+            UserId = userId,
+            ProductId = productId,
+            Quantity = quantity
+        });
         _context.SaveChanges();
     }
 
-    public void RemoveOneProduct(string userId, int productId)
+    public void UpdateProduct(ShoppingCartItem shoppingCartItem)
     {
-        var product =
-            _context.ShoppingCartItems.FirstOrDefault(item => item.UserId == userId && item.ProductId == productId);
-
-        if (product == null)
-        {
-            return;
-        }
-
-        product.Quantity--;
-
-        _context.ShoppingCartItems.Update(product);
+        _context.ShoppingCartItems.Update(shoppingCartItem);
         _context.SaveChanges();
     }
 
-    public void UpdateQuantity(int shoppingCartItemId, int quantity)
+    public void RemoveProduct(ShoppingCartItem shoppingCartItem)
     {
-        var product =
-            _context.ShoppingCartItems.FirstOrDefault(item => item.ShoppingCartItemId == shoppingCartItemId);
-
-        if (product == null)
-        {
-            return;
-        }
-
-        product.Quantity = quantity;
-
-        _context.ShoppingCartItems.Update(product);
-        _context.SaveChanges();
-    }
-
-    public void RemoveProduct(int itemid)
-    {
-        var product =
-            _context.ShoppingCartItems.FirstOrDefault(item => item.ShoppingCartItemId == itemid);
-
-        if (product == null)
-        {
-            return;
-        }
-
-        _context.ShoppingCartItems.Remove(product);
+        _context.ShoppingCartItems.Remove(shoppingCartItem);
         _context.SaveChanges();
     }
 

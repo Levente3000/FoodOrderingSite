@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-using FoodOrderWebApi.DTOs;
+﻿using FoodOrderWebApi.DTOs;
 using FoodOrderWebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
