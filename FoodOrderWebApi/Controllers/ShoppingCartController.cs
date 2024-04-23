@@ -9,7 +9,7 @@ namespace FoodOrderWebApi.Controllers;
 
 [Route("shopping-cart")]
 [ApiController]
-public class ShoppingCartController : MyController
+public class ShoppingCartController : Controller
 {
     private readonly IShoppingCartService _shoppingCartService;
 
@@ -21,7 +21,7 @@ public class ShoppingCartController : MyController
     [HttpGet]
     public ActionResult<List<ShoppingCartItemDto>> GetShoppingCart()
     {
-        var userId = GetUserId();
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
         return userId.IsNullOrEmpty()
             ? Unauthorized("User ID is null or empty.")
@@ -31,7 +31,7 @@ public class ShoppingCartController : MyController
     [HttpPost("add-product")]
     public IActionResult AddProductToShoppingCart([FromBody] ShoppingCartProductDto shoppingCartProduct)
     {
-        var userId = GetUserId();
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
         if (userId.IsNullOrEmpty())
         {
@@ -62,7 +62,7 @@ public class ShoppingCartController : MyController
     [HttpDelete("clear-cart")]
     public IActionResult ClearShoppingCart()
     {
-        var userId = GetUserId();
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
         if (userId.IsNullOrEmpty())
         {
