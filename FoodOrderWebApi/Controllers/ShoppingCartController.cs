@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using FoodOrderWebApi.DTOs;
+using FoodOrderWebApi.DTOs.ShoppingCart;
 using FoodOrderWebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -8,7 +9,7 @@ namespace FoodOrderWebApi.Controllers;
 
 [Route("shopping-cart")]
 [ApiController]
-public class ShoppingCartController : ControllerBase
+public class ShoppingCartController : MyController
 {
     private readonly IShoppingCartService _shoppingCartService;
 
@@ -18,47 +19,34 @@ public class ShoppingCartController : ControllerBase
     }
 
     [HttpGet]
-    public List<ShoppingCartItemDto> GetShoppingCart()
+    public ActionResult<List<ShoppingCartItemDto>> GetShoppingCart()
     {
-        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var userId = GetUserId();
 
-        return userId.IsNullOrEmpty() ? null : _shoppingCartService.GetCartByUserId(userId);
+        return userId.IsNullOrEmpty()
+            ? Unauthorized("User ID is null or empty.")
+            : Ok(_shoppingCartService.GetCartByUserId(userId));
     }
 
     [HttpPost("add-product")]
-    public IActionResult AddProductToShoppingCart([FromBody] AddOrRemoveProductDto addOrRemoveProduct)
+    public IActionResult AddProductToShoppingCart([FromBody] ShoppingCartProductDto shoppingCartProduct)
     {
-        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var userId = GetUserId();
 
         if (userId.IsNullOrEmpty())
         {
-            return StatusCode(401);
+            return Unauthorized("User ID is null or empty.");
         }
 
-        _shoppingCartService.AddProduct(userId, addOrRemoveProduct.ProductId, addOrRemoveProduct.Quantity);
+        _shoppingCartService.AddProduct(userId, shoppingCartProduct);
 
         return StatusCode(201);
-    }
-
-    [HttpPatch("remove-one-product")]
-    public IActionResult RemoveOneProductFromShoppingCart([FromBody] AddOrRemoveProductDto addOrRemoveProduct)
-    {
-        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-        if (userId.IsNullOrEmpty())
-        {
-            return StatusCode(401);
-        }
-
-        _shoppingCartService.RemoveOneProduct(userId, addOrRemoveProduct.ProductId);
-
-        return StatusCode(200);
     }
 
     [HttpPatch("update-quantity")]
     public IActionResult UpdateQuantityInShoppingCart([FromBody] UpdateItemQuantityDto updateItemQuantity)
     {
-        _shoppingCartService.UpdateQuantity(updateItemQuantity.ShoppingCartItemId, updateItemQuantity.Quantity);
+        _shoppingCartService.UpdateQuantity(updateItemQuantity);
 
         return StatusCode(200);
     }
@@ -74,7 +62,7 @@ public class ShoppingCartController : ControllerBase
     [HttpDelete("clear-cart")]
     public IActionResult ClearShoppingCart()
     {
-        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var userId = GetUserId();
 
         if (userId.IsNullOrEmpty())
         {

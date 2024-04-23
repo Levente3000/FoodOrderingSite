@@ -39,7 +39,7 @@ export class ProductCardComponent {
 	public addProductToShoppingCart(event: Event): void {
 		event.stopPropagation();
 		if (this.product) {
-			this.shoppingCartService.addProduct(this.product?.id, 1).subscribe(() => {
+			this.shoppingCartService.addProduct(this.product.id, 1).subscribe(() => {
 				this.snackBar.open('Product successfully added!', 'Ok', {
 					duration: 5000,
 				});
