@@ -1,0 +1,16 @@
+<div mat-dialog-content class="product-dialog">
+  <img [src]='data.product.picture' alt="Product picture" class="product-image">
+  <div class="product-information">
+    <h1>{{ data.product.name }}</h1>
+    <p class="product-price">{{ data.product.price }} Ft</p>
+    <p>{{ data.product.description }}</p>
+  </div>
+  <div class="product-actions" *ngIf="data.showActions">
+    <app-quantity [(quantity)]="quantity" [isEnabled]="data.product.isEnabled"></app-quantity>
+    <button [disabled]="!data.product.isEnabled" type="submit" class="submit-button"
+            (click)="addProductToShoppingCart()">
+      <div class="submit-text">Add to cart</div>
+      <div class="submit-price">{{ quantity * data.product.price }} Ft</div>
+    </button>
+  </div>
+</div>

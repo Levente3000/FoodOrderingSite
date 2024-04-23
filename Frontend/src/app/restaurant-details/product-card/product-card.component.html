@@ -5,5 +5,5 @@
     <div class="product-desc">{{ product?.description }}</div>
     <div class="product-price">{{ product?.price }} Ft</div>
   </div>
-  <button [disabled]="product?.isEnabled" class="add-button">+</button>
+  <button [disabled]="!product?.isEnabled" class="add-button" (click)="addProductToShoppingCart($event)">+</button>
 </div>

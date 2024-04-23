@@ -3,6 +3,7 @@ using System;
 using FoodOrderWebApi.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NodaTime;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FoodOrderWebApi.Migrations
 {
     [DbContext(typeof(FoodOrderDbContext))]
-    partial class FoodOrderDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240407124940_AddShoppingCartItemEntity")]
+    partial class AddShoppingCartItemEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,26 +158,6 @@ namespace FoodOrderWebApi.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("FoodOrderWebApi.Models.PromoCode", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<double>("Percentage")
-                        .HasColumnType("double precision");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PromoCodes");
-                });
-
             modelBuilder.Entity("FoodOrderWebApi.Models.Restaurant", b =>
                 {
                     b.Property<int>("Id")
@@ -247,7 +230,7 @@ namespace FoodOrderWebApi.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ShoppingCartItems");
+                    b.ToTable("ShoppingCartItem");
                 });
 
             modelBuilder.Entity("OrderProduct", b =>

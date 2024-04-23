@@ -1,0 +1,48 @@
+.minus-div-add {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  background-color: rgba(245, 245, 245, 0.9);
+  border-radius: 1rem;
+  width: auto;
+}
+
+.quantity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  padding: 0.8rem 0.8rem;
+  color: black;
+}
+
+.quantity-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.8rem 0.8rem;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.minus-div-add.responsive {
+  @media (max-width: 600px) {
+    .minus-div-add {
+      gap: 5px;
+    }
+
+    .quantity-button {
+      font-size: 1rem;
+      padding: 5px;
+    }
+
+    .quantity {
+      font-size: 0.8rem;
+      padding: 5px;
+    }
+  }
+}
+

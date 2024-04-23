@@ -1,0 +1,11 @@
+<div class="minus-div-add" [ngClass]="{'responsive': isResponsive}">
+  <button [disabled]="!isEnabled || isQuantityOne" class="quantity-button" (click)="subtractProduct()">
+    -
+  </button>
+  <div class="quantity">
+    {{ quantity }}
+  </div>
+  <button [disabled]="!isEnabled" class="quantity-button" (click)="addProduct()">
+    +
+  </button>
+</div>

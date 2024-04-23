@@ -1,0 +1,78 @@
+<div class="shopping-cart">
+  <div class="shopping-cart-item-container">
+    <div class="shopping-cart-header">
+      <div class="header-title">My shopping cart
+        <div class="clear-cart" (click)="clearCart()"
+             (keydown.enter)="clearCart()"
+             tabindex="0">Clear cart
+        </div>
+      </div>
+      <div class="header-item">{{ shoppingCart.length }} item</div>
+    </div>
+    <div class="shopping-cart-items">
+      <div class="items-column-header">
+        <div class="column-header-detail">Product details</div>
+        <div class="column-header-quantity">Quantity</div>
+        <div class="column-header-price">Total</div>
+      </div>
+      @for (shoppingCartItem of shoppingCart; track shoppingCartItem) {
+        <div class="product">
+          <div class="product-information">
+            <img [src]='shoppingCartItem.product.picture' alt="Product picture" class="product-image">
+            <div class="product-details">
+              <div class="product-name" (click)="productDetailDialogOpen(shoppingCartItem.product)"
+                   (keydown.enter)="productDetailDialogOpen(shoppingCartItem.product)"
+                   tabindex="0">{{ shoppingCartItem.product.name }}
+              </div>
+              <div class="product-desc">{{ shoppingCartItem.product.description }}</div>
+              <div class="product-remove"
+                   (click)="removeItem(shoppingCartItem.shoppingCartItemId)"
+                   (keydown.enter)="removeItem(shoppingCartItem.shoppingCartItemId)"
+                   tabindex="0">
+                Remove
+              </div>
+            </div>
+          </div>
+          <div class="quantity-app-div">
+            <app-quantity
+              [(quantity)]="shoppingCartItem.quantity"
+              (quantityChange)="onQuantityChange(shoppingCartItem)"
+              [isEnabled]="shoppingCartItem.product.isEnabled"
+              [isResponsive]="true">
+            </app-quantity>
+          </div>
+          <div class="product-price">
+            {{ shoppingCartItem.quantity * shoppingCartItem.product.price }} Ft
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+  <div class="order-summary">
+    <div>
+      <div class="order-summary-header">Order summary</div>
+    </div>
+    <div class="promo">
+      <div class="promo-code-title">Promo code</div>
+      <input type="text" placeholder="Write the promo code here..." class="promo-code-input" [(ngModel)]="promoCode">
+      <div class="promo-button-clear">
+        <button mat-raised-button class="promo-code-button" (click)="applyPromoCode()">Apply</button>
+        <div class="clear-promo-code" (click)="removePromoCode()"
+             (keydown.enter)="removePromoCode()"
+             tabindex="0">Clear code
+        </div>
+      </div>
+    </div>
+    <div class="applied-promo" *ngIf="this.appliedPromoCode">
+      <div class="applied-promo-code">{{ this.appliedPromoCode.code }}</div>
+      <div class="applied-promo-code-price">-{{ totalCost * this.appliedPromoCode.percentage }}</div>
+    </div>
+    <div class="total-cost">
+      <div class="total-cost-title">Total cost</div>
+      <div class="total-cost-money">{{ totalCostWithPromo }} Ft</div>
+    </div>
+    <div class="place-order">
+      <button mat-raised-button class="place-order-button" (click)="placeOrder()">Place order</button>
+    </div>
+  </div>
+</div>
