@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { forkJoin, map, mergeMap, Observable } from 'rxjs';
+import { forkJoin, map, mergeMap, Observable, of } from 'rxjs';
 import { Restaurant } from '../model/restaurant.model';
 import { baseUrl } from '../../global';
 import { AssetsService } from './assets.service';
@@ -8,12 +8,14 @@ import {
 	CategoriesWithProducts,
 	RestaurantDetail,
 } from '../model/restaurant-detail.model';
+import { EditRestaurant } from '../model/edit-restaurant.model';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class RestaurantService {
-	private controllerUrl = 'restaurant';
+	private restaurantControllerUrl = 'restaurant';
+	private restaurantPermissionControllerUrl = 'restaurant-permission';
 
 	constructor(
 		private readonly httpClient: HttpClient,
@@ -22,7 +24,7 @@ export class RestaurantService {
 
 	public getRestaurantsWithLogo(): Observable<Restaurant[]> {
 		return this.httpClient
-			.get<Restaurant[]>(`${baseUrl}/${this.controllerUrl}`)
+			.get<Restaurant[]>(`${baseUrl}/${this.restaurantControllerUrl}`)
 			.pipe(
 				mergeMap(restaurants =>
 					forkJoin(
@@ -43,7 +45,9 @@ export class RestaurantService {
 
 	public getRestaurantByIdWithLogo(id: number): Observable<RestaurantDetail> {
 		return this.httpClient
-			.get<RestaurantDetail>(`${baseUrl}/${this.controllerUrl}/details/${id}`)
+			.get<RestaurantDetail>(
+				`${baseUrl}/${this.restaurantControllerUrl}/details/${id}`
+			)
 			.pipe(
 				mergeMap(restaurant =>
 					forkJoin({
@@ -66,9 +70,39 @@ export class RestaurantService {
 			);
 	}
 
+	public getRestaurantById(id: number): Observable<EditRestaurant> {
+		return this.httpClient.get<EditRestaurant>(
+			`${baseUrl}/${this.restaurantControllerUrl}/edit-details/${id}`
+		);
+	}
+
+	public createRestaurant(formData: FormData) {
+		return this.httpClient.post(
+			`${baseUrl}/${this.restaurantControllerUrl}/create-restaurant`,
+			formData
+		);
+	}
+
+	public editRestaurant(formData: FormData): Observable<number | null> {
+		return this.httpClient.post<number | null>(
+			`${baseUrl}/${this.restaurantControllerUrl}/edit-restaurant`,
+			formData
+		);
+	}
+
+	public isAuthorized(restaurantId: number): Observable<boolean> {
+		return this.httpClient.get<boolean>(
+			`${baseUrl}/${this.restaurantPermissionControllerUrl}/${restaurantId}`
+		);
+	}
+
 	private fetchProductPicturesForCategories(
 		categories: CategoriesWithProducts[]
 	): Observable<CategoriesWithProducts[]> {
+		if (categories.length === 0) {
+			return of([]);
+		}
+
 		return forkJoin(
 			categories.map(category =>
 				forkJoin(

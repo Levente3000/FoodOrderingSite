@@ -2,6 +2,7 @@ using System.Security.Claims;
 using FoodOrderWebApi.Configuration;
 using FoodOrderWebApi.Models;
 using FoodOrderWebApi.Repositories;
+using FoodOrderWebApi.Repositories.Interfaces;
 using FoodOrderWebApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +13,13 @@ builder.Services.AddScoped<IRestaurantRepository, RestaurantRepository>();
 builder.Services.AddScoped<IRepository<FoodCategory, string>, FoodCategoryRepository>();
 builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 builder.Services.AddScoped<IRepository<PromoCode, int>, PromoCodeRepository>();
+builder.Services.AddScoped<IOpeningHourRepository, OpeningHourRepository>();
+builder.Services.AddScoped<IRestaurantPermissionRepository, RestaurantPermissionRepository>();
 
 builder.Services.AddScoped<AssetsService>();
 builder.Services.AddScoped<RestaurantService>();
 builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
+builder.Services.AddScoped<IRestaurantPermissionService, RestaurantPermissionService>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 

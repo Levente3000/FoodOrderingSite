@@ -18,6 +18,8 @@ public class FoodOrderDbContext : DbContext
 
     public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
 
+    public DbSet<RestaurantPermission> RestaurantPermissions { get; set; }
+
     public DbSet<PromoCode> PromoCodes { get; set; }
 
     public FoodOrderDbContext(DbContextOptions<FoodOrderDbContext> options) : base(options)

@@ -1,0 +1,51 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgba(45, 45, 45, 1);;
+}
+
+ul li {
+  float: left;
+
+}
+
+.dialog-open {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dialog-open:hover:not(.active) {
+  background-color: #111;
+  cursor: pointer;
+}
+
+ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul li a:hover:not(.active) {
+  background-color: #111;
+}
+
+ul li a.active {
+  background-color: #04AA6D;
+}
+
+ul li.right {
+  float: right;
+}
+
+@media screen and (max-width: 600px) {
+  ul li.right, ul li {
+    float: none;
+  }
+}

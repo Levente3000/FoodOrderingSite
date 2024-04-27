@@ -43,6 +43,8 @@ export class ShoppingCartService {
 			quantity: quantity,
 		};
 
+		console.log(bodyParams);
+
 		return this.httpClient.post(
 			`${baseUrl}/${this.controllerUrl}/add-product`,
 			bodyParams

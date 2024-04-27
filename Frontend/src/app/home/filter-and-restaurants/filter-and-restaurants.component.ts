@@ -53,7 +53,9 @@ export class FilterAndRestaurantsComponent {
 		if (this.filterData.text === '') {
 			return true;
 		}
-		return restaurant.name.includes(this.filterData.text);
+		return restaurant.name
+			.toLowerCase()
+			.includes(this.filterData.text.toLowerCase());
 	}
 
 	private filterPriceCategories(restaurant: Restaurant): boolean {

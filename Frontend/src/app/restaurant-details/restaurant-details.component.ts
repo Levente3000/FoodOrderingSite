@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantService } from '../services/restaurant.service';
 import { MatIcon } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,20 +17,26 @@ import { ProductCardComponent } from './product-card/product-card.component';
 })
 export class RestaurantDetailsComponent implements OnInit {
 	protected restaurant?: RestaurantDetail;
+	protected isAuthorized: boolean = false;
 
 	constructor(
 		private restaurantService: RestaurantService,
 		private _activatedRoute: ActivatedRoute,
-		private dialog: MatDialog
+		private dialog: MatDialog,
+		private router: Router
 	) {}
 
-	public ngOnInit(): void {
+	public ngOnInit() {
 		this._activatedRoute.params.subscribe(params => {
 			this.restaurantService
 				.getRestaurantByIdWithLogo(params['id'])
 				.subscribe(restaurant => {
 					this.restaurant = restaurant;
+					this.restaurant.id = params['id'];
 				});
+			this.restaurantService
+				.isAuthorized(params['id'])
+				.subscribe(result => (this.isAuthorized = result));
 		});
 	}
 
@@ -49,5 +55,9 @@ export class RestaurantDetailsComponent implements OnInit {
 				closingHours: this.restaurant?.closingHours,
 			},
 		});
+	}
+
+	public routeToEditRestaurant(): void {
+		this.router.navigate(['/edit-restaurant', this.restaurant?.id]);
 	}
 }

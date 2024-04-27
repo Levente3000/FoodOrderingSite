@@ -20,6 +20,17 @@ public class AssetsService
         return (fileStream, contentType);
     }
 
+    public async void SaveAssetToRestaurantDictionary(IFormFile file)
+    {
+        var filePath =
+            Path.Combine(_env.ContentRootPath, $"{AssetPath}/restaurant", file.FileName);
+
+        using (var streamLogo = new FileStream(filePath, FileMode.Create))
+        {
+            await file.CopyToAsync(streamLogo);
+        }
+    }
+
     private static string GetMimeType(string filePath)
     {
         var provider = new FileExtensionContentTypeProvider();

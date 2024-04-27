@@ -18,6 +18,8 @@ public class DbInitializer
         SeedOpeningHours();
         SeedRestaurants();
         SeedProducts();
+        SeedPromo();
+        SeedRestaurantPermission();
     }
 
     private static void SeedCategories()
@@ -120,8 +122,8 @@ public class DbInitializer
                 PhoneNumber = "06300000003",
                 LogoName = "karen_bar.jpg",
                 BannerName = "banner.jpg",
-                OpeningHourId = 1,
-                ClosingHourId = 2
+                OpeningHourId = 5,
+                ClosingHourId = 6
             },
             new()
             {
@@ -131,8 +133,8 @@ public class DbInitializer
                 PhoneNumber = "06300000004",
                 LogoName = "karen_bar.jpg",
                 BannerName = "banner.jpg",
-                OpeningHourId = 1,
-                ClosingHourId = 2
+                OpeningHourId = 7,
+                ClosingHourId = 8
             },
             new()
             {
@@ -142,8 +144,8 @@ public class DbInitializer
                 PhoneNumber = "06300000001",
                 LogoName = "karen_bar.jpg",
                 BannerName = "banner.jpg",
-                OpeningHourId = 1,
-                ClosingHourId = 2
+                OpeningHourId = 9,
+                ClosingHourId = 10
             },
             new()
             {
@@ -153,8 +155,8 @@ public class DbInitializer
                 PhoneNumber = "06300000001",
                 LogoName = "karen_bar.jpg",
                 BannerName = "banner.jpg",
-                OpeningHourId = 1,
-                ClosingHourId = 2
+                OpeningHourId = 11,
+                ClosingHourId = 12
             },
             new()
             {
@@ -164,8 +166,8 @@ public class DbInitializer
                 PhoneNumber = "06300000001",
                 LogoName = "karen_bar.jpg",
                 BannerName = "banner.jpg",
-                OpeningHourId = 1,
-                ClosingHourId = 2
+                OpeningHourId = 13,
+                ClosingHourId = 14
             },
             new()
             {
@@ -175,8 +177,8 @@ public class DbInitializer
                 PhoneNumber = "06300000001",
                 LogoName = "karen_bar.jpg",
                 BannerName = "banner.jpg",
-                OpeningHourId = 1,
-                ClosingHourId = 2
+                OpeningHourId = 15,
+                ClosingHourId = 16
             },
         };
 
@@ -197,7 +199,8 @@ public class DbInitializer
                 Price = 1200,
                 PictureName = "bbq.jpg",
                 Categories = new List<FoodCategory> { categories[9] },
-                RestaurantId = 1
+                RestaurantId = 1,
+                IsEnabled = true,
             },
             new()
             {
@@ -206,7 +209,8 @@ public class DbInitializer
                 Price = 2000,
                 PictureName = "bbq.jpg",
                 Categories = new List<FoodCategory> { categories[6] },
-                RestaurantId = 1
+                RestaurantId = 1,
+                IsEnabled = true,
             },
             new()
             {
@@ -215,7 +219,8 @@ public class DbInitializer
                 Price = 2300,
                 PictureName = "bbq.jpg",
                 Categories = new List<FoodCategory> { categories[6] },
-                RestaurantId = 1
+                RestaurantId = 1,
+                IsEnabled = true,
             },
             new()
             {
@@ -224,7 +229,8 @@ public class DbInitializer
                 Price = 1800,
                 PictureName = "bbq.jpg",
                 Categories = new List<FoodCategory> { categories[4] },
-                RestaurantId = 2
+                RestaurantId = 2,
+                IsEnabled = true,
             },
             new()
             {
@@ -233,7 +239,8 @@ public class DbInitializer
                 Price = 1900,
                 PictureName = "bbq.jpg",
                 Categories = new List<FoodCategory> { categories[4] },
-                RestaurantId = 2
+                RestaurantId = 2,
+                IsEnabled = true,
             },
             new()
             {
@@ -242,7 +249,8 @@ public class DbInitializer
                 Price = 600,
                 PictureName = "bbq.jpg",
                 Categories = new List<FoodCategory> { categories[1] },
-                RestaurantId = 2
+                RestaurantId = 2,
+                IsEnabled = true,
             },
             new()
             {
@@ -260,7 +268,8 @@ public class DbInitializer
                 Price = 2000,
                 PictureName = "bbq.jpg",
                 Categories = new List<FoodCategory> { categories[0], categories[10] },
-                RestaurantId = 3
+                RestaurantId = 3,
+                IsEnabled = true,
             },
             new()
             {
@@ -269,7 +278,8 @@ public class DbInitializer
                 Price = 2000,
                 PictureName = "bbq.jpg",
                 Categories = new List<FoodCategory> { categories[7] },
-                RestaurantId = 5
+                RestaurantId = 5,
+                IsEnabled = true,
             },
             new()
             {
@@ -278,7 +288,8 @@ public class DbInitializer
                 Price = 2000,
                 PictureName = "bbq.jpg",
                 Categories = new List<FoodCategory> { categories[7] },
-                RestaurantId = 5
+                RestaurantId = 5,
+                IsEnabled = true,
             },
             new()
             {
@@ -287,7 +298,8 @@ public class DbInitializer
                 Price = 2000,
                 PictureName = "bbq.jpg",
                 Categories = new List<FoodCategory> { categories[8], categories[3] },
-                RestaurantId = 7
+                RestaurantId = 7,
+                IsEnabled = true,
             },
 
             new()
@@ -297,7 +309,8 @@ public class DbInitializer
                 Price = 2000,
                 PictureName = "bbq.jpg",
                 Categories = new List<FoodCategory> { categories[8], categories[3] },
-                RestaurantId = 7
+                RestaurantId = 7,
+                IsEnabled = true,
             },
             new()
             {
@@ -315,7 +328,8 @@ public class DbInitializer
                 Price = 2000,
                 PictureName = "bbq.jpg",
                 Categories = new List<FoodCategory> { categories[1] },
-                RestaurantId = 6
+                RestaurantId = 6,
+                IsEnabled = true,
             },
             new()
             {
@@ -324,7 +338,8 @@ public class DbInitializer
                 Price = 2000,
                 PictureName = "bbq.jpg",
                 Categories = new List<FoodCategory> { categories[5] },
-                RestaurantId = 4
+                RestaurantId = 4,
+                IsEnabled = true,
             },
             new()
             {
@@ -333,7 +348,8 @@ public class DbInitializer
                 Price = 2000,
                 PictureName = "bbq.jpg",
                 Categories = new List<FoodCategory> { categories[5] },
-                RestaurantId = 4
+                RestaurantId = 4,
+                IsEnabled = true,
             },
             new()
             {
@@ -342,7 +358,8 @@ public class DbInitializer
                 Price = 2000,
                 PictureName = "bbq.jpg",
                 Categories = new List<FoodCategory> { categories[3] },
-                RestaurantId = 8
+                RestaurantId = 8,
+                IsEnabled = true,
             },
             new()
             {
@@ -351,7 +368,8 @@ public class DbInitializer
                 Price = 2000,
                 PictureName = "bbq.jpg",
                 Categories = new List<FoodCategory> { categories[3] },
-                RestaurantId = 8
+                RestaurantId = 8,
+                IsEnabled = true,
             },
         };
 
@@ -403,10 +421,167 @@ public class DbInitializer
                 Friday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
                 Saturday = Instant.FromUtc(1, 1, 1, 16, 0, 0),
                 Sunday = Instant.FromUtc(1, 1, 1, 16, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 10, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 10, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 16, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 16, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 10, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 10, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 16, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 16, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 10, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 10, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 16, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 16, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 10, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 10, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 16, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 16, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 10, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 10, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 16, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 16, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 8, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 10, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 10, 0, 0)
+            },
+            new()
+            {
+                Monday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Tuesday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Wednesday = null,
+                Thursday = null,
+                Friday = Instant.FromUtc(1, 1, 1, 20, 0, 0),
+                Saturday = Instant.FromUtc(1, 1, 1, 16, 0, 0),
+                Sunday = Instant.FromUtc(1, 1, 1, 16, 0, 0)
             }
         };
 
         _context.OpeningHours.AddRange(openingHours);
+
+        _context.SaveChanges();
+    }
+
+    private static void SeedPromo()
+    {
+        var promoCodes = new PromoCode[]
+        {
+            new()
+            {
+                Code = "promo",
+                Percentage = 0.2
+            },
+        };
+
+        _context.PromoCodes.AddRange(promoCodes);
+
+        _context.SaveChanges();
+    }
+
+    private static void SeedRestaurantPermission()
+    {
+        var restaurantPermissions = new RestaurantPermission[]
+        {
+            new()
+            {
+                RestaurantId = 1,
+                UserId = "e79a7435-8c69-469c-b831-66aad159aa33"
+            },
+            new()
+            {
+                RestaurantId = 2,
+                UserId = "e79a7435-8c69-469c-b831-66aad159aa33"
+            },
+        };
+
+        _context.RestaurantPermissions.AddRange(restaurantPermissions);
 
         _context.SaveChanges();
     }
