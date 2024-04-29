@@ -1,6 +1,7 @@
 ﻿using FoodOrderWebApi.Enum;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using NodaTime;
 
 namespace FoodOrderWebApi.Models;
 
@@ -26,7 +27,26 @@ public class Restaurant
     [Required]
     public string BannerName { get; set; } = null!;
 
-    public PriceCategory PriceCategory { get; set; }
+    public PriceCategory PriceCategory
+    {
+        get
+        {
+            if (Products == null || Products.Count == 0)
+                return PriceCategory.NoProduct;
+
+            var averagePrice = Products.Average(p => p.Price);
+
+            return averagePrice switch
+            {
+                <= 1500 => PriceCategory.Low,
+                <= 4000 => PriceCategory.Medium,
+                _ => PriceCategory.High
+            };
+        }
+        set { }
+    }
+
+    public Instant CreatedAt { get; set; }
 
     [Required]
     public int OpeningHourId { get; set; }
