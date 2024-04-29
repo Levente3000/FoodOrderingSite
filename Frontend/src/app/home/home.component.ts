@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Restaurant } from '../model/restaurant.model';
 import { RestaurantCardComponent } from '../restaurant-card/restaurant-card.component';
 import { RestaurantService } from '../services/restaurant.service';
 import { NgClass, NgIf } from '@angular/common';
@@ -10,6 +9,7 @@ import { Category } from '../model/category.model';
 import { CategoryService } from '../services/category.service';
 import { SearchAndFilterComponent } from './search-and-filter/search-and-filter.component';
 import { FilterAndRestaurantsComponent } from './filter-and-restaurants/filter-and-restaurants.component';
+import { Restaurant } from '../model/restaurant/restaurant.model';
 
 @Component({
 	selector: 'app-home',

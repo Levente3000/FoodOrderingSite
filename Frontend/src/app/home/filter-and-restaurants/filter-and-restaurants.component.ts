@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { SearchAndFilterComponent } from '../search-and-filter/search-and-filter.component';
 import { NewRestaurantsCarouselComponent } from '../new-restaurants-carousel/new-restaurants-carousel.component';
-import { Restaurant } from '../../model/restaurant.model';
 import { RestaurantCardComponent } from '../../restaurant-card/restaurant-card.component';
-import { FilterData } from '../../model/filter-data.model';
+import { Restaurant } from '../../model/restaurant/restaurant.model';
+import { FilterData } from '../../model/filter/filter-data.model';
 
 @Component({
 	selector: 'app-filter-and-restaurants',

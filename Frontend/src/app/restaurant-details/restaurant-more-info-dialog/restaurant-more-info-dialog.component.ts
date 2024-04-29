@@ -5,7 +5,6 @@ import {
 	MatDialogContent,
 	MatDialogRef,
 } from '@angular/material/dialog';
-import { RestaurantMoreInfo } from '../../model/restaurant-more-info.model';
 import { MatButton } from '@angular/material/button';
 import { MatFormField } from '@angular/material/form-field';
 import { MatOption } from '@angular/material/autocomplete';
@@ -13,6 +12,7 @@ import { MatSelect } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { OpeningHours } from '../../model/opening-hours.model';
 import { DatePipe, NgIf } from '@angular/common';
+import { RestaurantMoreInfo } from '../../model/restaurant/restaurant-more-info.model';
 
 class OpeningHoursInDate {
 	monday?: Date;

@@ -1,5 +1,5 @@
-import { OpeningHours } from './opening-hours.model';
-import { Product } from './product.model';
+import { OpeningHours } from '../opening-hours.model';
+import { Product } from '../product.model';
 
 export type Restaurant = {
 	id: number;

@@ -5,7 +5,7 @@ import { MatButton } from '@angular/material/button';
 import { CategoryService } from '../../services/category.service';
 import { PriceCategoryService } from '../../services/price-category.service';
 import { MatDialog } from '@angular/material/dialog';
-import { FilterData } from '../../model/filter-data.model';
+import { FilterData } from '../../model/filter/filter-data.model';
 
 @Component({
 	selector: 'app-search-and-filter',

@@ -1,4 +1,4 @@
-﻿import { OpeningHours } from './opening-hours.model';
+﻿import { OpeningHours } from '../opening-hours.model';
 
 export type RestaurantMoreInfo = {
 	restaurantName: string;

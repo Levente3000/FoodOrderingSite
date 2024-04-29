@@ -8,8 +8,8 @@ import {
 	ViewChild,
 } from '@angular/core';
 import { RestaurantCardComponent } from '../../restaurant-card/restaurant-card.component';
-import { Restaurant } from '../../model/restaurant.model';
 import { NgClass, NgOptimizedImage } from '@angular/common';
+import { Restaurant } from '../../model/restaurant/restaurant.model';
 
 @Component({
 	selector: 'app-new-restaurants-carousel',

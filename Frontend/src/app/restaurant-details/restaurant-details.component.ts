@@ -4,9 +4,10 @@ import { RestaurantService } from '../services/restaurant.service';
 import { MatIcon } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { RestaurantMoreInfoDialogComponent } from './restaurant-more-info-dialog/restaurant-more-info-dialog.component';
-import { RestaurantDetail } from '../model/restaurant-detail.model';
 import { MatFabButton } from '@angular/material/button';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { RestaurantDetail } from '../model/restaurant/restaurant-detail.model';
+import { CreateEditProductComponent } from './create-edit-product/create-edit-product.component';
 
 @Component({
 	selector: 'app-restaurant-details',
@@ -59,5 +60,9 @@ export class RestaurantDetailsComponent implements OnInit {
 
 	public routeToEditRestaurant(): void {
 		this.router.navigate(['/edit-restaurant', this.restaurant?.id]);
+	}
+
+	public openCreateProductDialog(): void {
+		this.router.navigate(['/create-product', this.restaurant?.id]);
 	}
 }

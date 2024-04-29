@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin, map, mergeMap, Observable, of } from 'rxjs';
-import { Restaurant } from '../model/restaurant.model';
 import { baseUrl } from '../../global';
 import { AssetsService } from './assets.service';
+import { Restaurant } from '../model/restaurant/restaurant.model';
 import {
 	CategoriesWithProducts,
 	RestaurantDetail,
-} from '../model/restaurant-detail.model';
-import { EditRestaurant } from '../model/edit-restaurant.model';
+} from '../model/restaurant/restaurant-detail.model';
+import { EditRestaurant } from '../model/restaurant/edit-restaurant.model';
 
 @Injectable({
 	providedIn: 'root',
@@ -76,8 +76,8 @@ export class RestaurantService {
 		);
 	}
 
-	public createRestaurant(formData: FormData) {
-		return this.httpClient.post(
+	public createRestaurant(formData: FormData): Observable<number | null> {
+		return this.httpClient.post<number | null>(
 			`${baseUrl}/${this.restaurantControllerUrl}/create-restaurant`,
 			formData
 		);
