@@ -20,4 +20,12 @@ public class CategoryController : Controller
     {
         return _categoryRepository.GetAll();
     }
+
+    [HttpGet("names")]
+    public List<string> GetAllCategoryNames()
+    {
+        return _categoryRepository.GetAll()
+            .Select(category => category.Name)
+            .ToList();
+    }
 }

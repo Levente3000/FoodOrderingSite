@@ -1,6 +1,6 @@
 ﻿using FoodOrderWebApi.Models;
 
-namespace FoodOrderWebApi.Services;
+namespace FoodOrderWebApi.Services.Interfaces;
 
 public interface IRestaurantPermissionService
 {
