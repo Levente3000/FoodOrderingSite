@@ -13,8 +13,8 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { RestaurantService } from '../services/restaurant.service';
 import { MatDialogContent } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EditRestaurant } from '../model/edit-restaurant.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EditRestaurant } from '../model/restaurant/edit-restaurant.model';
 
 @Component({
 	selector: 'app-create-restaurant',

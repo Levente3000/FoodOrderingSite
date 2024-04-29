@@ -10,9 +10,20 @@ html, body {
   color: rgba(245, 245, 245, 0.9);
   --mat-select-panel-background-color: rgba(18, 18, 18, 1);
   --mat-select-enabled-arrow-color: rgba(245, 245, 245, 0.9);
+
   --mat-option-label-text-color: rgba(245, 245, 245, 0.9);
   --mdc-outlined-text-field-outline-color: rgba(245, 245, 245, 0.9);
   --mdc-outlined-text-field-hover-outline-color: rgba(245, 245, 245, 0.9);
+
+  --mat-autocomplete-background-color: rgba(18, 18, 18, 1);
+
+  --mdc-checkbox-unselected-icon-color: rgba(245, 245, 245, 0.9);
+  --mdc-checkbox-unselected-hover-icon-color: rgba(245, 245, 245, 0.9);
+  --mdc-checkbox-unselected-focus-icon-color: rgba(245, 245, 245, 0.9);
+
+  .mat-mdc-checkbox {
+    --mdc-form-field-label-text-color: rgba(245, 245, 245, 0.9);
+  }
 }
 
 body {

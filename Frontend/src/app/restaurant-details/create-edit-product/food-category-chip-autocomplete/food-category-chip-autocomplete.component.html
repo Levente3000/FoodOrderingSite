@@ -1,0 +1,20 @@
+<mat-form-field class="example-chip-list">
+  <mat-label>Food Categories</mat-label>
+  <mat-chip-grid #chipGrid>
+    @for (category of foodCategories; track category) {
+      <mat-chip-row (removed)="remove(category)">
+        {{ category }}
+        <button matChipRemove>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+    }
+  </mat-chip-grid>
+  <input placeholder="New food category..." [formControl]="inputControl"
+         [matChipInputFor]="chipGrid" [matAutocomplete]="auto" (blur)="onBlur()" />
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    @for (category of filteredFoodCategories | async; track category) {
+      <mat-option [value]="category">{{ category }}</mat-option>
+    }
+  </mat-autocomplete>
+</mat-form-field>
