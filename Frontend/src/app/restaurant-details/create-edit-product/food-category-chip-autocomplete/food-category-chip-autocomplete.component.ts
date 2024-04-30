@@ -12,7 +12,7 @@ import {
 	MatAutocompleteTrigger,
 	MatOption,
 } from '@angular/material/autocomplete';
-import { map, Observable, of, startWith } from 'rxjs';
+import { map, Observable, of, startWith, tap } from 'rxjs';
 import {
 	ControlValueAccessor,
 	FormControl,
@@ -99,6 +99,7 @@ export class FoodCategoryChipAutocompleteComponent
 
 	public writeValue(foodCategories: string[]): void {
 		this.foodCategories = foodCategories || [];
+		this._updateFilteredFoodCategories();
 	}
 
 	public registerOnChange(fn: (value: string[]) => void): void {

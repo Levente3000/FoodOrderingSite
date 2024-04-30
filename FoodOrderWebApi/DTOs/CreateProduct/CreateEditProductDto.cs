@@ -2,7 +2,7 @@
 
 public class CreateEditProductDto
 {
-    public int Id { get; set; }
+    public int? Id { get; set; }
     public string Name { get; set; } = null!;
     public string Description { get; set; } = null!;
     public int Price { get; set; }

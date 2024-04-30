@@ -19,21 +19,21 @@ public class ProductController : Controller
         _productService = productService;
     }
 
-    [HttpGet]
+    [HttpGet("{productId}")]
     public CreateEditProductDto GetProductForEdit(int productId)
     {
         return _productService.GetProductByIdForEdit(productId);
     }
 
     [HttpPost("create-product")]
-    public void CreateProduct([FromForm] CreateEditProductDto createEditProduct)
+    public int? CreateProduct([FromForm] CreateEditProductDto createEditProduct)
     {
-        _productService.CreateProduct(createEditProduct);
+        return _productService.CreateProduct(createEditProduct);
     }
 
     [HttpPost("edit-product")]
-    public void EditProduct([FromForm] CreateEditProductDto createEditProduct)
+    public int? EditProduct([FromForm] CreateEditProductDto createEditProduct)
     {
-        _productService.EditRestaurant(createEditProduct);
+        return _productService.EditProduct(createEditProduct);
     }
 }

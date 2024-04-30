@@ -1,5 +1,6 @@
 ﻿using FoodOrderWebApi.Models;
 using FoodOrderWebApi.Repositories;
+using FoodOrderWebApi.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodOrderWebApi.Controllers;
@@ -8,9 +9,9 @@ namespace FoodOrderWebApi.Controllers;
 [ApiController]
 public class CategoryController : Controller
 {
-    private readonly IRepository<FoodCategory, string> _categoryRepository;
+    private readonly IFoodCategoryRepository _categoryRepository;
 
-    public CategoryController(IRepository<FoodCategory, string> categoryRepository)
+    public CategoryController(IFoodCategoryRepository categoryRepository)
     {
         _categoryRepository = categoryRepository;
     }

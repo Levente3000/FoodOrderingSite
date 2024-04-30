@@ -15,15 +15,18 @@ public class RestaurantService
     private readonly IRestaurantRepository _restaurantRepository;
     private readonly IOpeningHourRepository _openingHourRepository;
     private readonly IRestaurantPermissionRepository _restaurantPermissionRepository;
+    private readonly IProductRepository _productRepository;
     private readonly AssetsService _assetService;
     private readonly IMapper _mapper;
 
     public RestaurantService(IRestaurantRepository restaurantRepository, IMapper mapper, AssetsService assetService,
-        IOpeningHourRepository openingHourRepository, IRestaurantPermissionRepository restaurantPermissionRepository)
+        IOpeningHourRepository openingHourRepository, IRestaurantPermissionRepository restaurantPermissionRepository,
+        IProductRepository productRepository)
     {
         _restaurantRepository = restaurantRepository;
         _openingHourRepository = openingHourRepository;
         _restaurantPermissionRepository = restaurantPermissionRepository;
+        _productRepository = productRepository;
         _assetService = assetService;
         _mapper = mapper;
     }
@@ -40,6 +43,18 @@ public class RestaurantService
         restaurant.CategoriesWithProducts =
             _mapper.Map<ICollection<ProductsInCategoryDto>>(_restaurantRepository
                 .GetRestaurantFoodCategoriesWithProducts(id));
+
+        var productsWithoutCategory = _mapper.Map<IList<ProductDto>>(_productRepository
+            .GetProductWithoutCategoryByRestaurantId(id));
+        if (productsWithoutCategory.Count != 0)
+        {
+            restaurant.CategoriesWithProducts.Add(new ProductsInCategoryDto
+            {
+                Name = "Without Category",
+                Products = productsWithoutCategory
+            });
+        }
+
         return restaurant;
     }
 

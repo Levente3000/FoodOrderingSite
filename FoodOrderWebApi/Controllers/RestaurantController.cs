@@ -27,7 +27,8 @@ public class RestaurantController : Controller
     [HttpGet("details/{id}")]
     public RestaurantDetailsDto GetRestaurantById(int id)
     {
-        return _restaurantService.GetRestaurantByIdWithProductsAndCategories(id);
+        var a = _restaurantService.GetRestaurantByIdWithProductsAndCategories(id);
+        return a;
     }
 
     [HttpGet("edit-details/{id}")]

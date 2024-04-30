@@ -10,14 +10,14 @@
           <mat-icon>info</mat-icon>
           More information
         </div>
-        @if (!isAuthorized) {
+        @if (isAuthorized) {
           <div class="edit-restaurant" (click)="routeToEditRestaurant()"
                tabindex="0" (keydown.enter)="routeToEditRestaurant()">
             <mat-icon>edit</mat-icon>
             Edit restaurant
           </div>
-          <div class="create-product" (click)="openCreateProductDialog()"
-               tabindex="0" (keydown.enter)="openCreateProductDialog()">
+          <div class="create-product" (click)="routeToCreateProduct()"
+               tabindex="0" (keydown.enter)="routeToCreateProduct()">
             <mat-icon>edit</mat-icon>
             Create product
           </div>
@@ -27,14 +27,16 @@
   </div>
   <div class="menu">
     @for (productsInCategory of restaurant?.categoriesWithProducts; track productsInCategory) {
-      <div class="menu-category-with-products">
-        <h2>{{ productsInCategory.name }}</h2>
-        <div class="products-in-category">
-          @for (product of productsInCategory.products; track product) {
-            <app-product-card [product]="product"></app-product-card>
-          }
+      @if (productsInCategory.name !== 'Without Category' || isAuthorized) {
+        <div class="menu-category-with-products">
+          <h2>{{ productsInCategory.name }}</h2>
+          <div class="products-in-category">
+            @for (product of productsInCategory.products; track product) {
+              <app-product-card [product]="product" [isAuthorized]="isAuthorized"></app-product-card>
+            }
+          </div>
         </div>
-      </div>
+      }
     }
   </div>
 </div>

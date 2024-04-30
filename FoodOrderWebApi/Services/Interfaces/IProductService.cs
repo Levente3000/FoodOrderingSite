@@ -6,7 +6,7 @@ public interface IProductService
 {
     public CreateEditProductDto GetProductByIdForEdit(int id);
 
-    public void CreateProduct(CreateEditProductDto createEditRestaurant);
+    public int CreateProduct(CreateEditProductDto createEditProduct);
 
-    public void EditRestaurant(CreateEditProductDto createEditRestaurant);
+    public int? EditProduct(CreateEditProductDto createEditProduct);
 }

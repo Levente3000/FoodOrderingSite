@@ -7,12 +7,12 @@ import { RestaurantMoreInfoDialogComponent } from './restaurant-more-info-dialog
 import { MatFabButton } from '@angular/material/button';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { RestaurantDetail } from '../model/restaurant/restaurant-detail.model';
-import { CreateEditProductComponent } from './create-edit-product/create-edit-product.component';
+import { NgIf } from '@angular/common';
 
 @Component({
 	selector: 'app-restaurant-details',
 	standalone: true,
-	imports: [MatIcon, MatFabButton, ProductCardComponent],
+	imports: [MatIcon, MatFabButton, ProductCardComponent, NgIf],
 	templateUrl: './restaurant-details.component.html',
 	styleUrl: './restaurant-details.component.scss',
 })
@@ -35,9 +35,9 @@ export class RestaurantDetailsComponent implements OnInit {
 					this.restaurant = restaurant;
 					this.restaurant.id = params['id'];
 				});
-			this.restaurantService
-				.isAuthorized(params['id'])
-				.subscribe(result => (this.isAuthorized = result));
+			this.restaurantService.isAuthorized(params['id']).subscribe(result => {
+				this.isAuthorized = result;
+			});
 		});
 	}
 
@@ -62,7 +62,7 @@ export class RestaurantDetailsComponent implements OnInit {
 		this.router.navigate(['/edit-restaurant', this.restaurant?.id]);
 	}
 
-	public openCreateProductDialog(): void {
+	public routeToCreateProduct(): void {
 		this.router.navigate(['/create-product', this.restaurant?.id]);
 	}
 }

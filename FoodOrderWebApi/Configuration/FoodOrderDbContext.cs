@@ -12,7 +12,6 @@ public class FoodOrderDbContext : DbContext
 
     public DbSet<FoodCategory> FoodCategories { get; set; }
 
-
     public DbSet<Order> Orders { get; set; }
 
     public DbSet<Restaurant> Restaurants { get; set; }

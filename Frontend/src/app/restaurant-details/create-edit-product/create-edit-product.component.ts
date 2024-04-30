@@ -73,13 +73,15 @@ export class CreateEditProductComponent implements OnInit {
 				this.title = 'Edit product';
 				this.productService
 					.getProductForEdit(params['productId'])
-					.subscribe(restaurantData => {
-						if (restaurantData === null) {
+					.subscribe(productData => {
+						if (productData === null) {
 							this.router.navigate(['/create-product']);
 						} else {
-							this.populateForm(restaurantData);
+							this.populateForm(productData);
 						}
 					});
+			} else {
+				this.formGroup.get('restaurantId')?.patchValue(params['restaurantId']);
 			}
 		});
 
@@ -110,6 +112,13 @@ export class CreateEditProductComponent implements OnInit {
 		formData.append('price', this.formGroup.value.price);
 		formData.append('isEnabled', this.formGroup.value.isEnabled);
 
+		const categoryArray = this.formGroup.get('categoryNames')
+			?.value as string[];
+
+		categoryArray.forEach(category => {
+			formData.append('categoryNames', category);
+		});
+
 		if (this.productPicture) {
 			formData.append('picture', this.productPicture);
 		}
@@ -124,6 +133,8 @@ export class CreateEditProductComponent implements OnInit {
 				}
 			});
 		} else {
+			console.log(this.formGroup);
+			console.log(this.productPicture);
 			this.productService.createProduct(formData).subscribe(result => {
 				if (result) {
 					this.router.navigate(['/restaurants/details', result]);

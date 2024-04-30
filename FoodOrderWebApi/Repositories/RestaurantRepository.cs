@@ -47,7 +47,7 @@ public class RestaurantRepository : IRestaurantRepository
     {
         return _context.FoodCategories
             .Where(c => c.Products.Any(p => p.RestaurantId == restaurantId))
-            .Include(c => c.Products)
+            .Include(c => c.Products.Where(product => product.RestaurantId == restaurantId))
             .AsNoTracking()
             .ToList();
     }
