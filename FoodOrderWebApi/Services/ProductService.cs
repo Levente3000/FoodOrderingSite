@@ -3,6 +3,7 @@ using FoodOrderWebApi.DTOs.CreateProduct;
 using FoodOrderWebApi.Models;
 using FoodOrderWebApi.Repositories.Interfaces;
 using FoodOrderWebApi.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FoodOrderWebApi.Services;
 
@@ -12,6 +13,7 @@ public class ProductService : IProductService
     private readonly IFoodCategoryRepository _foodCategoryRepository;
     private readonly AssetsService _assetService;
     private readonly IMapper _mapper;
+    private readonly string DIRECTORY = "product";
 
     public ProductService(IProductRepository productsRepository, IFoodCategoryRepository foodCategoryRepository,
         IMapper mapper, AssetsService assetService)
@@ -27,11 +29,11 @@ public class ProductService : IProductService
         return _mapper.Map<CreateEditProductDto>(_productRepository.GetProductById(id));
     }
 
-    public int CreateProduct(CreateEditProductDto createEditProduct)
+    public async Task<int> CreateProduct(CreateEditProductDto createEditProduct)
     {
         if (createEditProduct.Picture != null)
         {
-            _assetService.SaveAssetToProductDictionary(createEditProduct.Picture);
+            await _assetService.SaveAssetIfNotExists(createEditProduct.Picture, DIRECTORY);
         }
 
         var product = _mapper.Map<Product>(createEditProduct);
@@ -44,7 +46,7 @@ public class ProductService : IProductService
         return createEditProduct.RestaurantId;
     }
 
-    public int? EditProduct(CreateEditProductDto createEditProduct)
+    public async Task<int?> EditProduct(CreateEditProductDto createEditProduct)
     {
         Product? product = null;
         if (createEditProduct.Id.HasValue)
@@ -55,6 +57,11 @@ public class ProductService : IProductService
         if (product == null)
         {
             return null;
+        }
+
+        if (createEditProduct.Picture?.FileName != null)
+        {
+            await _assetService.SaveAssetIfNotExists(createEditProduct.Picture, DIRECTORY);
         }
 
         _mapper.Map(createEditProduct, product);

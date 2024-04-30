@@ -18,6 +18,7 @@ public class RestaurantService
     private readonly IProductRepository _productRepository;
     private readonly AssetsService _assetService;
     private readonly IMapper _mapper;
+    private readonly string DIRECTORY = "restaurant";
 
     public RestaurantService(IRestaurantRepository restaurantRepository, IMapper mapper, AssetsService assetService,
         IOpeningHourRepository openingHourRepository, IRestaurantPermissionRepository restaurantPermissionRepository,
@@ -65,12 +66,12 @@ public class RestaurantService
         return a;
     }
 
-    public int CreateRestaurant(CreateEditRestaurantDto createEditRestaurant, string userId)
+    public async Task<int> CreateRestaurant(CreateEditRestaurantDto createEditRestaurant, string userId)
     {
         if (createEditRestaurant.Logo != null && createEditRestaurant.Banner != null)
         {
-            _assetService.SaveAssetToRestaurantDictionary(createEditRestaurant.Logo);
-            _assetService.SaveAssetToRestaurantDictionary(createEditRestaurant.Banner);
+            await _assetService.SaveAssetIfNotExists(createEditRestaurant.Logo, DIRECTORY);
+            await _assetService.SaveAssetIfNotExists(createEditRestaurant.Banner, DIRECTORY);
         }
 
         var openingHours = _mapper.Map<OpeningHour>(createEditRestaurant.OpeningHours);
@@ -96,7 +97,7 @@ public class RestaurantService
         return restaurant.Id;
     }
 
-    public int? EditRestaurant(CreateEditRestaurantDto createEditRestaurant)
+    public async Task<int?> EditRestaurant(CreateEditRestaurantDto createEditRestaurant)
     {
         Restaurant? restaurant = null;
         if (createEditRestaurant.Id.HasValue)
@@ -107,6 +108,16 @@ public class RestaurantService
         if (restaurant == null)
         {
             return null;
+        }
+        
+        if (createEditRestaurant.Logo?.FileName != null)
+        {
+            await _assetService.SaveAssetIfNotExists(createEditRestaurant.Logo, DIRECTORY);
+        }
+
+        if (createEditRestaurant.Banner?.FileName != null)
+        {
+            await _assetService.SaveAssetIfNotExists(createEditRestaurant.Banner, DIRECTORY);
         }
 
         var openingHoursToRemove = restaurant.OpeningHours;

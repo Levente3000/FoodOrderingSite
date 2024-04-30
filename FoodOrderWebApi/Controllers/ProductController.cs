@@ -26,13 +26,13 @@ public class ProductController : Controller
     }
 
     [HttpPost("create-product")]
-    public int? CreateProduct([FromForm] CreateEditProductDto createEditProduct)
+    public Task<int> CreateProduct([FromForm] CreateEditProductDto createEditProduct)
     {
         return _productService.CreateProduct(createEditProduct);
     }
 
     [HttpPost("edit-product")]
-    public int? EditProduct([FromForm] CreateEditProductDto createEditProduct)
+    public Task<int?> EditProduct([FromForm] CreateEditProductDto createEditProduct)
     {
         return _productService.EditProduct(createEditProduct);
     }

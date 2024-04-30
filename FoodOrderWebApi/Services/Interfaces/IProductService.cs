@@ -6,7 +6,7 @@ public interface IProductService
 {
     public CreateEditProductDto GetProductByIdForEdit(int id);
 
-    public int CreateProduct(CreateEditProductDto createEditProduct);
+    public Task<int> CreateProduct(CreateEditProductDto createEditProduct);
 
-    public int? EditProduct(CreateEditProductDto createEditProduct);
+    public Task<int?> EditProduct(CreateEditProductDto createEditProduct);
 }
