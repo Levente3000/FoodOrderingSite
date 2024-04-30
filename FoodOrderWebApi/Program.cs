@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IRestaurantRepository, RestaurantRepository>();
-builder.Services.AddScoped<IRepository<FoodCategory, string>, FoodCategoryRepository>();
+builder.Services.AddScoped<IFoodCategoryRepository, FoodCategoryRepository>();
 builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 builder.Services.AddScoped<IRepository<PromoCode, int>, PromoCodeRepository>();
 builder.Services.AddScoped<IOpeningHourRepository, OpeningHourRepository>();
@@ -62,6 +62,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors(policyBuilder => policyBuilder
     .WithOrigins(
+        "https://26.94.91.80:4200",
         "http://localhost:4200",
         "https://localhost:7233")
     .AllowAnyOrigin()
