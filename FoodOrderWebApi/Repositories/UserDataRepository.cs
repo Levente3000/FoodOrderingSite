@@ -18,4 +18,16 @@ public class UserDataRepository : IUserDataRepository
         return _context.UserData
             .FirstOrDefault(userData => userData.UserId == userId);
     }
+
+    public void CreateUserData(UserData userData)
+    {
+        _context.UserData.Add(userData);
+        _context.SaveChanges();
+    }
+
+    public void UpdateUserData(UserData userData)
+    {
+        _context.UserData.Update(userData);
+        _context.SaveChanges();
+    }
 }

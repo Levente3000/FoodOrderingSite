@@ -23,4 +23,9 @@ public class KeycloakService
     {
         return (await _adminClient.GetUsersAsync(REALM)).ToList();
     }
+
+    public async Task<User> GetUserAsync(string userId)
+    {
+        return await _adminClient.GetUserAsync(REALM, userId);
+    }
 }

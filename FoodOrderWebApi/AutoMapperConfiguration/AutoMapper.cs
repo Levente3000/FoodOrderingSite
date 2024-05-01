@@ -63,6 +63,8 @@ public class AutoMapper : Profile
 
         CreateMap<Product, CreateEditProductDto>()
             .ForMember(dest => dest.CategoryNames, opt => opt.MapFrom(src => src.Categories.Select(c => c.Name)));
+
+        CreateMap<UpdateUserDataDto, UserData>();
     }
 
     private static string? FormatInstant(Instant? instant) =>

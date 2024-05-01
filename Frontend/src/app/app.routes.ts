@@ -6,6 +6,7 @@ import { AuthGuard } from './authentication/auth-guard';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CreateEditRestaurantComponent } from './create-edit-restaurant/create-edit-restaurant.component';
 import { CreateEditProductComponent } from './restaurant-details/create-edit-product/create-edit-product.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
 	{
@@ -15,6 +16,7 @@ export const routes: Routes = [
 		// data: { roles: ['ADMIN'] },
 	},
 	{ path: 'home', component: HomeComponent },
+	{ path: 'profile', component: ProfileComponent },
 	{ path: 'restaurants/details/:id', component: RestaurantDetailsComponent },
 	{ path: 'shopping-cart', component: ShoppingCartComponent },
 	{ path: 'create-restaurant', component: CreateEditRestaurantComponent },
