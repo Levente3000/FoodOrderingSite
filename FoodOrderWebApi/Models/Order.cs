@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodOrderWebApi.Models;
 
@@ -17,6 +18,11 @@ public class Order
 
     [Required]
     public bool IsDone { get; set; }
+    
+    [Required]
+    public int RestaurantId { get; set; }
+    [ForeignKey("RestaurantId")]
+    public virtual Restaurant Restaurant { get; set; } = null!;
 
-    public virtual ICollection<Product> Products { get; set; } = null!;
+    public virtual ICollection<ShoppingCartItem> ShoppingCartItems { get; set; } = null!;
 }
