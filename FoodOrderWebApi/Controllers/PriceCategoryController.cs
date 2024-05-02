@@ -10,6 +10,8 @@ public class PriceCategoryController : Controller
     [HttpGet]
     public List<PriceCategory> GetAllPriceCategory()
     {
-        return System.Enum.GetValues(typeof(PriceCategory)).Cast<PriceCategory>().ToList();
+        return System.Enum.GetValues(typeof(PriceCategory)).Cast<PriceCategory>()
+            .Where(priceCategory => priceCategory != PriceCategory.NoProduct)
+            .ToList();
     }
 }

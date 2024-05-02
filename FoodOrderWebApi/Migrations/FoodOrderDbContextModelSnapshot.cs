@@ -132,7 +132,9 @@ namespace FoodOrderWebApi.Migrations
                         .HasColumnType("text");
 
                     b.Property<bool>("IsEnabled")
-                        .HasColumnType("boolean");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -194,6 +196,11 @@ namespace FoodOrderWebApi.Migrations
                     b.Property<int>("ClosingHourId")
                         .HasColumnType("integer");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
@@ -214,7 +221,9 @@ namespace FoodOrderWebApi.Migrations
                         .HasColumnType("text");
 
                     b.Property<int>("PriceCategory")
-                        .HasColumnType("integer");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0);
 
                     b.HasKey("Id");
 

@@ -27,7 +27,8 @@ public class RestaurantController : Controller
     [HttpGet("details/{id}")]
     public RestaurantDetailsDto GetRestaurantById(int id)
     {
-        return _restaurantService.GetRestaurantByIdWithProductsAndCategories(id);
+        var a = _restaurantService.GetRestaurantByIdWithProductsAndCategories(id);
+        return a;
     }
 
     [HttpGet("edit-details/{id}")]
@@ -37,7 +38,7 @@ public class RestaurantController : Controller
     }
 
     [HttpPost("create-restaurant")]
-    public int? CreateRestaurant([FromForm] CreateEditRestaurantDto createEditRestaurant)
+    public Task<int> CreateRestaurant([FromForm] CreateEditRestaurantDto createEditRestaurant)
     {
         var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
@@ -50,7 +51,7 @@ public class RestaurantController : Controller
     }
 
     [HttpPost("edit-restaurant")]
-    public int? EditRestaurant([FromForm] CreateEditRestaurantDto createEditRestaurant)
+    public Task<int?> EditRestaurant([FromForm] CreateEditRestaurantDto createEditRestaurant)
     {
         return _restaurantService.EditRestaurant(createEditRestaurant);
     }

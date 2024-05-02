@@ -1,6 +1,7 @@
 ﻿using FoodOrderWebApi.Models;
 using FoodOrderWebApi.Repositories;
 using FoodOrderWebApi.Repositories.Interfaces;
+using FoodOrderWebApi.Services.Interfaces;
 
 namespace FoodOrderWebApi.Services;
 

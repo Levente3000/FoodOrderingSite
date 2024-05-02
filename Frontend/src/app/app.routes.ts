@@ -5,6 +5,7 @@ import { RestaurantDetailsComponent } from './restaurant-details/restaurant-deta
 import { AuthGuard } from './authentication/auth-guard';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CreateEditRestaurantComponent } from './create-edit-restaurant/create-edit-restaurant.component';
+import { CreateEditProductComponent } from './restaurant-details/create-edit-product/create-edit-product.component';
 
 export const routes: Routes = [
 	{
@@ -18,5 +19,13 @@ export const routes: Routes = [
 	{ path: 'shopping-cart', component: ShoppingCartComponent },
 	{ path: 'create-restaurant', component: CreateEditRestaurantComponent },
 	{ path: 'edit-restaurant/:id', component: CreateEditRestaurantComponent },
+	{
+		path: 'create-product/:restaurantId',
+		component: CreateEditProductComponent,
+	},
+	{
+		path: 'edit-product/:restaurantId/:productId',
+		component: CreateEditProductComponent,
+	},
 	{ path: '**', component: PageNotFoundComponent },
 ];

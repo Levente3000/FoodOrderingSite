@@ -5,5 +5,11 @@
     <div class="product-desc">{{ product?.description }}</div>
     <div class="product-price">{{ product?.price }} Ft</div>
   </div>
-  <button [disabled]="!product?.isEnabled" class="add-button" (click)="addProductToShoppingCart($event)">+</button>
+  @if (isAuthorized) {
+    <button class="edit-button" (click)="editProduct($event)">
+      <mat-icon>edit</mat-icon>
+    </button>
+  } @else {
+    <button [disabled]="!product?.isEnabled" class="add-button">+</button>
+  }
 </div>

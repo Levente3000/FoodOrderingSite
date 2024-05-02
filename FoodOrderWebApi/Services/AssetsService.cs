@@ -20,14 +20,16 @@ public class AssetsService
         return (fileStream, contentType);
     }
 
-    public async void SaveAssetToRestaurantDictionary(IFormFile file)
+    public async Task SaveAssetIfNotExists(IFormFile file, string directory)
     {
-        var filePath =
-            Path.Combine(_env.ContentRootPath, $"{AssetPath}/restaurant", file.FileName);
+        var filePath = Path.Combine(_env.ContentRootPath, $"{AssetPath}/{directory}", file.FileName);
 
-        using (var streamLogo = new FileStream(filePath, FileMode.Create))
+        if (!File.Exists(filePath))
         {
-            await file.CopyToAsync(streamLogo);
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
         }
     }
 

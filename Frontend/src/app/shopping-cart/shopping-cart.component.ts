@@ -107,6 +107,7 @@ export class ShoppingCartComponent implements OnInit {
 
 	protected removePromoCode(): void {
 		this.appliedPromoCode = undefined;
+		this.promoCode = '';
 	}
 
 	protected placeOrder(): void {}

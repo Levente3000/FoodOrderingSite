@@ -4,22 +4,25 @@ using FoodOrderWebApi.Models;
 using FoodOrderWebApi.Repositories;
 using FoodOrderWebApi.Repositories.Interfaces;
 using FoodOrderWebApi.Services;
+using FoodOrderWebApi.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IRestaurantRepository, RestaurantRepository>();
-builder.Services.AddScoped<IRepository<FoodCategory, string>, FoodCategoryRepository>();
+builder.Services.AddScoped<IFoodCategoryRepository, FoodCategoryRepository>();
 builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 builder.Services.AddScoped<IRepository<PromoCode, int>, PromoCodeRepository>();
 builder.Services.AddScoped<IOpeningHourRepository, OpeningHourRepository>();
 builder.Services.AddScoped<IRestaurantPermissionRepository, RestaurantPermissionRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 builder.Services.AddScoped<AssetsService>();
 builder.Services.AddScoped<RestaurantService>();
 builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
 builder.Services.AddScoped<IRestaurantPermissionService, RestaurantPermissionService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -59,6 +62,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors(policyBuilder => policyBuilder
     .WithOrigins(
+        "https://26.94.91.80:4200",
         "http://localhost:4200",
         "https://localhost:7233")
     .AllowAnyOrigin()

@@ -36,4 +36,10 @@ export class CategoryService {
 				)
 			);
 	}
+
+	public getCategories(): Observable<string[]> {
+		return this.httpClient.get<string[]>(
+			`${baseUrl}/${this.controllerUrl}/names`
+		);
+	}
 }

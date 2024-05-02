@@ -1,24 +1,25 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../model/product.model';
 import { MatDialog } from '@angular/material/dialog';
-import { ShoppingCartService } from '../../services/shopping-cart.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductDetailDialogComponent } from '../../shared/product-detail-dialog/product-detail-dialog.component';
+import { NgIf } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-product-card',
 	standalone: true,
-	imports: [],
+	imports: [NgIf, MatIcon],
 	templateUrl: './product-card.component.html',
 	styleUrl: './product-card.component.scss',
 })
 export class ProductCardComponent {
 	@Input({ required: true }) public product?: Product;
+	@Input() public isAuthorized: boolean = false;
 
 	constructor(
 		private dialog: MatDialog,
-		private snackBar: MatSnackBar,
-		private shoppingCartService: ShoppingCartService
+		private router: Router
 	) {}
 
 	public productDetailDialogOpen(): void {
@@ -36,14 +37,14 @@ export class ProductCardComponent {
 		});
 	}
 
-	public addProductToShoppingCart(event: Event): void {
+	public editProduct(event: Event): void {
 		event.stopPropagation();
 		if (this.product) {
-			this.shoppingCartService.addProduct(this.product.id, 1).subscribe(() => {
-				this.snackBar.open('Product successfully added!', 'Ok', {
-					duration: 5000,
-				});
-			});
+			this.router.navigate([
+				'/edit-product',
+				this.product.restaurantId,
+				this.product.id,
+			]);
 		}
 	}
 }

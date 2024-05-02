@@ -15,15 +15,19 @@ public class RestaurantService
     private readonly IRestaurantRepository _restaurantRepository;
     private readonly IOpeningHourRepository _openingHourRepository;
     private readonly IRestaurantPermissionRepository _restaurantPermissionRepository;
+    private readonly IProductRepository _productRepository;
     private readonly AssetsService _assetService;
     private readonly IMapper _mapper;
+    private readonly string DIRECTORY = "restaurant";
 
     public RestaurantService(IRestaurantRepository restaurantRepository, IMapper mapper, AssetsService assetService,
-        IOpeningHourRepository openingHourRepository, IRestaurantPermissionRepository restaurantPermissionRepository)
+        IOpeningHourRepository openingHourRepository, IRestaurantPermissionRepository restaurantPermissionRepository,
+        IProductRepository productRepository)
     {
         _restaurantRepository = restaurantRepository;
         _openingHourRepository = openingHourRepository;
         _restaurantPermissionRepository = restaurantPermissionRepository;
+        _productRepository = productRepository;
         _assetService = assetService;
         _mapper = mapper;
     }
@@ -40,6 +44,18 @@ public class RestaurantService
         restaurant.CategoriesWithProducts =
             _mapper.Map<ICollection<ProductsInCategoryDto>>(_restaurantRepository
                 .GetRestaurantFoodCategoriesWithProducts(id));
+
+        var productsWithoutCategory = _mapper.Map<IList<ProductDto>>(_productRepository
+            .GetProductWithoutCategoryByRestaurantId(id));
+        if (productsWithoutCategory.Count != 0)
+        {
+            restaurant.CategoriesWithProducts.Add(new ProductsInCategoryDto
+            {
+                Name = "Without Category",
+                Products = productsWithoutCategory
+            });
+        }
+
         return restaurant;
     }
 
@@ -50,12 +66,12 @@ public class RestaurantService
         return a;
     }
 
-    public int CreateRestaurant(CreateEditRestaurantDto createEditRestaurant, string userId)
+    public async Task<int> CreateRestaurant(CreateEditRestaurantDto createEditRestaurant, string userId)
     {
         if (createEditRestaurant.Logo != null && createEditRestaurant.Banner != null)
         {
-            _assetService.SaveAssetToRestaurantDictionary(createEditRestaurant.Logo);
-            _assetService.SaveAssetToRestaurantDictionary(createEditRestaurant.Banner);
+            await _assetService.SaveAssetIfNotExists(createEditRestaurant.Logo, DIRECTORY);
+            await _assetService.SaveAssetIfNotExists(createEditRestaurant.Banner, DIRECTORY);
         }
 
         var openingHours = _mapper.Map<OpeningHour>(createEditRestaurant.OpeningHours);
@@ -81,7 +97,7 @@ public class RestaurantService
         return restaurant.Id;
     }
 
-    public int? EditRestaurant(CreateEditRestaurantDto createEditRestaurant)
+    public async Task<int?> EditRestaurant(CreateEditRestaurantDto createEditRestaurant)
     {
         Restaurant? restaurant = null;
         if (createEditRestaurant.Id.HasValue)
@@ -92,6 +108,16 @@ public class RestaurantService
         if (restaurant == null)
         {
             return null;
+        }
+        
+        if (createEditRestaurant.Logo?.FileName != null)
+        {
+            await _assetService.SaveAssetIfNotExists(createEditRestaurant.Logo, DIRECTORY);
+        }
+
+        if (createEditRestaurant.Banner?.FileName != null)
+        {
+            await _assetService.SaveAssetIfNotExists(createEditRestaurant.Banner, DIRECTORY);
         }
 
         var openingHoursToRemove = restaurant.OpeningHours;

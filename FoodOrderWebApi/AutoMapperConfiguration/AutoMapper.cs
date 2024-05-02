@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using AutoMapper;
 using FoodOrderWebApi.DTOs;
+using FoodOrderWebApi.DTOs.CreateProduct;
 using FoodOrderWebApi.DTOs.CreateRestaurant;
 using FoodOrderWebApi.Models;
 using Microsoft.OpenApi.Models;
@@ -55,6 +56,13 @@ public class AutoMapper : Profile
                 opt => opt.MapFrom(src => MapOpeningHoursFromInstantToString(src.OpeningHours)))
             .ForMember(dest => dest.ClosingHours,
                 opt => opt.MapFrom(src => MapOpeningHoursFromInstantToString(src.ClosingHours)));
+
+        CreateMap<CreateEditProductDto, Product>()
+            .ForMember(dest => dest.PictureName, opt => opt.MapFrom((src, dest) =>
+                src.Picture != null ? src.Picture.FileName : dest.PictureName));
+
+        CreateMap<Product, CreateEditProductDto>()
+            .ForMember(dest => dest.CategoryNames, opt => opt.MapFrom(src => src.Categories.Select(c => c.Name)));
     }
 
     private static string? FormatInstant(Instant? instant) =>

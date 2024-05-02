@@ -11,6 +11,7 @@ public class ProductDto
     public string PictureName { get; set; } = null!;
     public bool IsEnabled { get; set; }
     public ICollection<string> CategoryNames { get; set; } = new List<string>();
+    public int RestaurantId { get; set; }
 
     public ProductDto()
     {
@@ -25,5 +26,6 @@ public class ProductDto
         PictureName = product.PictureName;
         IsEnabled = product.IsEnabled;
         CategoryNames = product.Categories.Select(c => c.Name).ToList();
+        RestaurantId = product.RestaurantId;
     }
 }

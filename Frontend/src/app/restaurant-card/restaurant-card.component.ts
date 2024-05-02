@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Restaurant } from '../model/restaurant.model';
 import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Restaurant } from '../model/restaurant/restaurant.model';
 
 @Component({
 	selector: 'app-restaurant-card',

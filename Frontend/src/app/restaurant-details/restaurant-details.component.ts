@@ -4,14 +4,15 @@ import { RestaurantService } from '../services/restaurant.service';
 import { MatIcon } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { RestaurantMoreInfoDialogComponent } from './restaurant-more-info-dialog/restaurant-more-info-dialog.component';
-import { RestaurantDetail } from '../model/restaurant-detail.model';
 import { MatFabButton } from '@angular/material/button';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { RestaurantDetail } from '../model/restaurant/restaurant-detail.model';
+import { NgIf } from '@angular/common';
 
 @Component({
 	selector: 'app-restaurant-details',
 	standalone: true,
-	imports: [MatIcon, MatFabButton, ProductCardComponent],
+	imports: [MatIcon, MatFabButton, ProductCardComponent, NgIf],
 	templateUrl: './restaurant-details.component.html',
 	styleUrl: './restaurant-details.component.scss',
 })
@@ -34,9 +35,9 @@ export class RestaurantDetailsComponent implements OnInit {
 					this.restaurant = restaurant;
 					this.restaurant.id = params['id'];
 				});
-			this.restaurantService
-				.isAuthorized(params['id'])
-				.subscribe(result => (this.isAuthorized = result));
+			this.restaurantService.isAuthorized(params['id']).subscribe(result => {
+				this.isAuthorized = result;
+			});
 		});
 	}
 
@@ -59,5 +60,9 @@ export class RestaurantDetailsComponent implements OnInit {
 
 	public routeToEditRestaurant(): void {
 		this.router.navigate(['/edit-restaurant', this.restaurant?.id]);
+	}
+
+	public routeToCreateProduct(): void {
+		this.router.navigate(['/create-product', this.restaurant?.id]);
 	}
 }
