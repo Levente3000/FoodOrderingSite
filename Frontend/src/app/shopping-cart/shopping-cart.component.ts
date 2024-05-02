@@ -13,6 +13,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductDetailDialogComponent } from '../shared/product-detail-dialog/product-detail-dialog.component';
 import { Product } from '../model/product.model';
 import { MatDialog } from '@angular/material/dialog';
+import { ProfileService } from '../services/profile.service';
+import { MatError } from '@angular/material/form-field';
+import { Router } from '@angular/router';
+import { OrderService } from '../services/order.service';
 
 @Component({
 	selector: 'app-shopping-cart',
@@ -24,6 +28,7 @@ import { MatDialog } from '@angular/material/dialog';
 		MatYearView,
 		FormsModule,
 		NgIf,
+		MatError,
 	],
 	templateUrl: './shopping-cart.component.html',
 	styleUrl: './shopping-cart.component.scss',
@@ -32,7 +37,8 @@ export class ShoppingCartComponent implements OnInit {
 	protected shoppingCart: ShoppingCartItem[] = [];
 	protected promoCodes: PromoCode[] = [];
 	protected promoCode = '';
-	protected appliedPromoCode: PromoCode | undefined;
+	protected appliedPromoCode: PromoCode | null = null;
+	protected canPlaceOrder: boolean = false;
 
 	protected get totalCost(): number {
 		return this.shoppingCart.reduce((pastValue, item) => {
@@ -53,8 +59,11 @@ export class ShoppingCartComponent implements OnInit {
 	public constructor(
 		private shoppingCartService: ShoppingCartService,
 		private promoCodeService: PromoCodeService,
+		private profileService: ProfileService,
+		private orderService: OrderService,
 		private snackBar: MatSnackBar,
-		private dialog: MatDialog
+		private dialog: MatDialog,
+		private router: Router
 	) {}
 
 	public ngOnInit() {
@@ -67,6 +76,10 @@ export class ShoppingCartComponent implements OnInit {
 		this.promoCodeService.getPromoCodes().subscribe(codes => {
 			this.promoCodes = codes;
 		});
+
+		this.profileService
+			.getCanPlaceOrder()
+			.subscribe(canPlaceOrder => (this.canPlaceOrder = canPlaceOrder));
 	}
 
 	public onQuantityChange(item: ShoppingCartItem): void {
@@ -106,11 +119,15 @@ export class ShoppingCartComponent implements OnInit {
 	}
 
 	protected removePromoCode(): void {
-		this.appliedPromoCode = undefined;
+		this.appliedPromoCode = null;
 		this.promoCode = '';
 	}
 
-	protected placeOrder(): void {}
+	protected placeOrder(): void {
+		this.orderService
+			.placeOrder(this.appliedPromoCode)
+			.subscribe(() => this.router.navigate(['/home']));
+	}
 
 	protected productDetailDialogOpen(product: Product): void {
 		this.dialog.open(ProductDetailDialogComponent, {

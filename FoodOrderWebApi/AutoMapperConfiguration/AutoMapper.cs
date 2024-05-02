@@ -3,6 +3,7 @@ using AutoMapper;
 using FoodOrderWebApi.DTOs;
 using FoodOrderWebApi.DTOs.CreateProduct;
 using FoodOrderWebApi.DTOs.CreateRestaurant;
+using FoodOrderWebApi.DTOs.Order;
 using FoodOrderWebApi.Models;
 using Microsoft.OpenApi.Models;
 using NodaTime;
@@ -19,6 +20,7 @@ public class AutoMapper : Profile
 
         CreateMap<Product, ProductDto>()
             .ForMember(dest => dest.CategoryNames, opt => opt.MapFrom(src => src.Categories.Select(c => c.Name)));
+        CreateMap<ProductDto, Product>();
 
         CreateMap<FoodCategory, FoodCategoryDto>();
         CreateMap<FoodCategory, ProductsInCategoryDto>();
@@ -42,6 +44,7 @@ public class AutoMapper : Profile
             .ForMember(dto => dto.Sunday, conf => conf.MapFrom(oh => ConvertTimeToInstant(oh.Sunday)));
 
         CreateMap<ShoppingCartItem, ShoppingCartItemDto>();
+        CreateMap<ShoppingCartItemDto, ShoppingCartItem>();
 
         CreateMap<CreateEditRestaurantDto, Restaurant>()
             .ForMember(dest => dest.LogoName, opt => opt.MapFrom((src, dest) =>
@@ -65,6 +68,12 @@ public class AutoMapper : Profile
             .ForMember(dest => dest.CategoryNames, opt => opt.MapFrom(src => src.Categories.Select(c => c.Name)));
 
         CreateMap<UpdateUserDataDto, UserData>();
+
+        CreateMap<ShoppingCartItemDto, OrderItem>()
+            .ForMember(dest => dest.Product, opt => opt.Ignore());
+
+        CreateMap<Order, OrderDto>();
+        CreateMap<OrderItem, OrderItemDto>();
     }
 
     private static string? FormatInstant(Instant? instant) =>

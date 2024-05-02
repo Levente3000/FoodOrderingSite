@@ -24,6 +24,9 @@ public class FoodOrderDbContext : DbContext
 
     public DbSet<UserData> UserData { get; set; }
 
+
+    public DbSet<OrderItem> OrderItems { get; set; }
+
     public FoodOrderDbContext(DbContextOptions<FoodOrderDbContext> options) : base(options)
     {
     }

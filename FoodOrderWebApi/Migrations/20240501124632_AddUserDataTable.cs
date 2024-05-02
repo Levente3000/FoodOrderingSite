@@ -27,6 +27,30 @@ namespace FoodOrderWebApi.Migrations
                 {
                     table.PrimaryKey("PK_UserData", x => x.Id);
                 });
+            
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    OrdererName = table.Column<string>(type: "text", nullable: false),
+                    OrdererAddress = table.Column<string>(type: "text", nullable: false),
+                    OrdererPhoneNumber = table.Column<string>(type: "text", nullable: false),
+                    IsDone = table.Column<bool>(type: "boolean", nullable: false),
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    RestaurantId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_Restaurants_RestaurantId",
+                        column: x => x.RestaurantId,
+                        principalTable: "Restaurants",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
         }
 
         /// <inheritdoc />
@@ -34,6 +58,9 @@ namespace FoodOrderWebApi.Migrations
         {
             migrationBuilder.DropTable(
                 name: "UserData");
+            
+            migrationBuilder.DropTable(
+                name: "Orders");
         }
     }
 }

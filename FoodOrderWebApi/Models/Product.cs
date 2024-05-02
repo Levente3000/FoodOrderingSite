@@ -29,6 +29,4 @@ public class Product
     public int RestaurantId { get; set; }
 
     public virtual Restaurant Restaurant { get; set; } = null!;
-
-    public virtual ICollection<Order> Orders { get; set; } = null!;
 }

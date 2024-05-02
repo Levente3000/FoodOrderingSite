@@ -18,11 +18,15 @@ public class Order
 
     [Required]
     public bool IsDone { get; set; }
-    
+
     [Required]
+    public string UserId { get; set; } = null!;
+
+    [Required]
+    [ForeignKey("Restaurant")]
     public int RestaurantId { get; set; }
-    [ForeignKey("RestaurantId")]
+
     public virtual Restaurant Restaurant { get; set; } = null!;
 
-    public virtual ICollection<ShoppingCartItem> ShoppingCartItems { get; set; } = null!;
+    public virtual ICollection<OrderItem> OrderItems { get; set; } = null!;
 }
