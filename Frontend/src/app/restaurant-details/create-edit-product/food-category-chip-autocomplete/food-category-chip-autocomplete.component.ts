@@ -12,7 +12,7 @@ import {
 	MatAutocompleteTrigger,
 	MatOption,
 } from '@angular/material/autocomplete';
-import { map, Observable, of, startWith, tap } from 'rxjs';
+import { map, Observable, of, startWith } from 'rxjs';
 import {
 	ControlValueAccessor,
 	FormControl,

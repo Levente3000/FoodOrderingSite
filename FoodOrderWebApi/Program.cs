@@ -17,12 +17,17 @@ builder.Services.AddScoped<IRepository<PromoCode, int>, PromoCodeRepository>();
 builder.Services.AddScoped<IOpeningHourRepository, OpeningHourRepository>();
 builder.Services.AddScoped<IRestaurantPermissionRepository, RestaurantPermissionRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IUserDataRepository, UserDataRepository>();
 
 builder.Services.AddScoped<AssetsService>();
+builder.Services.AddScoped<KeycloakService>();
 builder.Services.AddScoped<RestaurantService>();
 builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
 builder.Services.AddScoped<IRestaurantPermissionService, RestaurantPermissionService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IUserDataService, UserDataService>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 

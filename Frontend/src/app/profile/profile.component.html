@@ -1,0 +1,39 @@
+<form [formGroup]="formGroup" class="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput type="text" readonly formControlName="name" placeholder="Enter your name">
+    @if (formGroup.get('name')?.hasError('required')) {
+      <mat-error>The field is required!</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" readonly formControlName="email" placeholder="Enter your email">
+    @if (formGroup.get('email')?.hasError('required')) {
+      <mat-error>The field is required!</mat-error>
+    } @else if (formGroup.get('email')?.hasError('email')) {
+      <mat-error>Not an email!</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Address</mat-label>
+    <input matInput type="text" formControlName="address" placeholder="Enter your address">
+    @if (formGroup.get('address')?.hasError('required')) {
+      <mat-error>The field is required!</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Phone Number</mat-label>
+    <input matInput type="phone" formControlName="phone" placeholder="Enter your phone number">
+    @if (formGroup.get('phone')?.hasError('required')) {
+      <mat-error>The field is required!</mat-error>
+    } @else if (formGroup.get('phone')?.hasError("pattern")) {
+      <mat-error>Example: +36301234567</mat-error>
+    }
+  </mat-form-field>
+
+  <button mat-raised-button type="submit">Update Profile</button>
+</form>

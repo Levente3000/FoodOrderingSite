@@ -65,4 +65,8 @@ export class RestaurantDetailsComponent implements OnInit {
 	public routeToCreateProduct(): void {
 		this.router.navigate(['/create-product', this.restaurant?.id]);
 	}
+
+	public routeToRestaurantOrders(): void {
+		this.router.navigate(['/restaurant-orders/active', this.restaurant?.id]);
+	}
 }
