@@ -8,6 +8,8 @@ public class ShoppingCartItemDto
 
     public int Quantity { get; set; }
 
+    public string? RestaurantName { get; set; } = null!;
+
     public int ProductId { get; set; }
 
     public virtual ProductDto Product { get; set; } = null!;

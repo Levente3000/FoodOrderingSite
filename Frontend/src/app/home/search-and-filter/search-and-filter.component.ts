@@ -6,6 +6,7 @@ import { CategoryService } from '../../services/category.service';
 import { PriceCategoryService } from '../../services/price-category.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FilterData } from '../../model/filter/filter-data.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-search-and-filter',
@@ -22,7 +23,8 @@ export class SearchAndFilterComponent implements OnInit {
 	constructor(
 		private categoryService: CategoryService,
 		private priceCategoryService: PriceCategoryService,
-		private dialog: MatDialog
+		private dialog: MatDialog,
+		private activatedRoute: ActivatedRoute
 	) {}
 
 	public ngOnInit() {
@@ -31,6 +33,14 @@ export class SearchAndFilterComponent implements OnInit {
 				this.filter.filterDialogData.foodCategories = categories.map(
 					c => c.name
 				);
+				this.activatedRoute.params.subscribe(params => {
+					if (params['category'] && this.filter) {
+						this.filter.filterDialogData.foodCategories =
+							this.filter.filterDialogData.foodCategories.filter(
+								c => c != params['category']
+							);
+					}
+				});
 			}
 		});
 

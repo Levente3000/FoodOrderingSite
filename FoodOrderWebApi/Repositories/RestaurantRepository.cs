@@ -1,5 +1,6 @@
 ﻿using FoodOrderWebApi.Configuration;
 using FoodOrderWebApi.DTOs;
+using FoodOrderWebApi.Enum;
 using FoodOrderWebApi.Models;
 using FoodOrderWebApi.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,42 @@ public class RestaurantRepository : IRestaurantRepository
             .ThenInclude(p => p.Categories)
             .AsNoTracking()
             .ToList();
+    }
+
+    public List<Restaurant> GetLatestRestaurants()
+    {
+        return _context.Restaurants
+            .OrderByDescending(restaurant => restaurant.CreatedAt)
+            .Take(10)
+            .AsNoTracking()
+            .ToList();
+    }
+
+    public List<Restaurant> GetRestaurantsWithTheMostOrders(List<int> restaurantIdList)
+    {
+        return _context.Restaurants
+            .Where(r => restaurantIdList.Contains(r.Id))
+            .AsNoTracking()
+            .ToList();
+    }
+
+    public List<Restaurant> GetRestaurantsByCategory(string categoryName)
+    {
+        return _context.Restaurants
+            .Where(r => r.Products
+                .Any(p => p.Categories
+                    .Any(c => c.Name == categoryName)))
+            .Include(r => r.Products)
+            .ThenInclude(p => p.Categories)
+            .AsNoTracking()
+            .ToList();
+    }
+
+    public string? GetRestaurantNameById(int restaurantId)
+    {
+        return _context.Restaurants
+            .FirstOrDefault(r => r.Id == restaurantId)
+            ?.Name;
     }
 
     public Restaurant? GetByIdOrName(int key)

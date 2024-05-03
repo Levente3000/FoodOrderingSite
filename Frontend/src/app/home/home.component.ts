@@ -10,6 +10,7 @@ import { CategoryService } from '../services/category.service';
 import { SearchAndFilterComponent } from './search-and-filter/search-and-filter.component';
 import { FilterAndRestaurantsComponent } from './filter-and-restaurants/filter-and-restaurants.component';
 import { Restaurant } from '../model/restaurant/restaurant.model';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
 	selector: 'app-home',
@@ -23,13 +24,23 @@ import { Restaurant } from '../model/restaurant/restaurant.model';
 		CategoryCarouselComponent,
 		SearchAndFilterComponent,
 		FilterAndRestaurantsComponent,
+		MatProgressSpinner,
 	],
 	templateUrl: './home.component.html',
 	styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-	protected allRestaurants: Restaurant[] = [];
+	protected latestTenRestaurant: Restaurant[] = [];
+	protected restaurantsWithMostOrders: Restaurant[] = [];
 	protected allCategories: Category[] = [];
+
+	public get isLoading(): boolean {
+		return (
+			this.latestTenRestaurant.length === 0 ||
+			this.restaurantsWithMostOrders.length === 0 ||
+			this.allCategories.length === 0
+		);
+	}
 
 	constructor(
 		private restaurantService: RestaurantService,
@@ -37,9 +48,17 @@ export class HomeComponent implements OnInit {
 	) {}
 
 	public ngOnInit() {
-		this.restaurantService.getRestaurantsWithLogo().subscribe(restaurants => {
-			this.allRestaurants = restaurants;
-		});
+		this.restaurantService
+			.getLatestRestaurantsWithLogo()
+			.subscribe(restaurants => {
+				this.latestTenRestaurant = restaurants;
+			});
+
+		this.restaurantService
+			.getRestaurantsWithTheMostOrdersWithLogo()
+			.subscribe(restaurants => {
+				this.restaurantsWithMostOrders = restaurants;
+			});
 
 		this.categoryService.getCategoriesWithLogo().subscribe(categories => {
 			this.allCategories = categories;

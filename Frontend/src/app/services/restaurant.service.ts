@@ -43,6 +43,75 @@ export class RestaurantService {
 			);
 	}
 
+	public getLatestRestaurantsWithLogo(): Observable<Restaurant[]> {
+		return this.httpClient
+			.get<Restaurant[]>(`${baseUrl}/${this.restaurantControllerUrl}/latest`)
+			.pipe(
+				mergeMap(restaurants =>
+					forkJoin(
+						restaurants.map(restaurant => {
+							return this.assetsService
+								.getAssetForRestaurant(restaurant.logoName)
+								.pipe(
+									map(asset => {
+										restaurant.logo = asset;
+										return restaurant;
+									})
+								);
+						})
+					)
+				)
+			);
+	}
+
+	public getRestaurantsWithTheMostOrdersWithLogo(): Observable<Restaurant[]> {
+		return this.httpClient
+			.get<
+				Restaurant[]
+			>(`${baseUrl}/${this.restaurantControllerUrl}/most-orders`)
+			.pipe(
+				mergeMap(restaurants =>
+					forkJoin(
+						restaurants.map(restaurant => {
+							return this.assetsService
+								.getAssetForRestaurant(restaurant.logoName)
+								.pipe(
+									map(asset => {
+										restaurant.logo = asset;
+										return restaurant;
+									})
+								);
+						})
+					)
+				)
+			);
+	}
+
+	public getRestaurantsByCategoryWithLogo(
+		category: string
+	): Observable<Restaurant[]> {
+		return this.httpClient
+			.get<
+				Restaurant[]
+			>(`${baseUrl}/${this.restaurantControllerUrl}/by-category/${category}`)
+			.pipe(
+				mergeMap(restaurants =>
+					forkJoin(
+						restaurants.map(restaurant => {
+							return this.assetsService
+								.getAssetForRestaurant(restaurant.logoName)
+								.pipe(
+									map(asset => {
+										restaurant.logo = asset;
+										return restaurant;
+									})
+								);
+						})
+					)
+				)
+			);
+	}
+
 	public getRestaurantByIdWithLogo(id: number): Observable<RestaurantDetail> {
 		return this.httpClient
 			.get<RestaurantDetail>(

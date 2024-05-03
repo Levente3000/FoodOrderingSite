@@ -8,6 +8,8 @@ public interface IOrderRepository
 
     public List<Order> GetDoneOrdersByRestaurantId(int restaurantId);
 
+    public List<int> GetRestaurantIdsByOrderNumber();
+
     public Order? GetOrderById(int orderId);
 
     public void UpdateOrder(Order order);

@@ -8,6 +8,10 @@ public interface IProductRepository
 
     public Product? GetProductByIdAsTracking(int id);
 
+    public double GetAveragePriceByRestaurantId(int restaurantId);
+
+    public bool GetIfAnyProductUnderRestaurant(int restaurantId);
+
     public List<Product> GetProductWithoutCategoryByRestaurantId(int restaurantId);
 
     public void CreateProduct(Product product);

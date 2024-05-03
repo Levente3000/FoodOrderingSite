@@ -31,6 +31,19 @@ public class ProductRepository : IProductRepository
             .FirstOrDefault();
     }
 
+    public double GetAveragePriceByRestaurantId(int restaurantId)
+    {
+        return _context.Products
+            .Where(product => product.RestaurantId == restaurantId)
+            .Average(product => product.Price);
+    }
+
+    public bool GetIfAnyProductUnderRestaurant(int restaurantId)
+    {
+        return _context.Products
+            .Any(p => p.RestaurantId == restaurantId);
+    }
+
     public List<Product> GetProductWithoutCategoryByRestaurantId(int restaurantId)
     {
         return _context.Products

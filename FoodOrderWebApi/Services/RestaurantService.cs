@@ -1,41 +1,79 @@
 ﻿using AutoMapper;
 using FoodOrderWebApi.DTOs;
 using FoodOrderWebApi.DTOs.CreateRestaurant;
+using FoodOrderWebApi.Enum;
 using FoodOrderWebApi.Models;
 using FoodOrderWebApi.Repositories;
 using FoodOrderWebApi.Repositories.Interfaces;
-using Microsoft.IdentityModel.Tokens;
-using NodaTime;
-using NodaTime.Text;
+using FoodOrderWebApi.Services.Interfaces;
 
 namespace FoodOrderWebApi.Services;
 
-public class RestaurantService
+public class RestaurantService : IRestaurantService
 {
     private readonly IRestaurantRepository _restaurantRepository;
     private readonly IOpeningHourRepository _openingHourRepository;
     private readonly IRestaurantPermissionRepository _restaurantPermissionRepository;
     private readonly IProductRepository _productRepository;
+    private readonly IOrderService _orderService;
     private readonly AssetsService _assetService;
     private readonly IMapper _mapper;
     private readonly string DIRECTORY = "restaurant";
 
     public RestaurantService(IRestaurantRepository restaurantRepository, IMapper mapper, AssetsService assetService,
         IOpeningHourRepository openingHourRepository, IRestaurantPermissionRepository restaurantPermissionRepository,
-        IProductRepository productRepository)
+        IProductRepository productRepository, IOrderService orderService)
     {
         _restaurantRepository = restaurantRepository;
         _openingHourRepository = openingHourRepository;
         _restaurantPermissionRepository = restaurantPermissionRepository;
         _productRepository = productRepository;
+        _orderService = orderService;
         _assetService = assetService;
         _mapper = mapper;
     }
 
     public List<RestaurantDto> GetAllRestaurantsWithProductsAndCategories()
     {
-        var restaurants = _restaurantRepository.GetAll();
-        return _mapper.Map<List<RestaurantDto>>(restaurants);
+        return _mapper.Map<List<RestaurantDto>>(_restaurantRepository.GetAll());
+    }
+
+    public List<RestaurantDto> GetLatestRestaurants()
+    {
+        var restaurants = _mapper.Map<List<RestaurantDto>>(_restaurantRepository.GetLatestRestaurants());
+        foreach (var restaurant in restaurants)
+        {
+            restaurant.PriceCategory = _productRepository.GetIfAnyProductUnderRestaurant(restaurant.Id)
+                ? DeterminePriceCategory(_productRepository.GetAveragePriceByRestaurantId(restaurant.Id))
+                : DeterminePriceCategory(0);
+        }
+
+        return restaurants;
+    }
+
+    public List<RestaurantDto> GetRestaurantsWithTheMostOrders()
+    {
+        var restaurants = _mapper.Map<List<RestaurantDto>>(
+            _restaurantRepository.GetRestaurantsWithTheMostOrders(_orderService.GetRestaurantIdsByOrderNumber()));
+        foreach (var restaurant in restaurants)
+        {
+            restaurant.PriceCategory = _productRepository.GetIfAnyProductUnderRestaurant(restaurant.Id)
+                ? DeterminePriceCategory(_productRepository.GetAveragePriceByRestaurantId(restaurant.Id))
+                : DeterminePriceCategory(0);
+        }
+
+        return restaurants;
+    }
+
+    public List<RestaurantDto> GetRestaurantsByCategory(string categoryName)
+    {
+        return _mapper.Map<List<RestaurantDto>>(
+            _restaurantRepository.GetRestaurantsByCategory(categoryName));
+    }
+
+    public string? GetRestaurantNameById(int restaurantId)
+    {
+        return _restaurantRepository.GetRestaurantNameById(restaurantId);
     }
 
     public RestaurantDetailsDto GetRestaurantByIdWithProductsAndCategories(int id)
@@ -109,7 +147,7 @@ public class RestaurantService
         {
             return null;
         }
-        
+
         if (createEditRestaurant.Logo?.FileName != null)
         {
             await _assetService.SaveAssetIfNotExists(createEditRestaurant.Logo, DIRECTORY);
@@ -140,5 +178,20 @@ public class RestaurantService
         _openingHourRepository.RemoveOpeningHour(closingHoursToRemove);
 
         return restaurant.Id;
+    }
+
+    private static PriceCategory DeterminePriceCategory(double averagePrice)
+    {
+        if (averagePrice == 0)
+        {
+            return PriceCategory.NoProduct;
+        }
+
+        return averagePrice switch
+        {
+            <= 1500 => PriceCategory.Low,
+            <= 4000 => PriceCategory.Medium,
+            _ => PriceCategory.High
+        };
     }
 }

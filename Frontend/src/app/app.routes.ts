@@ -9,6 +9,8 @@ import { CreateEditProductComponent } from './restaurant-details/create-edit-pro
 import { ProfileComponent } from './profile/profile.component';
 import { RestaurantActiveOrdersComponent } from './restaurant-active-orders/restaurant-active-orders.component';
 import { RestaurantInactiveOrdersComponent } from './restaurant-inactive-orders/restaurant-inactive-orders.component';
+import { CategoryRestaurantsComponent } from './category-restaurants/category-restaurants.component';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
 
 export const routes: Routes = [
 	{
@@ -20,6 +22,7 @@ export const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
 	{ path: 'profile', component: ProfileComponent },
 	{ path: 'restaurants/details/:id', component: RestaurantDetailsComponent },
+	{ path: 'restaurants', component: RestaurantsComponent },
 	{
 		path: 'restaurant-orders/active/:id',
 		component: RestaurantActiveOrdersComponent,
@@ -27,6 +30,10 @@ export const routes: Routes = [
 	{
 		path: 'restaurant-orders/inactive/:id',
 		component: RestaurantInactiveOrdersComponent,
+	},
+	{
+		path: 'category-restaurants/:category',
+		component: CategoryRestaurantsComponent,
 	},
 	{ path: 'shopping-cart', component: ShoppingCartComponent },
 	{ path: 'create-restaurant', component: CreateEditRestaurantComponent },

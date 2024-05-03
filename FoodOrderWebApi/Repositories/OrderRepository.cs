@@ -34,6 +34,16 @@ public class OrderRepository : IOrderRepository
             .ToList();
     }
 
+    public List<int> GetRestaurantIdsByOrderNumber()
+    {
+        return _context.Orders
+            .GroupBy(o => o.RestaurantId)
+            .OrderByDescending(o => o.Count())
+            .Select(o => o.Key)
+            .Take(10)
+            .ToList();
+    }
+
     public Order? GetOrderById(int orderId)
     {
         return _context.Orders

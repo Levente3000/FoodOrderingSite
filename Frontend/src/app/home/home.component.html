@@ -1,5 +1,18 @@
-<app-new-restaurants-carousel [allRestaurants]="allRestaurants"></app-new-restaurants-carousel>
-<div class="spacer"></div>
-<app-category-carousel [allCategories]="allCategories"></app-category-carousel>
-<div class="bigger-spacer"></div>
-<app-filter-and-restaurants [allRestaurants]="allRestaurants"></app-filter-and-restaurants>
+@if (isLoading) {
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+} @else {
+  <app-new-restaurants-carousel [title]="'New restaurants:'"
+                                [allRestaurants]="latestTenRestaurant">
+  </app-new-restaurants-carousel>
+  <div class="spacer"></div>
+  <app-new-restaurants-carousel [title]="'Most popular restaurants:'"
+                                [allRestaurants]="restaurantsWithMostOrders">
+  </app-new-restaurants-carousel>
+  <div class="spacer"></div>
+  <app-category-carousel [allCategories]="allCategories"></app-category-carousel>
+  <div class="spacer"></div>
+}
+
+

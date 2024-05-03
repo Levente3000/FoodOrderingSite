@@ -22,7 +22,7 @@ builder.Services.AddScoped<IUserDataRepository, UserDataRepository>();
 
 builder.Services.AddScoped<AssetsService>();
 builder.Services.AddScoped<KeycloakService>();
-builder.Services.AddScoped<RestaurantService>();
+builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
 builder.Services.AddScoped<IRestaurantPermissionService, RestaurantPermissionService>();
 builder.Services.AddScoped<IProductService, ProductService>();

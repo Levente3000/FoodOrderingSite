@@ -9,6 +9,8 @@ public interface IOrderService
 
     public List<OrderDto> GetDoneOrdersByRestaurantId(int restaurantId);
 
+    public List<int> GetRestaurantIdsByOrderNumber();
+
     public void PlaceOrder(string userId, PromoCode? promo);
 
     public void UpdateOrder(int orderId);

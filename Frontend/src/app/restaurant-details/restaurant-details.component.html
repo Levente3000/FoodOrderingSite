@@ -31,6 +31,9 @@
     </div>
   </div>
   <div class="menu">
+    <div *ngIf="isClosedToday && !isAuthorized" class="closed-overlay">
+      Restaurant is Closed
+    </div>
     @for (productsInCategory of restaurant?.categoriesWithProducts; track productsInCategory) {
       @if (productsInCategory.name !== 'Without Category' || isAuthorized) {
         <div class="menu-category-with-products">

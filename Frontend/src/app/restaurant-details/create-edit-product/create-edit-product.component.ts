@@ -133,8 +133,6 @@ export class CreateEditProductComponent implements OnInit {
 				}
 			});
 		} else {
-			console.log(this.formGroup);
-			console.log(this.productPicture);
 			this.productService.createProduct(formData).subscribe(result => {
 				if (result) {
 					this.router.navigate(['/restaurants/details', result]);

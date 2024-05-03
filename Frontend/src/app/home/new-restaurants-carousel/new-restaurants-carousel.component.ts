@@ -26,6 +26,7 @@ export class NewRestaurantsCarouselComponent
 	maxScroll = 0;
 
 	protected _allRestaurants: Restaurant[] = [];
+	@Input() title: string = '';
 
 	@Input({ required: true })
 	public set allRestaurants(allRestaurants: Restaurant[]) {

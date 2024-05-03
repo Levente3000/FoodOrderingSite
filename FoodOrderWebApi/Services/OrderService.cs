@@ -34,6 +34,11 @@ public class OrderService : IOrderService
         return _mapper.Map<List<OrderDto>>(_orderRepository.GetDoneOrdersByRestaurantId(restaurantId));
     }
 
+    public List<int> GetRestaurantIdsByOrderNumber()
+    {
+        return _orderRepository.GetRestaurantIdsByOrderNumber();
+    }
+
     public void PlaceOrder(string userId, PromoCode? promo)
     {
         var userShoppingCart = _shoppingCartService.GetCartByUserId(userId);

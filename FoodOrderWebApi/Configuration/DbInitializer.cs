@@ -81,6 +81,21 @@ public class DbInitializer
                 Name = "Fine Dining",
                 PictureName = "pizza.jpg"
             },
+            new()
+            {
+                Name = "Mexican",
+                PictureName = "pizza.jpg"
+            },
+            new()
+            {
+                Name = "Hamburger",
+                PictureName = "pizza.jpg"
+            },
+            new()
+            {
+                Name = "American",
+                PictureName = "pizza.jpg"
+            },
         };
 
         _context.FoodCategories.AddRange(categories);

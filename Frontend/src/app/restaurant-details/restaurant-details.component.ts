@@ -8,6 +8,7 @@ import { MatFabButton } from '@angular/material/button';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { RestaurantDetail } from '../model/restaurant/restaurant-detail.model';
 import { NgIf } from '@angular/common';
+import { OpeningHours } from '../model/opening-hours.model';
 
 @Component({
 	selector: 'app-restaurant-details',
@@ -19,6 +20,7 @@ import { NgIf } from '@angular/common';
 export class RestaurantDetailsComponent implements OnInit {
 	protected restaurant?: RestaurantDetail;
 	protected isAuthorized: boolean = false;
+	protected isClosedToday: boolean = false;
 
 	constructor(
 		private restaurantService: RestaurantService,
@@ -34,6 +36,9 @@ export class RestaurantDetailsComponent implements OnInit {
 				.subscribe(restaurant => {
 					this.restaurant = restaurant;
 					this.restaurant.id = params['id'];
+					this.isClosedToday =
+						this.areTodayHoursSet(restaurant.openingHours) &&
+						this.areTodayHoursSet(restaurant.closingHours);
 				});
 			this.restaurantService.isAuthorized(params['id']).subscribe(result => {
 				this.isAuthorized = result;
@@ -68,5 +73,19 @@ export class RestaurantDetailsComponent implements OnInit {
 
 	public routeToRestaurantOrders(): void {
 		this.router.navigate(['/restaurant-orders/active', this.restaurant?.id]);
+	}
+
+	private getTodayHours(hours: OpeningHours): string {
+		const today = new Date();
+		const dayOfWeek = today
+			.toLocaleDateString('en-US', { weekday: 'long' })
+			.toLowerCase();
+
+		return hours[dayOfWeek];
+	}
+
+	private areTodayHoursSet(hours: OpeningHours): boolean {
+		const todayHours = this.getTodayHours(hours);
+		return todayHours === '' || todayHours === null;
 	}
 }

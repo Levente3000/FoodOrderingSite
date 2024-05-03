@@ -2,6 +2,7 @@
 using FoodOrderWebApi.DTOs;
 using FoodOrderWebApi.DTOs.ShoppingCart;
 using FoodOrderWebApi.Repositories;
+using FoodOrderWebApi.Services.Interfaces;
 
 namespace FoodOrderWebApi.Services;
 
@@ -60,8 +61,21 @@ public class ShoppingCartService : IShoppingCartService
 
     public List<ShoppingCartItemDto> GetCartByUserId(string userId)
     {
-        var shoppingCartItems = _shoppingCartRepository.GetAllItemByUserId(userId);
-        return _mapper.Map<List<ShoppingCartItemDto>>(shoppingCartItems);
+        var shoppingCartItems =
+            _shoppingCartRepository.GetAllItemByUserId(userId);
+
+        var shoppingCartItemsDtoList = shoppingCartItems
+            .Select(item => new ShoppingCartItemDto
+            {
+                ProductId = item.ProductId,
+                Product = _mapper.Map<ProductDto>(item.Product),
+                Quantity = item.Quantity,
+                ShoppingCartItemId = item.ShoppingCartItemId,
+                UserId = item.UserId,
+                RestaurantName = item.Product.Restaurant.Name
+            }).ToList();
+
+        return shoppingCartItemsDtoList;
     }
 
     public void ClearCart(string userId)
