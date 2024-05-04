@@ -112,15 +112,10 @@ namespace FoodOrderWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("RestaurantId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.HasIndex("RestaurantId");
 
@@ -342,10 +337,6 @@ namespace FoodOrderWebApi.Migrations
 
             modelBuilder.Entity("FoodOrderWebApi.Models.Order", b =>
                 {
-                    b.HasOne("FoodOrderWebApi.Models.Product", null)
-                        .WithMany("Orders")
-                        .HasForeignKey("ProductId");
-
                     b.HasOne("FoodOrderWebApi.Models.Restaurant", "Restaurant")
                         .WithMany("Orders")
                         .HasForeignKey("RestaurantId")
