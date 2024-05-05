@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FoodOrderWebApi.Migrations
 {
     [DbContext(typeof(FoodOrderDbContext))]
-    [Migration("20240319190355_InitDatabase")]
-    partial class InitDatabase
+    [Migration("20240505100018_InitialDatabase")]
+    partial class InitialDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -112,14 +112,44 @@ namespace FoodOrderWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("RestaurantId")
+                    b.Property<int>("RestaurantId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RestaurantId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("FoodOrderWebApi.Models.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("FoodOrderWebApi.Models.Product", b =>
@@ -135,7 +165,9 @@ namespace FoodOrderWebApi.Migrations
                         .HasColumnType("text");
 
                     b.Property<bool>("IsEnabled")
-                        .HasColumnType("boolean");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -158,6 +190,26 @@ namespace FoodOrderWebApi.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("FoodOrderWebApi.Models.PromoCode", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double>("Percentage")
+                        .HasColumnType("double precision");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PromoCodes");
+                });
+
             modelBuilder.Entity("FoodOrderWebApi.Models.Restaurant", b =>
                 {
                     b.Property<int>("Id")
@@ -170,8 +222,17 @@ namespace FoodOrderWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("BannerName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int>("ClosingHourId")
                         .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -193,7 +254,9 @@ namespace FoodOrderWebApi.Migrations
                         .HasColumnType("text");
 
                     b.Property<int>("PriceCategory")
-                        .HasColumnType("integer");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0);
 
                     b.HasKey("Id");
 
@@ -204,19 +267,82 @@ namespace FoodOrderWebApi.Migrations
                     b.ToTable("Restaurants");
                 });
 
-            modelBuilder.Entity("OrderProduct", b =>
+            modelBuilder.Entity("FoodOrderWebApi.Models.RestaurantPermission", b =>
                 {
-                    b.Property<int>("OrdersId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    b.Property<int>("ProductsId")
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("RestaurantId")
                         .HasColumnType("integer");
 
-                    b.HasKey("OrdersId", "ProductsId");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.HasIndex("ProductsId");
+                    b.HasKey("Id");
 
-                    b.ToTable("OrderProduct");
+                    b.ToTable("RestaurantPermissions");
+                });
+
+            modelBuilder.Entity("FoodOrderWebApi.Models.ShoppingCartItem", b =>
+                {
+                    b.Property<int>("ShoppingCartItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ShoppingCartItemId"));
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("ShoppingCartItemId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ShoppingCartItems");
+                });
+
+            modelBuilder.Entity("FoodOrderWebApi.Models.UserData", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserData");
                 });
 
             modelBuilder.Entity("FoodCategoryProduct", b =>
@@ -236,9 +362,32 @@ namespace FoodOrderWebApi.Migrations
 
             modelBuilder.Entity("FoodOrderWebApi.Models.Order", b =>
                 {
-                    b.HasOne("FoodOrderWebApi.Models.Restaurant", null)
+                    b.HasOne("FoodOrderWebApi.Models.Restaurant", "Restaurant")
                         .WithMany("Orders")
-                        .HasForeignKey("RestaurantId");
+                        .HasForeignKey("RestaurantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Restaurant");
+                });
+
+            modelBuilder.Entity("FoodOrderWebApi.Models.OrderItem", b =>
+                {
+                    b.HasOne("FoodOrderWebApi.Models.Order", "Order")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FoodOrderWebApi.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("FoodOrderWebApi.Models.Product", b =>
@@ -271,19 +420,20 @@ namespace FoodOrderWebApi.Migrations
                     b.Navigation("OpeningHours");
                 });
 
-            modelBuilder.Entity("OrderProduct", b =>
+            modelBuilder.Entity("FoodOrderWebApi.Models.ShoppingCartItem", b =>
                 {
-                    b.HasOne("FoodOrderWebApi.Models.Order", null)
+                    b.HasOne("FoodOrderWebApi.Models.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("OrdersId")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FoodOrderWebApi.Models.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("FoodOrderWebApi.Models.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("FoodOrderWebApi.Models.Restaurant", b =>
