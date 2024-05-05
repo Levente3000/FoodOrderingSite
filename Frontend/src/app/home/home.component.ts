@@ -33,12 +33,15 @@ export class HomeComponent implements OnInit {
 	protected latestTenRestaurant: Restaurant[] = [];
 	protected restaurantsWithMostOrders: Restaurant[] = [];
 	protected allCategories: Category[] = [];
+	protected latestTenRestaurantDataCameIn: boolean = false;
+	protected restaurantsWithMostOrdersDataCameIn: boolean = false;
+	protected allCategoriesDataCameIn: boolean = false;
 
 	public get isLoading(): boolean {
 		return (
-			this.latestTenRestaurant.length === 0 ||
-			this.restaurantsWithMostOrders.length === 0 ||
-			this.allCategories.length === 0
+			!this.latestTenRestaurantDataCameIn &&
+			!this.restaurantsWithMostOrdersDataCameIn &&
+			!this.allCategoriesDataCameIn
 		);
 	}
 
@@ -52,16 +55,19 @@ export class HomeComponent implements OnInit {
 			.getLatestRestaurantsWithLogo()
 			.subscribe(restaurants => {
 				this.latestTenRestaurant = restaurants;
+				this.latestTenRestaurantDataCameIn = true;
 			});
 
 		this.restaurantService
 			.getRestaurantsWithTheMostOrdersWithLogo()
 			.subscribe(restaurants => {
 				this.restaurantsWithMostOrders = restaurants;
+				this.restaurantsWithMostOrdersDataCameIn = true;
 			});
 
 		this.categoryService.getCategoriesWithLogo().subscribe(categories => {
 			this.allCategories = categories;
+			this.allCategoriesDataCameIn = true;
 		});
 	}
 }
