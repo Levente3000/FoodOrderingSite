@@ -9,6 +9,7 @@ import {
 	RestaurantDetail,
 } from '../model/restaurant/restaurant-detail.model';
 import { EditRestaurant } from '../model/restaurant/edit-restaurant.model';
+import { B } from '@angular/cdk/keycodes';
 
 @Injectable({
 	providedIn: 'root',
@@ -16,6 +17,7 @@ import { EditRestaurant } from '../model/restaurant/edit-restaurant.model';
 export class RestaurantService {
 	private restaurantControllerUrl = 'restaurant';
 	private restaurantPermissionControllerUrl = 'restaurant-permission';
+	private favouriteRestaurantControllerUrl = 'favourite';
 
 	constructor(
 		private readonly httpClient: HttpClient,
@@ -112,6 +114,27 @@ export class RestaurantService {
 			);
 	}
 
+	public getFavouriteRestaurantsWithLogo(): Observable<Restaurant[]> {
+		return this.httpClient
+			.get<Restaurant[]>(`${baseUrl}/${this.favouriteRestaurantControllerUrl}`)
+			.pipe(
+				mergeMap(restaurants =>
+					forkJoin(
+						restaurants.map(restaurant => {
+							return this.assetsService
+								.getAssetForRestaurant(restaurant.logoName)
+								.pipe(
+									map(asset => {
+										restaurant.logo = asset;
+										return restaurant;
+									})
+								);
+						})
+					)
+				)
+			);
+	}
+
 	public getRestaurantByIdWithLogo(id: number): Observable<RestaurantDetail> {
 		return this.httpClient
 			.get<RestaurantDetail>(
@@ -159,9 +182,23 @@ export class RestaurantService {
 		);
 	}
 
+	public changeStateOfFavouriteRestaurant(restaurantId: number) {
+		const body = { restaurantId };
+		return this.httpClient.post(
+			`${baseUrl}/${this.favouriteRestaurantControllerUrl}/change-state`,
+			body
+		);
+	}
+
 	public isAuthorized(restaurantId: number): Observable<boolean> {
 		return this.httpClient.get<boolean>(
 			`${baseUrl}/${this.restaurantPermissionControllerUrl}/${restaurantId}`
+		);
+	}
+
+	public isInFavourites(restaurantId: number): Observable<boolean> {
+		return this.httpClient.get<boolean>(
+			`${baseUrl}/${this.favouriteRestaurantControllerUrl}/${restaurantId}`
 		);
 	}
 

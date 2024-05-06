@@ -7,6 +7,7 @@ using FoodOrderWebApi.Services;
 using FoodOrderWebApi.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddScoped<IRestaurantPermissionRepository, RestaurantPermission
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IUserDataRepository, UserDataRepository>();
+builder.Services.AddScoped<IFavouriteRestaurantRepository, FavouriteRestaurantRepository>();
 
 builder.Services.AddScoped<AssetsService>();
 builder.Services.AddScoped<KeycloakService>();
@@ -28,6 +30,7 @@ builder.Services.AddScoped<IRestaurantPermissionService, RestaurantPermissionSer
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IUserDataService, UserDataService>();
+builder.Services.AddScoped<IFavouriteRestaurantService, FavouriteRestaurantService>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -48,7 +51,14 @@ builder.Services.AddAuthentication(options =>
     o.Authority = builder.Configuration["Jwt:Authority"];
     o.Audience = builder.Configuration["Jwt:Audience"];
     o.RequireHttpsMetadata = false;
-    o.TokenValidationParameters.RoleClaimType = ClaimTypes.Role;
+    o.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        RoleClaimType = ClaimTypes.Role,
+    };
 });
 
 var app = builder.Build();
@@ -67,7 +77,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors(policyBuilder => policyBuilder
     .WithOrigins(
-        "https://26.94.91.80:4200",
         "http://localhost:4200",
         "https://localhost:7233")
     .AllowAnyOrigin()

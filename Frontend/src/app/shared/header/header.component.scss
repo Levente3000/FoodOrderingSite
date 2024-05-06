@@ -17,12 +17,17 @@ ul {
       text-decoration: none;
     }
 
+
     a:hover:not(.active) {
       background-color: #111;
     }
   }
 
-  li:nth-last-child(2) {
+  .favourites {
+    gap: 0.3rem;
+  }
+
+  li:nth-last-child(3) {
     margin-left: auto;
   }
 }
@@ -37,7 +42,7 @@ ul li a mat-icon {
     flex-direction: column;
     justify-content: center;
 
-    li:nth-last-child(2) {
+    li:nth-last-child(3) {
       margin: 0;
     }
   }

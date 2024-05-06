@@ -11,6 +11,7 @@ import { RestaurantActiveOrdersComponent } from './restaurant-active-orders/rest
 import { RestaurantInactiveOrdersComponent } from './restaurant-inactive-orders/restaurant-inactive-orders.component';
 import { CategoryRestaurantsComponent } from './category-restaurants/category-restaurants.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { FavouriteRestaurantsComponent } from './favourite-restaurants/favourite-restaurants.component';
 
 export const routes: Routes = [
 	{
@@ -23,6 +24,7 @@ export const routes: Routes = [
 	{ path: 'profile', component: ProfileComponent },
 	{ path: 'restaurants/details/:id', component: RestaurantDetailsComponent },
 	{ path: 'restaurants', component: RestaurantsComponent },
+	{ path: 'favourite-restaurants', component: FavouriteRestaurantsComponent },
 	{
 		path: 'restaurant-orders/active/:id',
 		component: RestaurantActiveOrdersComponent,

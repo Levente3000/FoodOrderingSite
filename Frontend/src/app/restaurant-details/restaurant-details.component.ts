@@ -21,6 +21,8 @@ export class RestaurantDetailsComponent implements OnInit {
 	protected restaurant?: RestaurantDetail;
 	protected isAuthorized: boolean = false;
 	protected isClosedToday: boolean = false;
+	protected alreadyInFavourites: boolean = false;
+	protected favouriteTitle: string = 'Add to favourites';
 
 	constructor(
 		private restaurantService: RestaurantService,
@@ -43,6 +45,9 @@ export class RestaurantDetailsComponent implements OnInit {
 			this.restaurantService.isAuthorized(params['id']).subscribe(result => {
 				this.isAuthorized = result;
 			});
+			this.restaurantService.isInFavourites(params['id']).subscribe(result => {
+				this.alreadyInFavourites = result;
+			});
 		});
 	}
 
@@ -61,6 +66,16 @@ export class RestaurantDetailsComponent implements OnInit {
 				closingHours: this.restaurant?.closingHours,
 			},
 		});
+	}
+
+	public changeFavouriteState(): void {
+		if (this.restaurant) {
+			this.restaurantService
+				.changeStateOfFavouriteRestaurant(this.restaurant.id)
+				.subscribe(() => {
+					this.alreadyInFavourites = !this.alreadyInFavourites;
+				});
+		}
 	}
 
 	public routeToEditRestaurant(): void {
