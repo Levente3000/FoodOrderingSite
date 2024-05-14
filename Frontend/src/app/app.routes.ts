@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RestaurantDetailsComponent } from './restaurant-details/restaurant-details.component';
 import { AuthGuard } from './authentication/auth-guard';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
@@ -12,6 +11,7 @@ import { RestaurantInactiveOrdersComponent } from './restaurant-inactive-orders/
 import { CategoryRestaurantsComponent } from './category-restaurants/category-restaurants.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { FavouriteRestaurantsComponent } from './favourite-restaurants/favourite-restaurants.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 export const routes: Routes = [
 	{
