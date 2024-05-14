@@ -8,7 +8,7 @@
         <div class="fav-button" (click)="changeFavouriteState()"
              tabindex="0" (keydown.enter)="changeFavouriteState()">
           @if (alreadyInFavourites) {
-            <mat-icon>star</mat-icon>
+            <mat-icon class="remove-fav-icon">star</mat-icon>
             Remove from favourites
           } @else {
             <mat-icon>star</mat-icon>

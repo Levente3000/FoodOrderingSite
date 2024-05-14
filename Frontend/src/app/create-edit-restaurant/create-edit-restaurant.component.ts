@@ -5,7 +5,12 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from '@angular/forms';
-import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
+import {
+	MatError,
+	MatFormField,
+	MatInput,
+	MatLabel,
+} from '@angular/material/input';
 import { MatButton, MatMiniFabButton } from '@angular/material/button';
 import { FileUploadComponent } from '../shared/file-upload/file-upload.component';
 import { NgForOf } from '@angular/common';
@@ -30,6 +35,7 @@ import { EditRestaurant } from '../model/restaurant/edit-restaurant.model';
 		NgxMaterialTimepickerModule,
 		MatButton,
 		MatDialogContent,
+		MatError,
 	],
 	templateUrl: './create-edit-restaurant.component.html',
 	styleUrl: './create-edit-restaurant.component.scss',
@@ -62,7 +68,10 @@ export class CreateEditRestaurantComponent implements OnInit {
 			name: ['', Validators.required],
 			description: ['', Validators.required],
 			address: ['', Validators.required],
-			phoneNumber: ['', Validators.required],
+			phoneNumber: [
+				'',
+				[Validators.required, Validators.pattern(/^\+36[1-9][0-9]{8}$/)],
+			],
 			logo: [null],
 			banner: [null],
 		});

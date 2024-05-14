@@ -55,6 +55,7 @@ public class RestaurantService : IRestaurantService
     {
         var restaurants = _mapper.Map<List<RestaurantDto>>(
             _restaurantRepository.GetRestaurantsWithTheMostOrders(_orderService.GetRestaurantIdsByOrderNumber()));
+        
         foreach (var restaurant in restaurants)
         {
             restaurant.PriceCategory = _productRepository.GetIfAnyProductUnderRestaurant(restaurant.Id)

@@ -6,10 +6,12 @@
   <app-new-restaurants-carousel [title]="'New restaurants:'"
                                 [allRestaurants]="latestTenRestaurant">
   </app-new-restaurants-carousel>
-  <div class="spacer"></div>
-  <app-new-restaurants-carousel [title]="'Most popular restaurants:'"
-                                [allRestaurants]="restaurantsWithMostOrders">
-  </app-new-restaurants-carousel>
+  @if (restaurantsWithMostOrders.length !== 0) {
+    <div class="spacer"></div>
+    <app-new-restaurants-carousel [title]="'Most popular restaurants:'"
+                                  [allRestaurants]="restaurantsWithMostOrders">
+    </app-new-restaurants-carousel>
+  }
   <div class="spacer"></div>
   <app-category-carousel [allCategories]="allCategories"></app-category-carousel>
   <div class="spacer"></div>

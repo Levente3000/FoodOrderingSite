@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { OpeningHours } from '../../model/opening-hours.model';
 import { DatePipe, NgIf } from '@angular/common';
 import { RestaurantMoreInfo } from '../../model/restaurant/restaurant-more-info.model';
+import { MatIcon } from '@angular/material/icon';
 
 class OpeningHoursInDate {
 	monday?: Date;
@@ -69,6 +70,7 @@ class OpeningHoursInDate {
 		DatePipe,
 		DatePipe,
 		NgIf,
+		MatIcon,
 	],
 	templateUrl: './restaurant-more-info-dialog.component.html',
 	styleUrl: './restaurant-more-info-dialog.component.scss',
@@ -86,7 +88,7 @@ export class RestaurantMoreInfoDialogComponent {
 		this.dialogRef.backdropClick().subscribe(() => this.dialogRef.close());
 	}
 
-	public onCancelClick(): void {
+	public onCloseClick(): void {
 		this.dialogRef.close();
 	}
 }
