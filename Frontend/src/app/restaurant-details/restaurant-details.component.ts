@@ -20,9 +20,8 @@ import { OpeningHours } from '../model/opening-hours.model';
 export class RestaurantDetailsComponent implements OnInit {
 	protected restaurant?: RestaurantDetail;
 	protected isAuthorized: boolean = false;
-	protected isClosedToday: boolean = false;
+	protected isClosed: boolean = false;
 	protected alreadyInFavourites: boolean = false;
-	protected favouriteTitle: string = 'Add to favourites';
 
 	constructor(
 		private restaurantService: RestaurantService,
@@ -38,9 +37,10 @@ export class RestaurantDetailsComponent implements OnInit {
 				.subscribe(restaurant => {
 					this.restaurant = restaurant;
 					this.restaurant.id = params['id'];
-					this.isClosedToday =
-						this.areTodayHoursSet(restaurant.openingHours) &&
-						this.areTodayHoursSet(restaurant.closingHours);
+					this.isClosed = !this.isRestaurantOpen(
+						restaurant.openingHours,
+						restaurant.closingHours
+					);
 				});
 			this.restaurantService.isAuthorized(params['id']).subscribe(result => {
 				this.isAuthorized = result;
@@ -90,17 +90,48 @@ export class RestaurantDetailsComponent implements OnInit {
 		this.router.navigate(['/restaurant-orders/active', this.restaurant?.id]);
 	}
 
-	private getTodayHours(hours: OpeningHours): string {
+	private isRestaurantOpen(
+		openingHours: OpeningHours,
+		closingHours: OpeningHours
+	): boolean {
 		const today = new Date();
 		const dayOfWeek = today
 			.toLocaleDateString('en-US', { weekday: 'long' })
 			.toLowerCase();
 
-		return hours[dayOfWeek];
+		const openTimeStr = openingHours[dayOfWeek];
+		const closeTimeStr = closingHours[dayOfWeek];
+
+		if (!openTimeStr || !closeTimeStr) {
+			return false;
+		}
+
+		const openTime = this.extractTime(openTimeStr);
+		const closeTime = this.extractTime(closeTimeStr);
+
+		const currentTime = `${today.getHours()}:${today.getMinutes().toString().padStart(2, '0')}`;
+
+		return this.isTimeInRange(currentTime, openTime, closeTime);
 	}
 
-	private areTodayHoursSet(hours: OpeningHours): boolean {
-		const todayHours = this.getTodayHours(hours);
-		return todayHours === '' || todayHours === null;
+	private extractTime(dateTimeStr: string): string {
+		const timeMatch = dateTimeStr.match(/\d{2}:\d{2}/);
+		return timeMatch ? timeMatch[0] : '';
+	}
+
+	private isTimeInRange(
+		currentTimeStr: string,
+		startTimeStr: string,
+		endTimeStr: string
+	): boolean {
+		const currentTime = parseInt(currentTimeStr.replace(':', ''), 10);
+		const startTime = parseInt(startTimeStr.replace(':', ''), 10);
+		const endTime = parseInt(endTimeStr.replace(':', ''), 10);
+
+		if (endTime < startTime) {
+			return currentTime >= startTime || currentTime < endTime;
+		} else {
+			return currentTime >= startTime && currentTime < endTime;
+		}
 	}
 }

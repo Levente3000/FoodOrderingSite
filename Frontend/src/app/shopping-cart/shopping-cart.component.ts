@@ -17,6 +17,7 @@ import { ProfileService } from '../services/profile.service';
 import { MatError } from '@angular/material/form-field';
 import { Router } from '@angular/router';
 import { OrderService } from '../services/order.service';
+import { map } from 'rxjs';
 
 @Component({
 	selector: 'app-shopping-cart',
@@ -69,6 +70,14 @@ export class ShoppingCartComponent implements OnInit {
 	public ngOnInit() {
 		this.shoppingCartService
 			.getShoppingCartWithProductPicture()
+			.pipe(
+				map(shoppingCartItems =>
+					shoppingCartItems.map(shoppingCartItem => {
+						shoppingCartItem.product.name = `(${shoppingCartItem.restaurantName}) ${shoppingCartItem.product.name}`;
+						return shoppingCartItem;
+					})
+				)
+			)
 			.subscribe(shoppingCartItems => {
 				this.shoppingCart = shoppingCartItems;
 			});

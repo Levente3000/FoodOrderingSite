@@ -13,7 +13,7 @@ public class RestaurantService : IRestaurantService
 {
     private readonly IRestaurantRepository _restaurantRepository;
     private readonly IOpeningHourRepository _openingHourRepository;
-    private readonly IRestaurantPermissionRepository _restaurantPermissionRepository;
+    private readonly IRestaurantPermissionService _restaurantPermissionService;
     private readonly IProductRepository _productRepository;
     private readonly IOrderService _orderService;
     private readonly AssetsService _assetService;
@@ -21,12 +21,12 @@ public class RestaurantService : IRestaurantService
     private readonly string DIRECTORY = "restaurant";
 
     public RestaurantService(IRestaurantRepository restaurantRepository, IMapper mapper, AssetsService assetService,
-        IOpeningHourRepository openingHourRepository, IRestaurantPermissionRepository restaurantPermissionRepository,
+        IOpeningHourRepository openingHourRepository, IRestaurantPermissionService restaurantPermissionService,
         IProductRepository productRepository, IOrderService orderService)
     {
         _restaurantRepository = restaurantRepository;
         _openingHourRepository = openingHourRepository;
-        _restaurantPermissionRepository = restaurantPermissionRepository;
+        _restaurantPermissionService = restaurantPermissionService;
         _productRepository = productRepository;
         _orderService = orderService;
         _assetService = assetService;
@@ -55,7 +55,7 @@ public class RestaurantService : IRestaurantService
     {
         var restaurants = _mapper.Map<List<RestaurantDto>>(
             _restaurantRepository.GetRestaurantsWithTheMostOrders(_orderService.GetRestaurantIdsByOrderNumber()));
-        
+
         foreach (var restaurant in restaurants)
         {
             restaurant.PriceCategory = _productRepository.GetIfAnyProductUnderRestaurant(restaurant.Id)
@@ -131,7 +131,7 @@ public class RestaurantService : IRestaurantService
             RestaurantId = restaurant.Id
         };
 
-        _restaurantPermissionRepository.AddPermissionToUser(restaurantPermission);
+        _restaurantPermissionService.AddPermissionToUser(userId, restaurantPermission);
 
         return restaurant.Id;
     }

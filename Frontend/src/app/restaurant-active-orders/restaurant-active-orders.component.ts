@@ -25,6 +25,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { OrderService } from '../services/order.service';
 import { Order } from '../model/order/order.model';
 import { MatPaginator } from '@angular/material/paginator';
+import { RestaurantService } from '../services/restaurant.service';
 
 @Component({
 	selector: 'app-restaurant-orders',
@@ -85,12 +86,21 @@ export class RestaurantActiveOrdersComponent implements OnInit, AfterViewInit {
 	constructor(
 		private _activatedRoute: ActivatedRoute,
 		private orderService: OrderService,
+		private restaurantService: RestaurantService,
 		private router: Router
 	) {}
 
 	public ngOnInit() {
 		this._activatedRoute.params.subscribe(params => {
 			if (params['id']) {
+				this.restaurantService
+					.isAuthorized(params['id'])
+					.subscribe(isAuthorized => {
+						if (!isAuthorized) {
+							this.router.navigate(['/not-found']);
+						}
+					});
+
 				this.orderService
 					.getActiveOrderByRestaurantId(params['id'])
 					.subscribe(orders => {

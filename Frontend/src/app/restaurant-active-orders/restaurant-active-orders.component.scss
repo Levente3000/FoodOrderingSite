@@ -63,10 +63,14 @@
       margin: 8px 0;
       border-bottom: 1px solid black;
 
+      div {
+        margin-bottom: 8px;
+      }
+
       .detail-description {
         text-overflow: ellipsis;
         overflow: hidden;
-        white-space: nowrap;
+        white-space: pre-line;
       }
 
       .summary-title {

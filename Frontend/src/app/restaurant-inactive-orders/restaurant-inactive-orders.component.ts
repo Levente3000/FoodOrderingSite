@@ -25,6 +25,7 @@ import {
 	transition,
 	trigger,
 } from '@angular/animations';
+import { RestaurantService } from '../services/restaurant.service';
 
 @Component({
 	selector: 'app-restaurant-inactive-orders',
@@ -86,12 +87,21 @@ export class RestaurantInactiveOrdersComponent
 	constructor(
 		private _activatedRoute: ActivatedRoute,
 		private orderService: OrderService,
+		private restaurantService: RestaurantService,
 		private router: Router
 	) {}
 
 	public ngOnInit() {
 		this._activatedRoute.params.subscribe(params => {
 			if (params['id']) {
+				this.restaurantService
+					.isAuthorized(params['id'])
+					.subscribe(isAuthorized => {
+						if (!isAuthorized) {
+							this.router.navigate(['/not-found']);
+						}
+					});
+
 				this.orderService
 					.getDoneOrderByRestaurantId(params['id'])
 					.subscribe(orders => {

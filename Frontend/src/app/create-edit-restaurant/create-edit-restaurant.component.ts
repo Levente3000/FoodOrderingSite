@@ -84,6 +84,14 @@ export class CreateEditRestaurantComponent implements OnInit {
 	public ngOnInit() {
 		this._activatedRoute.params.subscribe(params => {
 			if (params['id']) {
+				this.restaurantService
+					.isAuthorized(params['id'])
+					.subscribe(isAuthorized => {
+						if (!isAuthorized) {
+							this.router.navigate(['/not-found']);
+						}
+					});
+
 				this.isEditMode = true;
 				this.title = 'Edit restaurant';
 				this.restaurantService

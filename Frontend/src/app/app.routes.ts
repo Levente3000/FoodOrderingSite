@@ -17,8 +17,6 @@ export const routes: Routes = [
 	{
 		path: '',
 		component: HomeComponent,
-		canActivate: [AuthGuard],
-		// data: { roles: ['ADMIN'] },
 	},
 	{ path: 'home', component: HomeComponent },
 	{ path: 'profile', component: ProfileComponent },
@@ -28,10 +26,14 @@ export const routes: Routes = [
 	{
 		path: 'restaurant-orders/active/:id',
 		component: RestaurantActiveOrdersComponent,
+		canActivate: [AuthGuard],
+		data: { roles: ['RESTAURANT_OWNER'] },
 	},
 	{
 		path: 'restaurant-orders/inactive/:id',
 		component: RestaurantInactiveOrdersComponent,
+		canActivate: [AuthGuard],
+		data: { roles: ['RESTAURANT_OWNER'] },
 	},
 	{
 		path: 'category-restaurants/:category',
@@ -39,14 +41,23 @@ export const routes: Routes = [
 	},
 	{ path: 'shopping-cart', component: ShoppingCartComponent },
 	{ path: 'create-restaurant', component: CreateEditRestaurantComponent },
-	{ path: 'edit-restaurant/:id', component: CreateEditRestaurantComponent },
+	{
+		path: 'edit-restaurant/:id',
+		component: CreateEditRestaurantComponent,
+		canActivate: [AuthGuard],
+		data: { roles: ['RESTAURANT_OWNER'] },
+	},
 	{
 		path: 'create-product/:restaurantId',
 		component: CreateEditProductComponent,
+		canActivate: [AuthGuard],
+		data: { roles: ['RESTAURANT_OWNER'] },
 	},
 	{
 		path: 'edit-product/:restaurantId/:productId',
 		component: CreateEditProductComponent,
+		canActivate: [AuthGuard],
+		data: { roles: ['RESTAURANT_OWNER'] },
 	},
 	{ path: '**', component: PageNotFoundComponent },
 ];

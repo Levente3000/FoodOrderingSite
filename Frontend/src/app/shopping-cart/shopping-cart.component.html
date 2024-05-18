@@ -22,7 +22,7 @@
             <div class="product-details">
               <div class="product-name" (click)="productDetailDialogOpen(shoppingCartItem.product)"
                    (keydown.enter)="productDetailDialogOpen(shoppingCartItem.product)"
-                   tabindex="0">{{ '(' + shoppingCartItem.restaurantName + ') ' + shoppingCartItem.product.name }}
+                   tabindex="0">{{ shoppingCartItem.product.name }}
               </div>
               <div class="product-desc">{{ shoppingCartItem.product.description }}</div>
               <div class="product-remove"

@@ -73,7 +73,9 @@ public class ShoppingCartService : IShoppingCartService
                 ShoppingCartItemId = item.ShoppingCartItemId,
                 UserId = item.UserId,
                 RestaurantName = item.Product.Restaurant.Name
-            }).ToList();
+            })
+            .OrderBy(item => item.RestaurantName)
+            .ToList();
 
         return shoppingCartItemsDtoList;
     }

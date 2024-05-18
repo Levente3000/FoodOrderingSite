@@ -18,6 +18,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductService } from '../../services/product.service';
 import { FileUploadComponent } from '../../shared/file-upload/file-upload.component';
+import { RestaurantService } from '../../services/restaurant.service';
 
 @Component({
 	selector: 'app-create-edit-product',
@@ -50,6 +51,7 @@ export class CreateEditProductComponent implements OnInit {
 		public fb: FormBuilder,
 		public categoryService: CategoryService,
 		public productService: ProductService,
+		public restaurantService: RestaurantService,
 		private _activatedRoute: ActivatedRoute,
 		private router: Router,
 		private snackBar: MatSnackBar
@@ -72,6 +74,14 @@ export class CreateEditProductComponent implements OnInit {
 	public ngOnInit(): void {
 		this._activatedRoute.params.subscribe(params => {
 			if (params['productId']) {
+				this.restaurantService
+					.isAuthorized(params['restaurantId'])
+					.subscribe(isAuthorized => {
+						if (!isAuthorized) {
+							this.router.navigate(['/not-found']);
+						}
+					});
+
 				this.isEditMode = true;
 				this.title = 'Edit product';
 				this.productService
