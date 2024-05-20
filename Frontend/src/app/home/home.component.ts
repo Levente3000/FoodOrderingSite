@@ -11,7 +11,6 @@ import { SearchAndFilterComponent } from './search-and-filter/search-and-filter.
 import { FilterAndRestaurantsComponent } from './filter-and-restaurants/filter-and-restaurants.component';
 import { Restaurant } from '../model/restaurant/restaurant.model';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { LogicalFileSystem } from '@angular/compiler-cli';
 
 @Component({
 	selector: 'app-home',

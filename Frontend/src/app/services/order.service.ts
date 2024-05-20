@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserData } from '../model/user-data.model';
 import { baseUrl } from '../../global';
 import { PromoCode } from '../model/promo-code.model';
 import { Order } from '../model/order/order.model';

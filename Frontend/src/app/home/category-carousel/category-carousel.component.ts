@@ -10,7 +10,7 @@ import {
 import { NgClass, NgOptimizedImage } from '@angular/common';
 import { RestaurantCardComponent } from '../../restaurant-card/restaurant-card.component';
 import { Category } from '../../model/category.model';
-import { CategoryCardComponent } from '../../category-card/category-card.component';
+import { CategoryCardComponent } from './category-card/category-card.component';
 
 @Component({
 	selector: 'app-category-carousel',

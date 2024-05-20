@@ -9,7 +9,6 @@ import {
 	RestaurantDetail,
 } from '../model/restaurant/restaurant-detail.model';
 import { EditRestaurant } from '../model/restaurant/edit-restaurant.model';
-import { B } from '@angular/cdk/keycodes';
 
 @Injectable({
 	providedIn: 'root',

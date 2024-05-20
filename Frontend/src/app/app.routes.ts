@@ -6,12 +6,12 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CreateEditRestaurantComponent } from './create-edit-restaurant/create-edit-restaurant.component';
 import { CreateEditProductComponent } from './restaurant-details/create-edit-product/create-edit-product.component';
 import { ProfileComponent } from './profile/profile.component';
-import { RestaurantActiveOrdersComponent } from './restaurant-active-orders/restaurant-active-orders.component';
-import { RestaurantInactiveOrdersComponent } from './restaurant-inactive-orders/restaurant-inactive-orders.component';
 import { CategoryRestaurantsComponent } from './category-restaurants/category-restaurants.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { FavouriteRestaurantsComponent } from './favourite-restaurants/favourite-restaurants.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { RestaurantInactiveOrdersComponent } from './restaurant-details/restaurant-inactive-orders/restaurant-inactive-orders.component';
+import { RestaurantActiveOrdersComponent } from './restaurant-details/restaurant-active-orders/restaurant-active-orders.component';
 
 export const routes: Routes = [
 	{

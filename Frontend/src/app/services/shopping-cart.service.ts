@@ -4,7 +4,6 @@ import { baseUrl } from '../../global';
 import { forkJoin, map, mergeMap, Observable } from 'rxjs';
 import { ShoppingCartItem } from '../model/shopping-cart.model';
 import { AssetsService } from './assets.service';
-import { PromoCode } from '../model/promo-code.model';
 
 @Injectable({
 	providedIn: 'root',

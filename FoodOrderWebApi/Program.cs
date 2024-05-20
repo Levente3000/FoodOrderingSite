@@ -50,7 +50,7 @@ builder.Services.AddAuthentication(options =>
 {
     o.Authority = builder.Configuration["Jwt:Authority"];
     o.Audience = builder.Configuration["Jwt:Audience"];
-    o.RequireHttpsMetadata = false;
+    o.RequireHttpsMetadata = bool.Parse(builder.Configuration["Jwt:RequireHttpsMetadata"]);
     o.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,

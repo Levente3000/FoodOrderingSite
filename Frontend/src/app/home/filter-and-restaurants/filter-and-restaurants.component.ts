@@ -1,10 +1,4 @@
-import {
-	AfterViewInit,
-	Component,
-	Input,
-	OnInit,
-	ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { SearchAndFilterComponent } from '../search-and-filter/search-and-filter.component';
 import { NewRestaurantsCarouselComponent } from '../new-restaurants-carousel/new-restaurants-carousel.component';
 import { RestaurantCardComponent } from '../../restaurant-card/restaurant-card.component';

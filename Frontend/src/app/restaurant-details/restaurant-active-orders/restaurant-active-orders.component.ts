@@ -12,12 +12,8 @@ import {
 	MatTable,
 	MatTableDataSource,
 } from '@angular/material/table';
-import { Order } from '../model/order/order.model';
-import { MatPaginator } from '@angular/material/paginator';
-import { ActivatedRoute, Router } from '@angular/router';
-import { OrderService } from '../services/order.service';
-import { MatIcon } from '@angular/material/icon';
 import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 import {
 	animate,
 	state,
@@ -25,10 +21,14 @@ import {
 	transition,
 	trigger,
 } from '@angular/animations';
-import { RestaurantService } from '../services/restaurant.service';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
+import { Order } from '../../model/order/order.model';
+import { OrderService } from '../../services/order.service';
+import { RestaurantService } from '../../services/restaurant.service';
 
 @Component({
-	selector: 'app-restaurant-inactive-orders',
+	selector: 'app-restaurant-orders',
 	standalone: true,
 	animations: [
 		trigger('detailExpand', [
@@ -41,27 +41,26 @@ import { RestaurantService } from '../services/restaurant.service';
 		]),
 	],
 	imports: [
-		MatCell,
-		MatPaginator,
-		MatRow,
 		MatHeaderRow,
+		MatRow,
+		MatCell,
+		MatColumnDef,
+		MatIconButton,
+		MatIcon,
+		MatHeaderCell,
+		MatTable,
 		MatHeaderRowDef,
 		MatRowDef,
 		MatCellDef,
-		MatColumnDef,
-		MatIcon,
-		MatIconButton,
-		MatHeaderCell,
 		MatHeaderCellDef,
-		MatTable,
+		MatPaginator,
+		RouterLink,
 		MatButton,
 	],
-	templateUrl: './restaurant-inactive-orders.component.html',
-	styleUrl: './restaurant-inactive-orders.component.scss',
+	templateUrl: './restaurant-active-orders.component.html',
+	styleUrl: './restaurant-active-orders.component.scss',
 })
-export class RestaurantInactiveOrdersComponent
-	implements OnInit, AfterViewInit
-{
+export class RestaurantActiveOrdersComponent implements OnInit, AfterViewInit {
 	protected dataSource = new MatTableDataSource<Order>();
 	protected columnsToDisplay = [
 		'ordererName',
@@ -103,7 +102,7 @@ export class RestaurantInactiveOrdersComponent
 					});
 
 				this.orderService
-					.getDoneOrderByRestaurantId(params['id'])
+					.getActiveOrderByRestaurantId(params['id'])
 					.subscribe(orders => {
 						this.dataSource.data = orders;
 					});
@@ -118,8 +117,8 @@ export class RestaurantInactiveOrdersComponent
 		this.dataSource.paginator = this.paginator;
 	}
 
-	public routeToActiveOrders(): void {
-		this.router.navigate(['/restaurant-orders/active', this.restaurantId]);
+	public routeToInactiveOrders(): void {
+		this.router.navigate(['/restaurant-orders/inactive', this.restaurantId]);
 	}
 
 	public doneClick(event: Event, order: Order): void {

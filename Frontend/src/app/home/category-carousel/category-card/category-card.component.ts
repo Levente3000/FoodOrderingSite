@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Category } from '../model/category.model';
 import { RouterLink } from '@angular/router';
+import { Category } from '../../../model/category.model';
 
 @Component({
 	selector: 'app-category-card',
