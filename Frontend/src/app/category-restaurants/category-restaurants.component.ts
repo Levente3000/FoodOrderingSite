@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Restaurant } from '../model/restaurant/restaurant.model';
 import { RestaurantService } from '../services/restaurant.service';
 import { ActivatedRoute } from '@angular/router';
-import { FilterAndRestaurantsComponent } from '../home/filter-and-restaurants/filter-and-restaurants.component';
+import { FilterAndRestaurantsComponent } from '../shared/filter-and-restaurants/filter-and-restaurants.component';
 
 @Component({
 	selector: 'app-category-restaurants',

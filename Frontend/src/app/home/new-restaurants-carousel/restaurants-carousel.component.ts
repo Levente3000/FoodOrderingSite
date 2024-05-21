@@ -7,20 +7,18 @@ import {
 	OnChanges,
 	ViewChild,
 } from '@angular/core';
-import { RestaurantCardComponent } from '../../restaurant-card/restaurant-card.component';
 import { NgClass, NgOptimizedImage } from '@angular/common';
 import { Restaurant } from '../../model/restaurant/restaurant.model';
+import { RestaurantCardComponent } from '../../shared/restaurant-card/restaurant-card.component';
 
 @Component({
-	selector: 'app-new-restaurants-carousel',
+	selector: 'app-restaurants-carousel',
 	standalone: true,
 	imports: [RestaurantCardComponent, NgClass, NgOptimizedImage],
-	templateUrl: './new-restaurants-carousel.component.html',
-	styleUrl: './new-restaurants-carousel.component.scss',
+	templateUrl: './restaurants-carousel.component.html',
+	styleUrl: './restaurants-carousel.component.scss',
 })
-export class NewRestaurantsCarouselComponent
-	implements AfterViewInit, OnChanges
-{
+export class RestaurantsCarouselComponent implements AfterViewInit, OnChanges {
 	@ViewChild('sliderWrapper') sliderWrapper!: ElementRef<HTMLDivElement>;
 	scrollPosition = 0;
 	maxScroll = 0;

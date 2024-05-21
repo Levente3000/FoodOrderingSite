@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FilterAndRestaurantsComponent } from '../home/filter-and-restaurants/filter-and-restaurants.component';
 import { Restaurant } from '../model/restaurant/restaurant.model';
 import { RestaurantService } from '../services/restaurant.service';
+import { FilterAndRestaurantsComponent } from '../shared/filter-and-restaurants/filter-and-restaurants.component';
 
 @Component({
 	selector: 'app-restaurants',

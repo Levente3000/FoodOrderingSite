@@ -8,9 +8,9 @@ import {
 	ViewChild,
 } from '@angular/core';
 import { NgClass, NgOptimizedImage } from '@angular/common';
-import { RestaurantCardComponent } from '../../restaurant-card/restaurant-card.component';
 import { Category } from '../../model/category.model';
 import { CategoryCardComponent } from './category-card/category-card.component';
+import { RestaurantCardComponent } from '../../shared/restaurant-card/restaurant-card.component';
 
 @Component({
 	selector: 'app-category-carousel',

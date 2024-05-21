@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FilterDialogComponent } from '../filter-dialog/filter-dialog.component';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
-import { CategoryService } from '../../services/category.service';
-import { PriceCategoryService } from '../../services/price-category.service';
 import { MatDialog } from '@angular/material/dialog';
-import { FilterData } from '../../model/filter/filter-data.model';
 import { ActivatedRoute } from '@angular/router';
+import { FilterData } from '../../../model/filter/filter-data.model';
+import { CategoryService } from '../../../services/category.service';
+import { PriceCategoryService } from '../../../services/price-category.service';
+import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
 
 @Component({
 	selector: 'app-search-and-filter',

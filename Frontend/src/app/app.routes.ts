@@ -20,9 +20,23 @@ export const routes: Routes = [
 	},
 	{ path: 'home', component: HomeComponent },
 	{ path: 'profile', component: ProfileComponent },
-	{ path: 'restaurants/details/:id', component: RestaurantDetailsComponent },
+
 	{ path: 'restaurants', component: RestaurantsComponent },
 	{ path: 'favourite-restaurants', component: FavouriteRestaurantsComponent },
+
+	{
+		path: 'category-restaurants/:category',
+		component: CategoryRestaurantsComponent,
+	},
+	{ path: 'shopping-cart', component: ShoppingCartComponent },
+	{ path: 'create-restaurant', component: CreateEditRestaurantComponent },
+	{ path: 'restaurants/details/:id', component: RestaurantDetailsComponent },
+	{
+		path: 'edit-restaurant/:id',
+		component: CreateEditRestaurantComponent,
+		canActivate: [AuthGuard],
+		data: { roles: ['RESTAURANT_OWNER'] },
+	},
 	{
 		path: 'restaurant-orders/active/:id',
 		component: RestaurantActiveOrdersComponent,
@@ -35,18 +49,7 @@ export const routes: Routes = [
 		canActivate: [AuthGuard],
 		data: { roles: ['RESTAURANT_OWNER'] },
 	},
-	{
-		path: 'category-restaurants/:category',
-		component: CategoryRestaurantsComponent,
-	},
-	{ path: 'shopping-cart', component: ShoppingCartComponent },
-	{ path: 'create-restaurant', component: CreateEditRestaurantComponent },
-	{
-		path: 'edit-restaurant/:id',
-		component: CreateEditRestaurantComponent,
-		canActivate: [AuthGuard],
-		data: { roles: ['RESTAURANT_OWNER'] },
-	},
+
 	{
 		path: 'create-product/:restaurantId',
 		component: CreateEditProductComponent,

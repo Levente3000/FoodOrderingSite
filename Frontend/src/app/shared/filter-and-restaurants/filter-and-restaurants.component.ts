@@ -1,17 +1,17 @@
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
-import { SearchAndFilterComponent } from '../search-and-filter/search-and-filter.component';
-import { NewRestaurantsCarouselComponent } from '../new-restaurants-carousel/new-restaurants-carousel.component';
-import { RestaurantCardComponent } from '../../restaurant-card/restaurant-card.component';
 import { Restaurant } from '../../model/restaurant/restaurant.model';
 import { FilterData } from '../../model/filter/filter-data.model';
 import { MatPaginator } from '@angular/material/paginator';
+import { SearchAndFilterComponent } from './search-and-filter/search-and-filter.component';
+import { RestaurantsCarouselComponent } from '../../home/new-restaurants-carousel/restaurants-carousel.component';
+import { RestaurantCardComponent } from '../restaurant-card/restaurant-card.component';
 
 @Component({
 	selector: 'app-filter-and-restaurants',
 	standalone: true,
 	imports: [
 		SearchAndFilterComponent,
-		NewRestaurantsCarouselComponent,
+		RestaurantsCarouselComponent,
 		RestaurantCardComponent,
 		MatPaginator,
 	],

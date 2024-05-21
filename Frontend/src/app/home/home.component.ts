@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { RestaurantCardComponent } from '../restaurant-card/restaurant-card.component';
 import { RestaurantService } from '../services/restaurant.service';
 import { NgClass, NgIf } from '@angular/common';
-import { NewRestaurantsCarouselComponent } from './new-restaurants-carousel/new-restaurants-carousel.component';
+import { RestaurantsCarouselComponent } from './new-restaurants-carousel/restaurants-carousel.component';
 import { CategoryCarouselComponent } from './category-carousel/category-carousel.component';
 import { Category } from '../model/category.model';
 import { CategoryService } from '../services/category.service';
-import { SearchAndFilterComponent } from './search-and-filter/search-and-filter.component';
-import { FilterAndRestaurantsComponent } from './filter-and-restaurants/filter-and-restaurants.component';
 import { Restaurant } from '../model/restaurant/restaurant.model';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { RestaurantCardComponent } from '../shared/restaurant-card/restaurant-card.component';
+import { SearchAndFilterComponent } from '../shared/filter-and-restaurants/search-and-filter/search-and-filter.component';
+import { FilterAndRestaurantsComponent } from '../shared/filter-and-restaurants/filter-and-restaurants.component';
 
 @Component({
 	selector: 'app-home',
@@ -20,7 +20,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 		RestaurantCardComponent,
 		NgIf,
 		NgClass,
-		NewRestaurantsCarouselComponent,
+		RestaurantsCarouselComponent,
 		CategoryCarouselComponent,
 		SearchAndFilterComponent,
 		FilterAndRestaurantsComponent,

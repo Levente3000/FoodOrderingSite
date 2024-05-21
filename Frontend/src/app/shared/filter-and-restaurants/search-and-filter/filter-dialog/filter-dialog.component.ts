@@ -10,7 +10,7 @@ import { MatActionList, MatList, MatListItem } from '@angular/material/list';
 import { MatFormField, MatOption, MatSelect } from '@angular/material/select';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
-import { FilterDialogData } from '../../model/filter/filter-dialog-data.model';
+import { FilterDialogData } from '../../../../model/filter/filter-dialog-data.model';
 
 @Component({
 	selector: 'app-filter-dialog',
