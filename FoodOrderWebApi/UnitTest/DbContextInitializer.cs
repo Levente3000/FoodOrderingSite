@@ -1,27 +1,22 @@
-﻿using FoodOrderWebApi.Models;
+﻿using FoodOrderWebApi.Configuration;
+using FoodOrderWebApi.Models;
 using NodaTime;
 
-namespace FoodOrderWebApi.Configuration;
+namespace UnitTest;
 
-public class DbInitializer
+public class DbContextInitializer
 {
-    private static FoodOrderDbContext _context = null!;
-
-    public static void Initialize(IServiceProvider serviceProvider)
+    public static void InitializeForTestDb(FoodOrderDbContext foodOrderDbContext)
     {
-        _context = serviceProvider.GetRequiredService<FoodOrderDbContext>();
-
-        if (_context.FoodCategories.Any()) return;
-
-        SeedCategories();
-        SeedOpeningHours();
-        SeedRestaurants();
-        SeedProducts();
-        SeedPromo();
-        SeedRestaurantPermission();
+        SeedCategories(foodOrderDbContext);
+        SeedOpeningHours(foodOrderDbContext);
+        SeedRestaurants(foodOrderDbContext);
+        SeedProducts(foodOrderDbContext);
+        SeedPromo(foodOrderDbContext);
+        SeedRestaurantPermission(foodOrderDbContext);
     }
 
-    private static void SeedCategories()
+    private static void SeedCategories(FoodOrderDbContext context)
     {
         var categories = new FoodCategory[]
         {
@@ -97,12 +92,12 @@ public class DbInitializer
             },
         };
 
-        _context.FoodCategories.AddRange(categories);
+        context.FoodCategories.AddRange(categories);
 
-        _context.SaveChanges();
+        context.SaveChanges();
     }
 
-    private static void SeedRestaurants()
+    private static void SeedRestaurants(FoodOrderDbContext context)
     {
         var restaurants = new Restaurant[]
         {
@@ -196,14 +191,14 @@ public class DbInitializer
             },
         };
 
-        _context.Restaurants.AddRange(restaurants);
+        context.Restaurants.AddRange(restaurants);
 
-        _context.SaveChanges();
+        context.SaveChanges();
     }
 
-    private static void SeedProducts()
+    private static void SeedProducts(FoodOrderDbContext context)
     {
-        var categories = _context.FoodCategories.ToList();
+        var categories = context.FoodCategories.ToList();
         var products = new Product[]
         {
             new()
@@ -389,12 +384,12 @@ public class DbInitializer
             },
         };
 
-        _context.Products.AddRange(products);
+        context.Products.AddRange(products);
 
-        _context.SaveChanges();
+        context.SaveChanges();
     }
 
-    private static void SeedOpeningHours()
+    private static void SeedOpeningHours(FoodOrderDbContext context)
     {
         var openingHours = new OpeningHour[]
         {
@@ -560,12 +555,12 @@ public class DbInitializer
             }
         };
 
-        _context.OpeningHours.AddRange(openingHours);
+        context.OpeningHours.AddRange(openingHours);
 
-        _context.SaveChanges();
+        context.SaveChanges();
     }
 
-    private static void SeedPromo()
+    private static void SeedPromo(FoodOrderDbContext context)
     {
         var promoCodes = new PromoCode[]
         {
@@ -576,12 +571,12 @@ public class DbInitializer
             },
         };
 
-        _context.PromoCodes.AddRange(promoCodes);
+        context.PromoCodes.AddRange(promoCodes);
 
-        _context.SaveChanges();
+        context.SaveChanges();
     }
 
-    private static void SeedRestaurantPermission()
+    private static void SeedRestaurantPermission(FoodOrderDbContext context)
     {
         var restaurantPermissions = new RestaurantPermission[]
         {
@@ -597,8 +592,8 @@ public class DbInitializer
             },
         };
 
-        _context.RestaurantPermissions.AddRange(restaurantPermissions);
+        context.RestaurantPermissions.AddRange(restaurantPermissions);
 
-        _context.SaveChanges();
+        context.SaveChanges();
     }
 }

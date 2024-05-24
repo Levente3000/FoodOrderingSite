@@ -12,22 +12,52 @@
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.3"/>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.2"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.2"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.2">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0"/>
         <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
         <PackageReference Include="NodaTime" Version="3.1.11"/>
         <PackageReference Include="Npgsql" Version="8.0.2"/>
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0"/>
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NodaTime" Version="8.0.0"/>
         <PackageReference Include="Npgsql.NodaTime" Version="8.0.2"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
+        <PackageReference Include="xunit.extensibility.core" Version="2.5.3"/>
     </ItemGroup>
 
     <ItemGroup>
         <Folder Include="Migrations\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <_ContentIncludedByDefault Remove="UnitTest\obj\project.assets.json"/>
+        <_ContentIncludedByDefault Remove="UnitTest\obj\project.packagespec.json"/>
+        <_ContentIncludedByDefault Remove="UnitTest\obj\UnitTest.csproj.nuget.dgspec.json"/>
+        <_ContentIncludedByDefault Remove="UnitTest\obj\Debug\net8.0\UnitTest.sourcelink.json"/>
+        <_ContentIncludedByDefault Remove="TestProject1\obj\project.assets.json"/>
+        <_ContentIncludedByDefault Remove="TestProject1\obj\project.packagespec.json"/>
+        <_ContentIncludedByDefault Remove="TestProject1\obj\TestProject1.csproj.nuget.dgspec.json"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="UnitTest\UnitTest.csproj"/>
+        <Content Remove="UnitTest\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="UnitTest\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Remove="UnitTest\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="UnitTest\**"/>
     </ItemGroup>
 
 </Project>
