@@ -17,13 +17,13 @@ public class FavouriteRestaurantRepository : IFavouriteRestaurantRepository
     public FavouriteRestaurant? GetFavouriteRestaurantByUserIdAndRestaurantId(string userId, int restaurantId)
     {
         return _context.FavouriteRestaurants
-            .FirstOrDefault(r => r.userId == userId && r.RestaurantId == restaurantId);
+            .FirstOrDefault(r => r.UserId == userId && r.RestaurantId == restaurantId);
     }
 
     public List<FavouriteRestaurant> GetAllFavouriteRestaurant(string userId)
     {
         return _context.FavouriteRestaurants
-            .Where(r => r.userId == userId)
+            .Where(r => r.UserId == userId)
             .Include(r => r.Restaurant)
             .AsNoTracking()
             .ToList();

@@ -54,7 +54,7 @@ public class FavouriteRestaurantService : IFavouriteRestaurantService
         {
             _favouriteRestaurantRepository.AddFavouriteRestaurant(new FavouriteRestaurant
             {
-                userId = userId,
+                UserId = userId,
                 RestaurantId = restaurantId,
             });
         }

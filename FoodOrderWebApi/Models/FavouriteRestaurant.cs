@@ -8,7 +8,7 @@ public class FavouriteRestaurant
     public int Id { get; set; }
 
     [Required]
-    public string userId { get; set; } = null!;
+    public string UserId { get; set; } = null!;
 
     [Required]
     [ForeignKey("Restaurant")]
