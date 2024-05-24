@@ -133,9 +133,13 @@ export class ShoppingCartComponent implements OnInit {
 	}
 
 	protected placeOrder(): void {
-		this.orderService
-			.placeOrder(this.appliedPromoCode)
-			.subscribe(() => this.router.navigate(['/home']));
+		this.orderService.placeOrder(this.appliedPromoCode).subscribe(() => {
+			this.snackBar.open('Order successfully placed', 'Ok', {
+				duration: 10000,
+			});
+
+			this.router.navigate(['/home']);
+		});
 	}
 
 	protected productDetailDialogOpen(product: Product): void {

@@ -2,7 +2,6 @@
 using FoodOrderWebApi.DTOs;
 using FoodOrderWebApi.DTOs.ShoppingCart;
 using FoodOrderWebApi.Repositories;
-using FoodOrderWebApi.Services.Interfaces;
 
 namespace FoodOrderWebApi.Services;
 
@@ -49,14 +48,14 @@ public class ShoppingCartService : IShoppingCartService
 
     public void RemoveProduct(int shoppingCartItemId)
     {
-        var product = _shoppingCartRepository.GetItemByCartItemId(shoppingCartItemId);
+        var shoppingCartItem = _shoppingCartRepository.GetItemByCartItemId(shoppingCartItemId);
 
-        if (product == null)
+        if (shoppingCartItem == null)
         {
             throw new Exception();
         }
 
-        _shoppingCartRepository.RemoveProduct(product);
+        _shoppingCartRepository.RemoveProduct(shoppingCartItem);
     }
 
     public List<ShoppingCartItemDto> GetCartByUserId(string userId)

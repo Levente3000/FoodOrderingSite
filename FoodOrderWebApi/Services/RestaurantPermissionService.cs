@@ -8,10 +8,10 @@ namespace FoodOrderWebApi.Services;
 public class RestaurantPermissionService : IRestaurantPermissionService
 {
     private readonly IRestaurantPermissionRepository _restaurantPermissionRepository;
-    private readonly KeycloakService _keycloakService;
+    private readonly IKeycloakService _keycloakService;
 
     public RestaurantPermissionService(IRestaurantPermissionRepository restaurantPermissionRepository,
-        KeycloakService keycloakService)
+        IKeycloakService keycloakService)
     {
         _restaurantPermissionRepository = restaurantPermissionRepository;
         _keycloakService = keycloakService;

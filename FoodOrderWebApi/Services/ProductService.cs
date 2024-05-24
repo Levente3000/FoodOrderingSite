@@ -11,12 +11,12 @@ public class ProductService : IProductService
 {
     private readonly IProductRepository _productRepository;
     private readonly IFoodCategoryRepository _foodCategoryRepository;
-    private readonly AssetsService _assetService;
+    private readonly IAssetsService _assetService;
     private readonly IMapper _mapper;
     private readonly string DIRECTORY = "product";
 
     public ProductService(IProductRepository productsRepository, IFoodCategoryRepository foodCategoryRepository,
-        IMapper mapper, AssetsService assetService)
+        IMapper mapper, IAssetsService assetService)
     {
         _productRepository = productsRepository;
         _foodCategoryRepository = foodCategoryRepository;
@@ -52,11 +52,10 @@ public class ProductService : IProductService
         if (createEditProduct.Id.HasValue)
         {
             product = _productRepository.GetProductByIdAsTracking(createEditProduct.Id.Value);
-        }
-
-        if (product == null)
-        {
-            return null;
+            if (product == null)
+            {
+                return null;
+            }
         }
 
         if (createEditProduct.Picture?.FileName != null)

@@ -1,10 +1,11 @@
-﻿using Keycloak.Net;
+﻿using FoodOrderWebApi.Services.Interfaces;
+using Keycloak.Net;
 using Keycloak.Net.Models.Roles;
 using Keycloak.Net.Models.Users;
 
 namespace FoodOrderWebApi.Services;
 
-public class KeycloakService
+public class KeycloakService : IKeycloakService
 {
     private readonly KeycloakClient _adminClient = new(
         "http://localhost:8090",

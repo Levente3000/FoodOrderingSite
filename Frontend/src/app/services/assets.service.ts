@@ -13,7 +13,7 @@ export class AssetsService {
 
 	public getAssetForRestaurant(fileName: string): Observable<string> {
 		return this.httpClient
-			.get(`${baseUrl}/${this.AssetPath}/restaurant?assetName=${fileName}`, {
+			.get(`${baseUrl}/${this.AssetPath}/restaurant/${fileName}`, {
 				responseType: 'blob',
 			})
 			.pipe(map(asset => URL.createObjectURL(asset)));
@@ -21,7 +21,7 @@ export class AssetsService {
 
 	public getAssetForProduct(fileName: string): Observable<string> {
 		return this.httpClient
-			.get(`${baseUrl}/${this.AssetPath}/product?assetName=${fileName}`, {
+			.get(`${baseUrl}/${this.AssetPath}/product/${fileName}`, {
 				responseType: 'blob',
 			})
 			.pipe(map(asset => URL.createObjectURL(asset)));
@@ -29,7 +29,7 @@ export class AssetsService {
 
 	public getAssetForCategory(fileName: string): Observable<string> {
 		return this.httpClient
-			.get(`${baseUrl}/${this.AssetPath}/category?assetName=${fileName}`, {
+			.get(`${baseUrl}/${this.AssetPath}/category/${fileName}`, {
 				responseType: 'blob',
 			})
 			.pipe(map(asset => URL.createObjectURL(asset)));

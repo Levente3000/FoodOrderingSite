@@ -22,8 +22,8 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IUserDataRepository, UserDataRepository>();
 builder.Services.AddScoped<IFavouriteRestaurantRepository, FavouriteRestaurantRepository>();
 
-builder.Services.AddScoped<AssetsService>();
-builder.Services.AddScoped<KeycloakService>();
+builder.Services.AddScoped<IAssetsService, AssetsService>();
+builder.Services.AddScoped<IKeycloakService, KeycloakService>();
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
 builder.Services.AddScoped<IRestaurantPermissionService, RestaurantPermissionService>();

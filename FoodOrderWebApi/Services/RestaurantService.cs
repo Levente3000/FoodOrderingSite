@@ -16,11 +16,11 @@ public class RestaurantService : IRestaurantService
     private readonly IRestaurantPermissionService _restaurantPermissionService;
     private readonly IProductRepository _productRepository;
     private readonly IOrderService _orderService;
-    private readonly AssetsService _assetService;
+    private readonly IAssetsService _assetService;
     private readonly IMapper _mapper;
     private readonly string DIRECTORY = "restaurant";
 
-    public RestaurantService(IRestaurantRepository restaurantRepository, IMapper mapper, AssetsService assetService,
+    public RestaurantService(IRestaurantRepository restaurantRepository, IMapper mapper, IAssetsService assetService,
         IOpeningHourRepository openingHourRepository, IRestaurantPermissionService restaurantPermissionService,
         IProductRepository productRepository, IOrderService orderService)
     {

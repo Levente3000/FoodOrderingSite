@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.StaticFiles;
+﻿using FoodOrderWebApi.Services.Interfaces;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace FoodOrderWebApi.Services;
 
-public class AssetsService
+public class AssetsService : IAssetsService
 {
     private readonly IWebHostEnvironment _env;
     private const string AssetPath = "assets";

@@ -38,7 +38,6 @@ public class FavouriteRestaurantController : Controller
     [HttpPost("change-state")]
     public IActionResult ChangeStateOfFavouriteRestaurant([FromBody] FavouriteRequestDto favouriteRequestDto)
     {
-        var a = HttpContext.User.FindAll(ClaimTypes.UserData).ToList();
         var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
         if (userId.IsNullOrEmpty())

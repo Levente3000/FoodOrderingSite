@@ -18,7 +18,7 @@ public class PromoCodeController : Controller
     }
 
     [HttpGet]
-    public List<PromoCode> GetAllPriceCategory()
+    public List<PromoCode> GetAllPromoCode()
     {
         return _promoCodeRepository.GetAll();
     }

@@ -108,7 +108,7 @@ export class CreateEditProductComponent implements OnInit {
 			if (!this.formGroup.valid) {
 				this.snackBarMessage('The form is invalid!');
 			} else {
-				this.snackBarMessage('The logo or banner is missing!');
+				this.snackBarMessage('The product picture is missing!');
 			}
 			return;
 		}

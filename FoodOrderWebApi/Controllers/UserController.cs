@@ -1,7 +1,6 @@
 ﻿using System.Security.Claims;
 using FoodOrderWebApi.DTOs;
 using FoodOrderWebApi.Models;
-using FoodOrderWebApi.Services;
 using FoodOrderWebApi.Services.Interfaces;
 using Keycloak.Net.Models.Users;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +12,10 @@ namespace FoodOrderWebApi.Controllers;
 [ApiController]
 public class UserController : Controller
 {
-    private readonly KeycloakService _keycloakService;
+    private readonly IKeycloakService _keycloakService;
     private readonly IUserDataService _userDataService;
 
-    public UserController(KeycloakService keycloakService, IUserDataService userDataService)
+    public UserController(IKeycloakService keycloakService, IUserDataService userDataService)
     {
         _keycloakService = keycloakService;
         _userDataService = userDataService;
