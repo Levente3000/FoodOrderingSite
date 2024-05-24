@@ -22,6 +22,11 @@ public class Order
     [Required]
     public string UserId { get; set; } = null!;
 
+    [ForeignKey("PromoCode")]
+    public int? PromoCodeId { get; set; }
+
+    public virtual PromoCode PromoCode { get; set; } = null!;
+
     [Required]
     [ForeignKey("Restaurant")]
     public int RestaurantId { get; set; }

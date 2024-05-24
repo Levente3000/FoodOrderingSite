@@ -31,7 +31,7 @@ public class OrderController : Controller
     }
 
     [HttpPost("place-order")]
-    public ActionResult PlaceOrder(PromoCode? promo)
+    public ActionResult PlaceOrder([FromBody] PromoCode? promo)
     {
         var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 

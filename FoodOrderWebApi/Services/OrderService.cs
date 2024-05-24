@@ -9,16 +9,14 @@ namespace FoodOrderWebApi.Services;
 public class OrderService : IOrderService
 {
     private readonly IOrderRepository _orderRepository;
-    private readonly KeycloakService _keycloakService;
     private readonly IShoppingCartService _shoppingCartService;
     private readonly IUserDataService _userDataService;
     private readonly IMapper _mapper;
 
     public OrderService(IOrderRepository orderRepository, IShoppingCartService shoppingCartService,
-        IUserDataService userDataService, KeycloakService keycloakService, IMapper mapper)
+        IUserDataService userDataService, IMapper mapper)
     {
         _orderRepository = orderRepository;
-        _keycloakService = keycloakService;
         _shoppingCartService = shoppingCartService;
         _userDataService = userDataService;
         _mapper = mapper;
@@ -65,7 +63,8 @@ public class OrderService : IOrderService
                 OrdererName = userData.Name,
                 OrdererPhoneNumber = userData.Phone,
                 OrderItems = orderItems,
-                RestaurantId = restaurantId
+                RestaurantId = restaurantId,
+                PromoCodeId = promo?.Id
             };
 
             _orderRepository.PlaceOrder(order);
