@@ -7,7 +7,7 @@ using FoodOrderWebApi.Services;
 
 namespace UnitTest;
 
-public class FavouriteRestaurantServiceTest
+public class FavouriteRestaurantServiceTest : IDisposable
 {
     private readonly FoodOrderDbContext _context;
     private readonly FavouriteRestaurantService _service;
@@ -17,18 +17,14 @@ public class FavouriteRestaurantServiceTest
         var options = DbContextOptions.GetOptions("TestDatabase_FavouriteRestaurantService");
         _context = new FoodOrderDbContext(options);
 
-        // Initialize Mapper (Assuming a configuration exists)
         var config = new MapperConfiguration(cfg => { cfg.CreateMap<Restaurant, RestaurantDto>(); });
         var mapper = config.CreateMapper();
 
-        // Repositories using the same DbContext instance
         var favouriteRestaurantRepo = new FavouriteRestaurantRepository(_context);
         var productRepo = new ProductRepository(_context);
 
-        // Service initialization with repositories and mapper
         _service = new FavouriteRestaurantService(productRepo, favouriteRestaurantRepo, mapper);
 
-        // Seed the database if necessary
         DbContextInitializer.InitializeForTestDb(_context);
     }
 
@@ -75,7 +71,6 @@ public class FavouriteRestaurantServiceTest
         var favourite = _context.FavouriteRestaurants
             .FirstOrDefault(f => f.UserId == userId && f.RestaurantId == restaurantId);
 
-        // Assert
         Assert.NotNull(favourite);
     }
 
@@ -91,7 +86,6 @@ public class FavouriteRestaurantServiceTest
         var favourite = _context.FavouriteRestaurants
             .FirstOrDefault(f => f.UserId == userId && f.RestaurantId == restaurantId);
 
-        // Assert
         Assert.Null(favourite);
     }
 }
