@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using NodaTime;
 
 namespace FoodOrderWebApi.Models;
 
@@ -21,6 +22,8 @@ public class Order
 
     [Required]
     public string UserId { get; set; } = null!;
+    
+    public Instant CreatedAt { get; set; }
 
     [ForeignKey("PromoCode")]
     public int? PromoCodeId { get; set; }
