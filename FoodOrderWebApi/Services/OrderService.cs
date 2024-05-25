@@ -22,6 +22,11 @@ public class OrderService : IOrderService
         _mapper = mapper;
     }
 
+    public List<OrderDto> GetOrdersByRestaurantId(int restaurantId)
+    {
+        return _mapper.Map<List<OrderDto>>(_orderRepository.GetOrdersByRestaurantId(restaurantId));
+    }
+
     public List<OrderDto> GetActiveOrdersByRestaurantId(int restaurantId)
     {
         return _mapper.Map<List<OrderDto>>(_orderRepository.GetActiveOrdersByRestaurantId(restaurantId));

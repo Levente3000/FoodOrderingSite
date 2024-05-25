@@ -90,6 +90,10 @@ export class RestaurantDetailsComponent implements OnInit {
 		this.router.navigate(['/restaurant-orders/active', this.restaurant?.id]);
 	}
 
+	public routeToRestaurantStatistics(): void {
+		this.router.navigate(['/restaurant-statistics', this.restaurant?.id]);
+	}
+
 	private isRestaurantOpen(
 		openingHours: OpeningHours,
 		closingHours: OpeningHours

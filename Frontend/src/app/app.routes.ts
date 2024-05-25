@@ -12,6 +12,7 @@ import { FavouriteRestaurantsComponent } from './favourite-restaurants/favourite
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { RestaurantInactiveOrdersComponent } from './restaurant-details/restaurant-inactive-orders/restaurant-inactive-orders.component';
 import { RestaurantActiveOrdersComponent } from './restaurant-details/restaurant-active-orders/restaurant-active-orders.component';
+import { StatisticsComponent } from './restaurant-details/statistics/statistics.component';
 
 export const routes: Routes = [
 	{
@@ -49,7 +50,12 @@ export const routes: Routes = [
 		canActivate: [AuthGuard],
 		data: { roles: ['RESTAURANT_OWNER'] },
 	},
-
+	{
+		path: 'restaurant-statistics/:id',
+		component: StatisticsComponent,
+		canActivate: [AuthGuard],
+		data: { roles: ['RESTAURANT_OWNER'] },
+	},
 	{
 		path: 'create-product/:restaurantId',
 		component: CreateEditProductComponent,

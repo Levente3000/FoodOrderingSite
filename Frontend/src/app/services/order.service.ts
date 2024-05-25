@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { baseUrl } from '../../global';
 import { PromoCode } from '../model/promo-code.model';
-import { Order } from '../model/order/order.model';
+import { Order, OrderWithDate } from '../model/order/order.model';
 
 @Injectable({
 	providedIn: 'root',
@@ -18,6 +18,21 @@ export class OrderService {
 			`${baseUrl}/${this.controllerUrl}/place-order`,
 			promo
 		);
+	}
+
+	public getOrdersByRestaurantId(
+		restaurantId: number
+	): Observable<OrderWithDate[]> {
+		return this.httpClient
+			.get<OrderWithDate[]>(`${baseUrl}/${this.controllerUrl}/${restaurantId}`)
+			.pipe(
+				map(orders => {
+					return orders.map(order => {
+						order.createdAt = new Date(order.createdAt);
+						return order;
+					});
+				})
+			);
 	}
 
 	public getActiveOrderByRestaurantId(

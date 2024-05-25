@@ -18,6 +18,12 @@ public class OrderController : Controller
         _orderService = orderService;
     }
 
+    [HttpGet("{restaurantId}")]
+    public ActionResult<List<OrderDto>> GetOrdersByRestaurantId(int restaurantId)
+    {
+        return Ok(_orderService.GetOrdersByRestaurantId(restaurantId));
+    }
+
     [HttpGet("active/{restaurantId}")]
     public ActionResult<List<OrderDto>> GetActiveOrdersByRestaurantId(int restaurantId)
     {

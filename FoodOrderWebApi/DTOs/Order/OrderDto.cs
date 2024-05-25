@@ -14,6 +14,8 @@ public class OrderDto
 
     public bool IsDone { get; set; }
 
+    public string CreatedAt { get; set; }
+
     public int RestaurantId { get; set; }
 
     public List<OrderItemDto> OrderItems { get; set; } = null!;

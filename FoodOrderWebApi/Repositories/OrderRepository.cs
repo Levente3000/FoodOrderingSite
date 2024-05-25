@@ -2,6 +2,7 @@
 using FoodOrderWebApi.Models;
 using FoodOrderWebApi.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using NodaTime;
 
 namespace FoodOrderWebApi.Repositories;
 
@@ -12,6 +13,20 @@ public class OrderRepository : IOrderRepository
     public OrderRepository(FoodOrderDbContext context)
     {
         _context = context;
+    }
+
+    public List<Order> GetOrdersByRestaurantId(int restaurantId)
+    {
+        var currentYear = LocalDate.FromDateTime(DateTime.UtcNow).Year;
+
+        var orders = _context.Orders
+            .Where(order => order.RestaurantId == restaurantId)
+            .Include(o => o.OrderItems)
+            .ThenInclude(orderItems => orderItems.Product)
+            .AsNoTracking()
+            .ToList();
+
+        return orders.Where(o => o.CreatedAt.InUtc().Year == currentYear).ToList();
     }
 
     public List<Order> GetActiveOrdersByRestaurantId(int restaurantId)
