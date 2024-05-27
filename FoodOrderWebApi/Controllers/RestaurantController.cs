@@ -2,6 +2,7 @@
 using FoodOrderWebApi.DTOs;
 using FoodOrderWebApi.DTOs.CreateRestaurant;
 using FoodOrderWebApi.Services;
+using FoodOrderWebApi.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
@@ -11,9 +12,9 @@ namespace FoodOrderWebApi.Controllers;
 [ApiController]
 public class RestaurantController : Controller
 {
-    private readonly RestaurantService _restaurantService;
+    private readonly IRestaurantService _restaurantService;
 
-    public RestaurantController(RestaurantService restaurantService)
+    public RestaurantController(IRestaurantService restaurantService)
     {
         _restaurantService = restaurantService;
     }
@@ -22,6 +23,24 @@ public class RestaurantController : Controller
     public List<RestaurantDto> GetAllRestaurants()
     {
         return _restaurantService.GetAllRestaurantsWithProductsAndCategories();
+    }
+
+    [HttpGet("latest")]
+    public List<RestaurantDto> GetLatestRestaurants()
+    {
+        return _restaurantService.GetLatestRestaurants();
+    }
+
+    [HttpGet("most-orders")]
+    public List<RestaurantDto> GetRestaurantsWithTheMostOrders()
+    {
+        return _restaurantService.GetRestaurantsWithTheMostOrders();
+    }
+
+    [HttpGet("by-category/{categoryName}")]
+    public List<RestaurantDto> GetRestaurantsByCategory(string categoryName)
+    {
+        return _restaurantService.GetRestaurantsByCategory(categoryName);
     }
 
     [HttpGet("details/{id}")]

@@ -23,7 +23,9 @@
       @if (formGroup.get('price')?.hasError('required')) {
         <mat-error>The field is required!</mat-error>
       } @else if (formGroup.get('price')?.hasError('min')) {
-        <mat-error>The field cannot be negative!</mat-error>
+        <mat-error>The price cannot be negative!</mat-error>
+      } @else if (formGroup.get('price')?.hasError('max')) {
+        <mat-error>The price cannot be more than 100.000!</mat-error>
       }
     </mat-form-field>
 
@@ -39,7 +41,7 @@
 
   <div class="product-categories">
     <h2>Select Food Categories:</h2>
-    @if (formGroup.get('categoryNames')?.hasError('required')) {
+    @if (formGroup.get('categoryNames')?.touched && formGroup.get('categoryNames')?.hasError('required')) {
       <mat-error>The field is required!</mat-error>
     }
     <app-food-category-chip-autocomplete

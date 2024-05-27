@@ -19,6 +19,7 @@ public class ShoppingCartRepository : IShoppingCartRepository
         return _context.ShoppingCartItems
             .Where(item => item.UserId == userId)
             .Include(item => item.Product)
+            .ThenInclude(p => p.Restaurant)
             .AsNoTracking()
             .ToList();
     }

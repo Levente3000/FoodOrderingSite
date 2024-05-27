@@ -18,6 +18,12 @@ public class OrderController : Controller
         _orderService = orderService;
     }
 
+    [HttpGet("{restaurantId}")]
+    public ActionResult<List<OrderDto>> GetOrdersByRestaurantId(int restaurantId)
+    {
+        return Ok(_orderService.GetOrdersByRestaurantId(restaurantId));
+    }
+
     [HttpGet("active/{restaurantId}")]
     public ActionResult<List<OrderDto>> GetActiveOrdersByRestaurantId(int restaurantId)
     {
@@ -31,7 +37,7 @@ public class OrderController : Controller
     }
 
     [HttpPost("place-order")]
-    public ActionResult PlaceOrder(PromoCode? promo)
+    public ActionResult PlaceOrder([FromBody] PromoCode? promo)
     {
         var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 

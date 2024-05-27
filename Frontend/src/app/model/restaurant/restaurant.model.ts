@@ -15,4 +15,5 @@ export type Restaurant = {
 	openingHours: OpeningHours;
 	closingHours: OpeningHours;
 	products: Product[];
+	createdAt: string;
 };

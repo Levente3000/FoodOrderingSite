@@ -51,10 +51,10 @@ public class ShoppingCartController : Controller
         return StatusCode(200);
     }
 
-    [HttpDelete("remove-item/{itemid}")]
-    public IActionResult RemoveProductFromShoppingCart(int itemid)
+    [HttpDelete("remove-item/{itemId}")]
+    public IActionResult RemoveProductFromShoppingCart(int itemId)
     {
-        _shoppingCartService.RemoveProduct(itemid);
+        _shoppingCartService.RemoveProduct(itemId);
 
         return StatusCode(200);
     }

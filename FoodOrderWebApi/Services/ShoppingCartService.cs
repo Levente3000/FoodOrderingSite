@@ -48,20 +48,35 @@ public class ShoppingCartService : IShoppingCartService
 
     public void RemoveProduct(int shoppingCartItemId)
     {
-        var product = _shoppingCartRepository.GetItemByCartItemId(shoppingCartItemId);
+        var shoppingCartItem = _shoppingCartRepository.GetItemByCartItemId(shoppingCartItemId);
 
-        if (product == null)
+        if (shoppingCartItem == null)
         {
             throw new Exception();
         }
 
-        _shoppingCartRepository.RemoveProduct(product);
+        _shoppingCartRepository.RemoveProduct(shoppingCartItem);
     }
 
     public List<ShoppingCartItemDto> GetCartByUserId(string userId)
     {
-        var shoppingCartItems = _shoppingCartRepository.GetAllItemByUserId(userId);
-        return _mapper.Map<List<ShoppingCartItemDto>>(shoppingCartItems);
+        var shoppingCartItems =
+            _shoppingCartRepository.GetAllItemByUserId(userId);
+
+        var shoppingCartItemsDtoList = shoppingCartItems
+            .Select(item => new ShoppingCartItemDto
+            {
+                ProductId = item.ProductId,
+                Product = _mapper.Map<ProductDto>(item.Product),
+                Quantity = item.Quantity,
+                ShoppingCartItemId = item.ShoppingCartItemId,
+                UserId = item.UserId,
+                RestaurantName = item.Product.Restaurant.Name
+            })
+            .OrderBy(item => item.RestaurantName)
+            .ToList();
+
+        return shoppingCartItemsDtoList;
     }
 
     public void ClearCart(string userId)

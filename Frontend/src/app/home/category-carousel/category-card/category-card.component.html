@@ -1,0 +1,8 @@
+<a [routerLink]="['/category-restaurants/' + category?.name]" class="card" [title]="category?.name">
+  <div class="image-panel">
+    <img [src]='category?.logo' alt="Here should be the category's logo">
+  </div>
+  <div class="info-panel">
+    <div class="category-name">{{ category?.name }}</div>
+  </div>
+</a>

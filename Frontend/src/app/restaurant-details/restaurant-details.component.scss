@@ -45,7 +45,12 @@
     flex-direction: row;
     gap: 1rem;
 
-    .more-information, .edit-restaurant, .create-product, .restaurant-order {
+    .actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .fav-button, .more-information, .edit-restaurant, .create-product, .restaurant-order {
       display: flex;
       align-items: center;
       gap: 0.5em;
@@ -53,6 +58,10 @@
       font-size: 12px;
       border-bottom: 1px solid white;
       cursor: pointer;
+
+      .remove-fav-icon {
+        color: gold;
+      }
     }
 
     mat-icon {
@@ -63,11 +72,30 @@
   }
 }
 
+
 .menu {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: auto;
   padding-left: 2em;
+
+  .closed-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(128, 128, 128, 0.5);
+    color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    z-index: 100;
+  }
+
 
   .menu-category-with-products {
     display: flex;

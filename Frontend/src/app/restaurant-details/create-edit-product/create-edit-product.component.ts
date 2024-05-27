@@ -18,6 +18,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductService } from '../../services/product.service';
 import { FileUploadComponent } from '../../shared/file-upload/file-upload.component';
+import { RestaurantService } from '../../services/restaurant.service';
 
 @Component({
 	selector: 'app-create-edit-product',
@@ -50,6 +51,7 @@ export class CreateEditProductComponent implements OnInit {
 		public fb: FormBuilder,
 		public categoryService: CategoryService,
 		public productService: ProductService,
+		public restaurantService: RestaurantService,
 		private _activatedRoute: ActivatedRoute,
 		private router: Router,
 		private snackBar: MatSnackBar
@@ -59,7 +61,10 @@ export class CreateEditProductComponent implements OnInit {
 			productId: [null],
 			name: ['', Validators.required],
 			description: ['', Validators.required],
-			price: [null, [Validators.required, Validators.min(0)]],
+			price: [
+				null,
+				[Validators.required, Validators.min(0), Validators.max(100000)],
+			],
 			isEnabled: [true, Validators.required],
 			categoryNames: [[], Validators.required],
 			picture: [null],
@@ -69,6 +74,14 @@ export class CreateEditProductComponent implements OnInit {
 	public ngOnInit(): void {
 		this._activatedRoute.params.subscribe(params => {
 			if (params['productId']) {
+				this.restaurantService
+					.isAuthorized(params['restaurantId'])
+					.subscribe(isAuthorized => {
+						if (!isAuthorized) {
+							this.router.navigate(['/not-found']);
+						}
+					});
+
 				this.isEditMode = true;
 				this.title = 'Edit product';
 				this.productService
@@ -95,7 +108,7 @@ export class CreateEditProductComponent implements OnInit {
 			if (!this.formGroup.valid) {
 				this.snackBarMessage('The form is invalid!');
 			} else {
-				this.snackBarMessage('The logo or banner is missing!');
+				this.snackBarMessage('The product picture is missing!');
 			}
 			return;
 		}
@@ -133,8 +146,6 @@ export class CreateEditProductComponent implements OnInit {
 				}
 			});
 		} else {
-			console.log(this.formGroup);
-			console.log(this.productPicture);
 			this.productService.createProduct(formData).subscribe(result => {
 				if (result) {
 					this.router.navigate(['/restaurants/details', result]);

@@ -17,6 +17,7 @@ import { ProfileService } from '../services/profile.service';
 import { MatError } from '@angular/material/form-field';
 import { Router } from '@angular/router';
 import { OrderService } from '../services/order.service';
+import { map } from 'rxjs';
 
 @Component({
 	selector: 'app-shopping-cart',
@@ -38,7 +39,11 @@ export class ShoppingCartComponent implements OnInit {
 	protected promoCodes: PromoCode[] = [];
 	protected promoCode = '';
 	protected appliedPromoCode: PromoCode | null = null;
-	protected canPlaceOrder: boolean = false;
+	protected profileIsValid: boolean = false;
+
+	public get canPlaceOrder(): boolean {
+		return this.profileIsValid && this.shoppingCart.length !== 0;
+	}
 
 	protected get totalCost(): number {
 		return this.shoppingCart.reduce((pastValue, item) => {
@@ -69,6 +74,14 @@ export class ShoppingCartComponent implements OnInit {
 	public ngOnInit() {
 		this.shoppingCartService
 			.getShoppingCartWithProductPicture()
+			.pipe(
+				map(shoppingCartItems =>
+					shoppingCartItems.map(shoppingCartItem => {
+						shoppingCartItem.product.name = `(${shoppingCartItem.restaurantName}) ${shoppingCartItem.product.name}`;
+						return shoppingCartItem;
+					})
+				)
+			)
 			.subscribe(shoppingCartItems => {
 				this.shoppingCart = shoppingCartItems;
 			});
@@ -79,7 +92,7 @@ export class ShoppingCartComponent implements OnInit {
 
 		this.profileService
 			.getCanPlaceOrder()
-			.subscribe(canPlaceOrder => (this.canPlaceOrder = canPlaceOrder));
+			.subscribe(profileIsValid => (this.profileIsValid = profileIsValid));
 	}
 
 	public onQuantityChange(item: ShoppingCartItem): void {
@@ -124,9 +137,13 @@ export class ShoppingCartComponent implements OnInit {
 	}
 
 	protected placeOrder(): void {
-		this.orderService
-			.placeOrder(this.appliedPromoCode)
-			.subscribe(() => this.router.navigate(['/home']));
+		this.orderService.placeOrder(this.appliedPromoCode).subscribe(() => {
+			this.snackBar.open('Order successfully placed', 'Ok', {
+				duration: 10000,
+			});
+
+			this.router.navigate(['/home']);
+		});
 	}
 
 	protected productDetailDialogOpen(product: Product): void {

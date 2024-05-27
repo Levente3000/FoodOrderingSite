@@ -6,9 +6,12 @@
 
 .product-image {
   display: flex;
-  object-fit: cover;
-  width: 100%;
-  height: auto;
+  justify-content: center;
+  height: 300px;
+
+  img {
+    max-width: 100%;
+  }
 }
 
 .product-information {

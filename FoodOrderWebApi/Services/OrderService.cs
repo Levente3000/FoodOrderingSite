@@ -9,19 +9,22 @@ namespace FoodOrderWebApi.Services;
 public class OrderService : IOrderService
 {
     private readonly IOrderRepository _orderRepository;
-    private readonly KeycloakService _keycloakService;
     private readonly IShoppingCartService _shoppingCartService;
     private readonly IUserDataService _userDataService;
     private readonly IMapper _mapper;
 
     public OrderService(IOrderRepository orderRepository, IShoppingCartService shoppingCartService,
-        IUserDataService userDataService, KeycloakService keycloakService, IMapper mapper)
+        IUserDataService userDataService, IMapper mapper)
     {
         _orderRepository = orderRepository;
-        _keycloakService = keycloakService;
         _shoppingCartService = shoppingCartService;
         _userDataService = userDataService;
         _mapper = mapper;
+    }
+
+    public List<OrderDto> GetOrdersByRestaurantId(int restaurantId)
+    {
+        return _mapper.Map<List<OrderDto>>(_orderRepository.GetOrdersByRestaurantId(restaurantId));
     }
 
     public List<OrderDto> GetActiveOrdersByRestaurantId(int restaurantId)
@@ -32,6 +35,11 @@ public class OrderService : IOrderService
     public List<OrderDto> GetDoneOrdersByRestaurantId(int restaurantId)
     {
         return _mapper.Map<List<OrderDto>>(_orderRepository.GetDoneOrdersByRestaurantId(restaurantId));
+    }
+
+    public List<int> GetRestaurantIdsByOrderNumber()
+    {
+        return _orderRepository.GetRestaurantIdsByOrderNumber();
     }
 
     public void PlaceOrder(string userId, PromoCode? promo)
@@ -60,7 +68,8 @@ public class OrderService : IOrderService
                 OrdererName = userData.Name,
                 OrdererPhoneNumber = userData.Phone,
                 OrderItems = orderItems,
-                RestaurantId = restaurantId
+                RestaurantId = restaurantId,
+                PromoCodeId = promo?.Id
             };
 
             _orderRepository.PlaceOrder(order);

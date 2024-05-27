@@ -64,7 +64,7 @@ export class ProfileComponent implements OnInit {
 			formData.append('phone', this.formGroup.value.phone);
 
 			this.profileService.UpdateProfileInfo(formData).subscribe(() => {
-				this.router.navigate(['/home']);
+				this.router.navigate(['/shopping-cart']);
 				this.snackBar.open('Profile successfully updated!', 'Ok', {
 					duration: 5000,
 				});

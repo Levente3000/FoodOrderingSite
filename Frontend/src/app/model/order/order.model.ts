@@ -7,6 +7,18 @@ export type Order = {
 	ordererPhoneNumber: string;
 	isDone: boolean;
 	restaurantId: number;
+	createdAt: string;
+	orderItems: OrderItem[];
+};
+
+export type OrderWithDate = {
+	id: number;
+	ordererName: string;
+	ordererAddress: string;
+	ordererPhoneNumber: string;
+	isDone: boolean;
+	restaurantId: number;
+	createdAt: Date;
 	orderItems: OrderItem[];
 };
 

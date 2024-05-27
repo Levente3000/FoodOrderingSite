@@ -75,8 +75,10 @@
       <button mat-raised-button class="place-order-button" [disabled]="!canPlaceOrder" (click)="placeOrder()">
         Place order
       </button>
-      @if (!canPlaceOrder) {
+      @if (!profileIsValid) {
         <p>You must fill out your profile to place an order!</p>
+      } @else if (shoppingCart.length === 0) {
+        <p>You need to have at least one item!</p>
       }
     </div>
   </div>

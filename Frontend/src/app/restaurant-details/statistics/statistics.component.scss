@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+
+  button {
+    display: flex;
+    justify-content: flex-start;
+    width: auto;
+  }
+}
+
+.charts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+
+  .chart {
+    display: flex;
+    width: 90%;
+  }
+}

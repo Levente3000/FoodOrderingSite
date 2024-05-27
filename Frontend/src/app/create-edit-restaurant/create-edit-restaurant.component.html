@@ -4,22 +4,38 @@
     <mat-form-field>
       <mat-label>Restaurant's Name</mat-label>
       <input matInput formControlName="name">
+      @if (restaurantForm.get('name')?.hasError('required')) {
+        <mat-error>The field is required!</mat-error>
+      }
     </mat-form-field>
     <mat-form-field>
       <mat-label>Restaurant's Description</mat-label>
       <textarea class="description" matInput formControlName="description"></textarea>
+      @if (restaurantForm.get('description')?.hasError('required')) {
+        <mat-error>The field is required!</mat-error>
+      }
     </mat-form-field>
     <mat-form-field>
       <mat-label>Restaurant's Address</mat-label>
       <input matInput formControlName="address">
+      @if (restaurantForm.get('address')?.hasError('required')) {
+        <mat-error>The field is required!</mat-error>
+      }
     </mat-form-field>
     <mat-form-field>
       <mat-label>Restaurant's Phone Number</mat-label>
       <input matInput formControlName="phoneNumber">
+      @if (restaurantForm.get('phoneNumber')?.hasError('required')) {
+        <mat-error>The field is required!</mat-error>
+      } @else if (restaurantForm.get('phoneNumber')?.hasError("pattern")) {
+        <mat-error>Example: +36301234567</mat-error>
+      }
     </mat-form-field>
     <div class="file-uploads">
-      <app-file-upload [title]="'Restaurant\'s logo'" [(file)]="restaurantLogo"></app-file-upload>
-      <app-file-upload [title]="'Restaurant\'s banner'" [(file)]="restaurantBanner"></app-file-upload>
+      <app-file-upload [title]="'Restaurant\'s logo'"
+                       [(file)]="restaurantLogo"></app-file-upload>
+      <app-file-upload [title]="'Restaurant\'s banner'"
+                       [(file)]="restaurantBanner"></app-file-upload>
     </div>
   </div>
   <div class="time-table">

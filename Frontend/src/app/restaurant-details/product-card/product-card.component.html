@@ -1,9 +1,14 @@
-<div class="product" (click)="productDetailDialogOpen()" tabindex="0" (keydown.enter)="productDetailDialogOpen()">
+<div class="product"
+     (click)="!product?.isEnabled && !isAuthorized ? $event.stopPropagation() : productDetailDialogOpen()" tabindex="0"
+     (keydown.enter)="!product?.isEnabled && !isAuthorized ? $event.stopPropagation() : productDetailDialogOpen()">
   <img [src]='product?.picture' alt="Product picture" class="product-image">
   <div class="product-details">
     <div class="product-name">{{ product?.name }}</div>
     <div class="product-desc">{{ product?.description }}</div>
     <div class="product-price">{{ product?.price }} Ft</div>
+  </div>
+  <div class="disabled-overlay" *ngIf="!product?.isEnabled && !isAuthorized">
+    Product is not available
   </div>
   @if (isAuthorized) {
     <button class="edit-button" (click)="editProduct($event)">

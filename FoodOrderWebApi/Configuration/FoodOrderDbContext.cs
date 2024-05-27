@@ -24,8 +24,9 @@ public class FoodOrderDbContext : DbContext
 
     public DbSet<UserData> UserData { get; set; }
 
-
     public DbSet<OrderItem> OrderItems { get; set; }
+
+    public DbSet<FavouriteRestaurant> FavouriteRestaurants { get; set; }
 
     public FoodOrderDbContext(DbContextOptions<FoodOrderDbContext> options) : base(options)
     {
@@ -36,5 +37,6 @@ public class FoodOrderDbContext : DbContext
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfiguration(new RestaurantConfiguration());
         modelBuilder.ApplyConfiguration(new ProductConfiguration());
+        modelBuilder.ApplyConfiguration(new OrderConfiguration());
     }
 }

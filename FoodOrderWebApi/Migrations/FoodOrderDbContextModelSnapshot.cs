@@ -38,6 +38,28 @@ namespace FoodOrderWebApi.Migrations
                     b.ToTable("FoodCategoryProduct");
                 });
 
+            modelBuilder.Entity("FoodOrderWebApi.Models.FavouriteRestaurant", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("RestaurantId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RestaurantId");
+
+                    b.ToTable("FavouriteRestaurants");
+                });
+
             modelBuilder.Entity("FoodOrderWebApi.Models.FoodCategory", b =>
                 {
                     b.Property<string>("Name")
@@ -94,6 +116,11 @@ namespace FoodOrderWebApi.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
                     b.Property<bool>("IsDone")
                         .HasColumnType("boolean");
 
@@ -109,6 +136,9 @@ namespace FoodOrderWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("PromoCodeId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("RestaurantId")
                         .HasColumnType("integer");
 
@@ -117,6 +147,8 @@ namespace FoodOrderWebApi.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PromoCodeId");
 
                     b.HasIndex("RestaurantId");
 
@@ -357,13 +389,30 @@ namespace FoodOrderWebApi.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("FoodOrderWebApi.Models.FavouriteRestaurant", b =>
+                {
+                    b.HasOne("FoodOrderWebApi.Models.Restaurant", "Restaurant")
+                        .WithMany()
+                        .HasForeignKey("RestaurantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Restaurant");
+                });
+
             modelBuilder.Entity("FoodOrderWebApi.Models.Order", b =>
                 {
+                    b.HasOne("FoodOrderWebApi.Models.PromoCode", "PromoCode")
+                        .WithMany()
+                        .HasForeignKey("PromoCodeId");
+
                     b.HasOne("FoodOrderWebApi.Models.Restaurant", "Restaurant")
                         .WithMany("Orders")
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("PromoCode");
 
                     b.Navigation("Restaurant");
                 });

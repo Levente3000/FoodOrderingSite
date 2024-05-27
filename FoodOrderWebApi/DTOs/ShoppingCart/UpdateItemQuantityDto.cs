@@ -1,4 +1,4 @@
-﻿namespace FoodOrderWebApi.DTOs;
+﻿namespace FoodOrderWebApi.DTOs.ShoppingCart;
 
 public class UpdateItemQuantityDto
 {

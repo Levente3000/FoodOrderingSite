@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^17.2.0",
     "@angular/platform-browser-dynamic": "^17.2.0",
     "@angular/router": "^17.2.0",
+    "@canvasjs/angular-charts": "^1.2.0",
     "keycloak-angular": "^15.1.0",
     "keycloak-js": "^23.0.5",
     "ngx-material-timepicker": "^13.1.1",

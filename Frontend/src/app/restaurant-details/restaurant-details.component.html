@@ -5,32 +5,53 @@
       <h1 class="restaurant-name">{{ restaurant?.name }}</h1>
       <p class="description"> {{ restaurant?.description }} </p>
       <div class="detail-actions">
-        <div class="more-information" (click)="moreInfoDialogOpen()"
-             tabindex="0" (keydown.enter)="moreInfoDialogOpen()">
-          <mat-icon>info</mat-icon>
-          More information
+        <div class="fav-button" (click)="changeFavouriteState()"
+             tabindex="0" (keydown.enter)="changeFavouriteState()">
+          @if (alreadyInFavourites) {
+            <mat-icon class="remove-fav-icon">star</mat-icon>
+            Remove from favourites
+          } @else {
+            <mat-icon>star</mat-icon>
+            Add to favourites
+          }
         </div>
-        @if (isAuthorized) {
-          <div class="edit-restaurant" (click)="routeToEditRestaurant()"
-               tabindex="0" (keydown.enter)="routeToEditRestaurant()">
-            <mat-icon>edit</mat-icon>
-            Edit restaurant
+        <div class="actions">
+          <div class="more-information" (click)="moreInfoDialogOpen()"
+               tabindex="0" (keydown.enter)="moreInfoDialogOpen()">
+            <mat-icon>info</mat-icon>
+            More information
           </div>
-          <div class="create-product" (click)="routeToCreateProduct()"
-               tabindex="0" (keydown.enter)="routeToCreateProduct()">
-            <mat-icon>edit</mat-icon>
-            Create product
-          </div>
-          <div class="restaurant-order" (click)="routeToRestaurantOrders()"
-               tabindex="0" (keydown.enter)="routeToRestaurantOrders()">
-            <mat-icon>monitoring</mat-icon>
-            View orders
-          </div>
-        }
+          @if (isAuthorized) {
+            <div class="edit-restaurant" (click)="routeToEditRestaurant()"
+                 tabindex="0" (keydown.enter)="routeToEditRestaurant()">
+              <mat-icon>edit</mat-icon>
+              Edit restaurant
+            </div>
+            <div class="create-product" (click)="routeToCreateProduct()"
+                 tabindex="0" (keydown.enter)="routeToCreateProduct()">
+              <mat-icon>edit</mat-icon>
+              Create product
+            </div>
+            <div class="restaurant-order" (click)="routeToRestaurantOrders()"
+                 tabindex="0" (keydown.enter)="routeToRestaurantOrders()">
+              <mat-icon>monitoring</mat-icon>
+              View orders
+            </div>
+            <div class="restaurant-order" (click)="routeToRestaurantStatistics()"
+                 tabindex="0" (keydown.enter)="routeToRestaurantStatistics()">
+              <mat-icon>bar_chart</mat-icon>
+              View statistics
+            </div>
+          }
+        </div>
       </div>
+
     </div>
   </div>
   <div class="menu">
+    <div *ngIf="isClosed && !isAuthorized" class="closed-overlay">
+      Restaurant is Closed
+    </div>
     @for (productsInCategory of restaurant?.categoriesWithProducts; track productsInCategory) {
       @if (productsInCategory.name !== 'Without Category' || isAuthorized) {
         <div class="menu-category-with-products">

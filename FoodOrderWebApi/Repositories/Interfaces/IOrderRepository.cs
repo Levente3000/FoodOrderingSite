@@ -4,9 +4,13 @@ namespace FoodOrderWebApi.Repositories.Interfaces;
 
 public interface IOrderRepository
 {
+    public List<Order> GetOrdersByRestaurantId(int restaurantId);
+
     public List<Order> GetActiveOrdersByRestaurantId(int restaurantId);
 
     public List<Order> GetDoneOrdersByRestaurantId(int restaurantId);
+
+    public List<int> GetRestaurantIdsByOrderNumber();
 
     public Order? GetOrderById(int orderId);
 

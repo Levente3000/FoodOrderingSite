@@ -8,7 +8,8 @@
     CONNECTION LIMIT -1
     PASSWORD 'admin';
 
-CREATE DATABASE bn_keycloak
+CREATE
+DATABASE bn_keycloak
     WITH
     OWNER = bn_keycloak
     ENCODING = 'UTF8'

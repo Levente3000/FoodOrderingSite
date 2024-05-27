@@ -16,6 +16,7 @@ import { EditRestaurant } from '../model/restaurant/edit-restaurant.model';
 export class RestaurantService {
 	private restaurantControllerUrl = 'restaurant';
 	private restaurantPermissionControllerUrl = 'restaurant-permission';
+	private favouriteRestaurantControllerUrl = 'favourite';
 
 	constructor(
 		private readonly httpClient: HttpClient,
@@ -25,6 +26,96 @@ export class RestaurantService {
 	public getRestaurantsWithLogo(): Observable<Restaurant[]> {
 		return this.httpClient
 			.get<Restaurant[]>(`${baseUrl}/${this.restaurantControllerUrl}`)
+			.pipe(
+				mergeMap(restaurants =>
+					forkJoin(
+						restaurants.map(restaurant => {
+							return this.assetsService
+								.getAssetForRestaurant(restaurant.logoName)
+								.pipe(
+									map(asset => {
+										restaurant.logo = asset;
+										return restaurant;
+									})
+								);
+						})
+					)
+				)
+			);
+	}
+
+	public getLatestRestaurantsWithLogo(): Observable<Restaurant[]> {
+		return this.httpClient
+			.get<Restaurant[]>(`${baseUrl}/${this.restaurantControllerUrl}/latest`)
+			.pipe(
+				mergeMap(restaurants =>
+					forkJoin(
+						restaurants.map(restaurant => {
+							return this.assetsService
+								.getAssetForRestaurant(restaurant.logoName)
+								.pipe(
+									map(asset => {
+										restaurant.logo = asset;
+										return restaurant;
+									})
+								);
+						})
+					)
+				)
+			);
+	}
+
+	public getRestaurantsWithTheMostOrdersWithLogo(): Observable<Restaurant[]> {
+		return this.httpClient
+			.get<
+				Restaurant[]
+			>(`${baseUrl}/${this.restaurantControllerUrl}/most-orders`)
+			.pipe(
+				mergeMap(restaurants =>
+					forkJoin(
+						restaurants.map(restaurant => {
+							return this.assetsService
+								.getAssetForRestaurant(restaurant.logoName)
+								.pipe(
+									map(asset => {
+										restaurant.logo = asset;
+										return restaurant;
+									})
+								);
+						})
+					)
+				)
+			);
+	}
+
+	public getRestaurantsByCategoryWithLogo(
+		category: string
+	): Observable<Restaurant[]> {
+		return this.httpClient
+			.get<
+				Restaurant[]
+			>(`${baseUrl}/${this.restaurantControllerUrl}/by-category/${category}`)
+			.pipe(
+				mergeMap(restaurants =>
+					forkJoin(
+						restaurants.map(restaurant => {
+							return this.assetsService
+								.getAssetForRestaurant(restaurant.logoName)
+								.pipe(
+									map(asset => {
+										restaurant.logo = asset;
+										return restaurant;
+									})
+								);
+						})
+					)
+				)
+			);
+	}
+
+	public getFavouriteRestaurantsWithLogo(): Observable<Restaurant[]> {
+		return this.httpClient
+			.get<Restaurant[]>(`${baseUrl}/${this.favouriteRestaurantControllerUrl}`)
 			.pipe(
 				mergeMap(restaurants =>
 					forkJoin(
@@ -90,9 +181,23 @@ export class RestaurantService {
 		);
 	}
 
+	public changeStateOfFavouriteRestaurant(restaurantId: number) {
+		const body = { restaurantId };
+		return this.httpClient.post(
+			`${baseUrl}/${this.favouriteRestaurantControllerUrl}/change-state`,
+			body
+		);
+	}
+
 	public isAuthorized(restaurantId: number): Observable<boolean> {
 		return this.httpClient.get<boolean>(
 			`${baseUrl}/${this.restaurantPermissionControllerUrl}/${restaurantId}`
+		);
+	}
+
+	public isInFavourites(restaurantId: number): Observable<boolean> {
+		return this.httpClient.get<boolean>(
+			`${baseUrl}/${this.favouriteRestaurantControllerUrl}/${restaurantId}`
 		);
 	}
 

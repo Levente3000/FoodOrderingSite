@@ -1,0 +1,15 @@
+<app-search-and-filter [filter]="filterData" (filterApplied)="onFilter($event)"></app-search-and-filter>
+<div class="restaurant-grid">
+  <div class="cards">
+    @for (restaurant of filteredRestaurants; track restaurant.id) {
+      <app-restaurant-card class="grid-items" [restaurant]="restaurant"></app-restaurant-card>
+    }
+  </div>
+  <mat-paginator [length]="filteredRestaurantsToPaginate.length"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[10, 20, 30]"
+                 (page)="onPageChange()">
+  </mat-paginator>
+</div>
+
+

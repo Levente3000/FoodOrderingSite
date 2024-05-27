@@ -20,6 +20,8 @@ public class RestaurantDto
 
     public PriceCategory PriceCategory { get; set; }
 
+    public string CreatedAt { get; set; } = null!;
+
     public ICollection<ProductDto> Products { get; set; } = new List<ProductDto>();
 
     public virtual OpeningHourDto OpeningHours { get; set; } = null!;

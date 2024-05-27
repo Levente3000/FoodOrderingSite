@@ -18,6 +18,8 @@ public class RestaurantDetailsDto
 
     public PriceCategory PriceCategory { get; set; }
 
+    public string CreatedAt { get; set; } = null!;
+
     public ICollection<ProductsInCategoryDto>? CategoriesWithProducts { get; set; } = new List<ProductsInCategoryDto>();
 
     public virtual OpeningHourDto OpeningHours { get; set; } = null!;

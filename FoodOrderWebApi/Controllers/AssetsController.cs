@@ -1,7 +1,5 @@
-﻿using System.Diagnostics;
-using FoodOrderWebApi.Services;
+﻿using FoodOrderWebApi.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace FoodOrderWebApi.Controllers;
 
@@ -9,14 +7,14 @@ namespace FoodOrderWebApi.Controllers;
 [ApiController]
 public class AssetsController : Controller
 {
-    private readonly AssetsService _assetsService;
+    private readonly IAssetsService _assetsService;
 
-    public AssetsController(AssetsService assetsService)
+    public AssetsController(IAssetsService assetsService)
     {
         _assetsService = assetsService;
     }
 
-    [HttpGet("restaurant")]
+    [HttpGet("restaurant/{assetName}")]
     public FileStreamResult GetAssetForRestaurant(string assetName)
     {
         var (fileStream, contentType) = _assetsService.GetAsset("restaurant", assetName);
@@ -24,7 +22,7 @@ public class AssetsController : Controller
         return File(fileStream, contentType);
     }
 
-    [HttpGet("category")]
+    [HttpGet("category/{assetName}")]
     public FileStreamResult GetAssetForCategory(string assetName)
     {
         var (fileStream, contentType) = _assetsService.GetAsset("category", assetName);
@@ -32,7 +30,7 @@ public class AssetsController : Controller
         return File(fileStream, contentType);
     }
 
-    [HttpGet("product")]
+    [HttpGet("product/{assetName}")]
     public FileStreamResult GetAssetForProduct(string assetName)
     {
         var (fileStream, contentType) = _assetsService.GetAsset("product", assetName);

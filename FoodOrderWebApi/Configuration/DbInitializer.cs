@@ -1,5 +1,4 @@
 ﻿using FoodOrderWebApi.Models;
-using Microsoft.EntityFrameworkCore;
 using NodaTime;
 
 namespace FoodOrderWebApi.Configuration;
@@ -49,37 +48,52 @@ public class DbInitializer
             new()
             {
                 Name = "Sushi",
-                PictureName = "pizza.jpg"
+                PictureName = "sushi.jpg"
             },
             new()
             {
                 Name = "Pastry",
-                PictureName = "pizza.jpg"
+                PictureName = "pastry.jpg"
             },
             new()
             {
                 Name = "Asian",
-                PictureName = "pizza.jpg"
+                PictureName = "asian.jpg"
             },
             new()
             {
                 Name = "Exotic",
-                PictureName = "pizza.jpg"
+                PictureName = "exotic.jpg"
             },
             new()
             {
                 Name = "Salad",
-                PictureName = "pizza.jpg"
+                PictureName = "salad.jpg"
             },
             new()
             {
                 Name = "Seafood",
-                PictureName = "pizza.jpg"
+                PictureName = "seafood.jpg"
             },
             new()
             {
                 Name = "Fine Dining",
-                PictureName = "pizza.jpg"
+                PictureName = "fine_dining.jpg"
+            },
+            new()
+            {
+                Name = "Mexican",
+                PictureName = "mexican.jpg"
+            },
+            new()
+            {
+                Name = "Hamburger",
+                PictureName = "hamburger.jpg"
+            },
+            new()
+            {
+                Name = "American",
+                PictureName = "american.jpg"
             },
         };
 
@@ -120,7 +134,7 @@ public class DbInitializer
                 Description = "Sushi and Japanese cuisine",
                 Address = "New York, Times Square",
                 PhoneNumber = "06300000003",
-                LogoName = "karen_bar.jpg",
+                LogoName = "red_dragon.jpg",
                 BannerName = "banner.jpg",
                 OpeningHourId = 5,
                 ClosingHourId = 6
@@ -131,7 +145,7 @@ public class DbInitializer
                 Description = "Delicious desserts and pastries",
                 Address = "Budapest, Lágymányosi campus",
                 PhoneNumber = "06300000004",
-                LogoName = "karen_bar.jpg",
+                LogoName = "golden_spoon.jpg",
                 BannerName = "banner.jpg",
                 OpeningHourId = 7,
                 ClosingHourId = 8
@@ -142,7 +156,7 @@ public class DbInitializer
                 Description = "Fresh and healthy salads",
                 Address = "Budapest, Lágymányosi campus",
                 PhoneNumber = "06300000001",
-                LogoName = "karen_bar.jpg",
+                LogoName = "orange_orchid.jpg",
                 BannerName = "banner.jpg",
                 OpeningHourId = 9,
                 ClosingHourId = 10
@@ -153,7 +167,7 @@ public class DbInitializer
                 Description = "Pub with a selection of craft beers",
                 Address = "Budapest, Lágymányosi campus",
                 PhoneNumber = "06300000001",
-                LogoName = "karen_bar.jpg",
+                LogoName = "black_raven.jpg",
                 BannerName = "banner.jpg",
                 OpeningHourId = 11,
                 ClosingHourId = 12
@@ -164,7 +178,7 @@ public class DbInitializer
                 Description = "Tropical cocktails and seafood",
                 Address = "Budapest, Lágymányosi campus",
                 PhoneNumber = "06300000001",
-                LogoName = "karen_bar.jpg",
+                LogoName = "pink_flamingo.jpg",
                 BannerName = "banner.jpg",
                 OpeningHourId = 13,
                 ClosingHourId = 14
@@ -175,7 +189,7 @@ public class DbInitializer
                 Description = "Fine dining experience",
                 Address = "Budapest, Lágymányosi campus",
                 PhoneNumber = "06300000001",
-                LogoName = "karen_bar.jpg",
+                LogoName = "crimson_fox.jpg",
                 BannerName = "banner.jpg",
                 OpeningHourId = 15,
                 ClosingHourId = 16
@@ -197,8 +211,8 @@ public class DbInitializer
                 Name = "Goulash Soup",
                 Description = "0,5L soup",
                 Price = 1200,
-                PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[9] },
+                PictureName = "goulash_soup.jpg",
+                Categories = new List<FoodCategory>(categories.Where(category => category.Name == "Soup")),
                 RestaurantId = 1,
                 IsEnabled = true,
             },
@@ -207,8 +221,8 @@ public class DbInitializer
                 Name = "Margherita pizza",
                 Description = "32cm",
                 Price = 2000,
-                PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[6] },
+                PictureName = "margherita.jpg",
+                Categories = new List<FoodCategory>(categories.Where(category => category.Name == "Pizza")),
                 RestaurantId = 1,
                 IsEnabled = true,
             },
@@ -218,7 +232,7 @@ public class DbInitializer
                 Description = "32cm",
                 Price = 2300,
                 PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[6] },
+                Categories = new List<FoodCategory>(categories.Where(category => category.Name == "Pizza")),
                 RestaurantId = 1,
                 IsEnabled = true,
             },
@@ -227,8 +241,8 @@ public class DbInitializer
                 Name = "Pesto pasta",
                 Description = "one serving",
                 Price = 1800,
-                PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[4] },
+                PictureName = "pesto_pasta.jpg",
+                Categories = new List<FoodCategory>(categories.Where(category => category.Name == "Pasta")),
                 RestaurantId = 2,
                 IsEnabled = true,
             },
@@ -237,8 +251,8 @@ public class DbInitializer
                 Name = "Bolognese pasta",
                 Description = "one serving",
                 Price = 1900,
-                PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[4] },
+                PictureName = "bolognese_pasta.jpg",
+                Categories = new List<FoodCategory>(categories.Where(category => category.Name == "Pasta")),
                 RestaurantId = 2,
                 IsEnabled = true,
             },
@@ -247,8 +261,8 @@ public class DbInitializer
                 Name = "Coca Cola",
                 Description = "0,33L",
                 Price = 600,
-                PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[1] },
+                PictureName = "coca_cola.jpg",
+                Categories = new List<FoodCategory>(categories.Where(category => category.Name == "Drink")),
                 RestaurantId = 2,
                 IsEnabled = true,
             },
@@ -257,8 +271,8 @@ public class DbInitializer
                 Name = "Sushi Platter",
                 Description = "",
                 Price = 2000,
-                PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[0], categories[10] },
+                PictureName = "sushi_platter.jpg",
+                Categories = new List<FoodCategory>(categories.Where(category => category.Name is "Sushi" or "Asian")),
                 RestaurantId = 3
             },
             new()
@@ -266,8 +280,8 @@ public class DbInitializer
                 Name = "Vegetarian Sushi Roll",
                 Description = "",
                 Price = 2000,
-                PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[0], categories[10] },
+                PictureName = "vegetarian_sushi.jpg",
+                Categories = new List<FoodCategory>(categories.Where(category => category.Name is "Sushi" or "Asian")),
                 RestaurantId = 3,
                 IsEnabled = true,
             },
@@ -276,8 +290,8 @@ public class DbInitializer
                 Name = "Greek Salad",
                 Description = "",
                 Price = 2000,
-                PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[7] },
+                PictureName = "greek_salad.jpg",
+                Categories = new List<FoodCategory>(categories.Where(category => category.Name == "Salad")),
                 RestaurantId = 5,
                 IsEnabled = true,
             },
@@ -286,8 +300,8 @@ public class DbInitializer
                 Name = "Caesar Salad",
                 Description = "",
                 Price = 2000,
-                PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[7] },
+                PictureName = "caesar_salad.jpg",
+                Categories = new List<FoodCategory>(categories.Where(category => category.Name == "Salad")),
                 RestaurantId = 5,
                 IsEnabled = true,
             },
@@ -296,8 +310,9 @@ public class DbInitializer
                 Name = "Grilled Salmon",
                 Description = "Salmon fillet grilled to perfection, served with steamed vegetables",
                 Price = 2000,
-                PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[8], categories[3] },
+                PictureName = "grilled_salmon.jpg",
+                Categories =
+                    new List<FoodCategory>(categories.Where(category => category.Name is "Seafood" or "Fine Dining")),
                 RestaurantId = 7,
                 IsEnabled = true,
             },
@@ -307,8 +322,9 @@ public class DbInitializer
                 Name = "Lobster Linguine",
                 Description = "",
                 Price = 2000,
-                PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[8], categories[3] },
+                PictureName = "lobster_linguine.png",
+                Categories =
+                    new List<FoodCategory>(categories.Where(category => category.Name is "Seafood" or "Fine Dining")),
                 RestaurantId = 7,
                 IsEnabled = true,
             },
@@ -317,8 +333,8 @@ public class DbInitializer
                 Name = "IPA",
                 Description = "",
                 Price = 2000,
-                PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[1] },
+                PictureName = "ipa.png",
+                Categories = new List<FoodCategory>(categories.Where(category => category.Name == "Drink")),
                 RestaurantId = 6
             },
             new()
@@ -326,8 +342,8 @@ public class DbInitializer
                 Name = "Stout",
                 Description = "A dark, rich beer with flavors of roasted malt, chocolate, and coffee.",
                 Price = 2000,
-                PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[1] },
+                PictureName = "stout.jpg",
+                Categories = new List<FoodCategory>(categories.Where(category => category.Name == "Drink")),
                 RestaurantId = 6,
                 IsEnabled = true,
             },
@@ -336,8 +352,8 @@ public class DbInitializer
                 Name = "Croissant",
                 Description = "",
                 Price = 2000,
-                PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[5] },
+                PictureName = "croissant.jpg",
+                Categories = new List<FoodCategory>(categories.Where(category => category.Name == "Pastry")),
                 RestaurantId = 4,
                 IsEnabled = true,
             },
@@ -346,8 +362,8 @@ public class DbInitializer
                 Name = "Danish Pastry",
                 Description = "",
                 Price = 2000,
-                PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[5] },
+                PictureName = "danish_pastry.jpg",
+                Categories = new List<FoodCategory>(categories.Where(category => category.Name == "Pastry")),
                 RestaurantId = 4,
                 IsEnabled = true,
             },
@@ -356,8 +372,8 @@ public class DbInitializer
                 Name = "Filet Mignon",
                 Description = "",
                 Price = 2000,
-                PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[3] },
+                PictureName = "filet_mignon.jpg",
+                Categories = new List<FoodCategory>(categories.Where(category => category.Name == "Fine Dining")),
                 RestaurantId = 8,
                 IsEnabled = true,
             },
@@ -366,8 +382,8 @@ public class DbInitializer
                 Name = "Lobster Risotto",
                 Description = "",
                 Price = 2000,
-                PictureName = "bbq.jpg",
-                Categories = new List<FoodCategory> { categories[3] },
+                PictureName = "lobster_risotto.jpg",
+                Categories = new List<FoodCategory>(categories.Where(category => category.Name == "Fine Dining")),
                 RestaurantId = 8,
                 IsEnabled = true,
             },
