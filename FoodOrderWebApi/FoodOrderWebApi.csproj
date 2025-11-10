@@ -41,6 +41,7 @@
         <_ContentIncludedByDefault Remove="TestProject1\obj\project.assets.json"/>
         <_ContentIncludedByDefault Remove="TestProject1\obj\project.packagespec.json"/>
         <_ContentIncludedByDefault Remove="TestProject1\obj\TestProject1.csproj.nuget.dgspec.json"/>
+        <_ContentIncludedByDefault Remove="TestProject1\packages.config"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -60,4 +61,20 @@
         <None Remove="UnitTest\**"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <Content Include="ModelTest\UnitTest.csproj"/>
+        <Content Remove="ModelTest\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="ModelTest\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Remove="ModelTest\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="ModelTest\**"/>
+    </ItemGroup>
 </Project>

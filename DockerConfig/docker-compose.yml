@@ -1,33 +1,50 @@
-version: '3.1'
+version: "3.8"
 
 services:
   db:
+    image: postgres:16
     container_name: db
-    image: postgres
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: admin
     ports:
       - "5433:5432"
     volumes:
-      - "dbData:/var/lib/postgresql/data"
-  
+      - dbData:/var/lib/postgresql/data
+      # Runs only on first init of the volume
+      - ./Keycloak_setup.sql:/docker-entrypoint-initdb.d/01-keycloak.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
   keycloak:
+    image: keycloak/keycloak:26.4.0
     container_name: keycloak
-    image: bitnami/keycloak:24.0.2
-    restart: always
+    depends_on:
+      - db
+    restart: unless-stopped
     environment:
-      KEYCLOAK_HTTP_PORT: 8090
-      KEYCLOAK_USER: user
-      KEYCLOAK_DATABASE_NAME: bn_keycloak
-      KEYCLOAK_DATABASE_USER: bn_keycloak
-      KEYCLOAK_DATABASE_PASSWORD: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-      KEYCLOAK_DATABASE_HOST: db
+      # Initial admin for Keycloak (official image)
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+
+      # DB config (official env names)
+      KC_DB: postgres
+      KC_DB_USERNAME: bn_keycloak
+      KC_DB_PASSWORD: admin
+      KC_DB_URL_HOST: db
+      KC_DB_URL_PORT: "5432"
+      KC_DB_URL_DATABASE: bn_keycloak
+    entrypoint: ["/opt/keycloak/bin/kc.sh"]
+    command: ["start-dev","--http-port=8090","--import-realm"]
     ports:
       - "8090:8090"
+    volumes:
+      # Import your realm JSON at startup
+      - ./food-ordering-site-realm.json:/opt/keycloak/data/import/food-ordering-site-realm.json:ro
 
 volumes:
   dbData:
-

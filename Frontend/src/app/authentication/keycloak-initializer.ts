@@ -39,8 +39,14 @@ function initializeKeycloak(keycloak: KeycloakService) {
 			},
 			initOptions: {
 				onLoad: 'login-required',
+        pkceMethod: 'S256',
+        checkLoginIframe: false,
+        redirectUri: window.location.href,
 			},
-			loadUserProfileAtStartUp: true,
-			shouldAddToken: () => true,
+      enableBearerInterceptor: true,
+      bearerPrefix: 'Bearer',
+      bearerExcludedUrls: ['/assets', '/favicon.ico'],
+      loadUserProfileAtStartUp: false,
+      shouldAddToken: () => true,
 		});
 }

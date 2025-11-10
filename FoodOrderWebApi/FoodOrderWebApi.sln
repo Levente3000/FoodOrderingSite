@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodOrderWebApi", "FoodOrde
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{5FF616A7-6DE4-456C-B701-5314FA1E57C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelTest", "ModelTest\ModelTest.csproj", "{CBAC7B65-90F5-44AB-B02F-F8AE2379FD5B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5FF616A7-6DE4-456C-B701-5314FA1E57C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FF616A7-6DE4-456C-B701-5314FA1E57C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FF616A7-6DE4-456C-B701-5314FA1E57C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBAC7B65-90F5-44AB-B02F-F8AE2379FD5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBAC7B65-90F5-44AB-B02F-F8AE2379FD5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBAC7B65-90F5-44AB-B02F-F8AE2379FD5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBAC7B65-90F5-44AB-B02F-F8AE2379FD5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

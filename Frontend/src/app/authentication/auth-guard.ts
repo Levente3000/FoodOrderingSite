@@ -22,31 +22,19 @@ export class AuthGuard extends KeycloakAuthGuard {
 		route: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot
 	): Promise<boolean | UrlTree> {
-		// Force the user to log in if currently unauthenticated.
-		if (!this.authenticated) {
+		const loggedIn = this.keycloakAngular.isLoggedIn();
+
+		if (!loggedIn) {
 			await this.keycloakAngular.login({
-				redirectUri: window.location.origin + state.url,
+				redirectUri: window.location.href,
 			});
+			return false;
 		}
 
-		// Get the roles required from the route.
-		const requiredRoles = route.data['roles'];
+		const requiredRoles = (route.data['roles'] as string[] | undefined) ?? [];
+		if (requiredRoles.length === 0) return true;
 
-		// Allow the user to proceed if no additional roles are required to access the route.
-		if (!(requiredRoles instanceof Array) || requiredRoles.length === 0) {
-			return true;
-		}
-
-		// Allow the user to proceed if all the required roles are present.
-		const hasRequiredRoles = requiredRoles.every(role =>
-			this.roles.includes(role)
-		);
-
-		if (!hasRequiredRoles) {
-			// Redirect to a "Not Found" page
-			return this.router.parseUrl('/not-found');
-		}
-
-		return hasRequiredRoles;
+		const hasAll = requiredRoles.every(r => this.roles.includes(r));
+		return hasAll ? true : this.router.parseUrl('/not-found');
 	}
 }
