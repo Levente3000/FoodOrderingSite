@@ -1,0 +1,1424 @@
+{
+    "models": [
+        {
+            "name": "FoodOrderingSite-efsm_trans",
+            "id": "fd14a403-77e2-4e92-8f34-0ec8910b6c85-efsm_trans",
+            "hasReset": false,
+            "hasReliableReset": false,
+            "modelGenerationMethod": "CUSTOM",
+            "conversionMethod": [
+                "EFSM_TO_FSM"
+            ],
+            "generator": "random(edge_coverage(100))",
+            "vertices": [
+                {
+                    "id": "n0",
+                    "name": "v_CartPage;isPromoCodeActivated=false;productInCart=0",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n1",
+                    "name": "v_CartPage;isPromoCodeActivated=false;productInCart=1",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n2",
+                    "name": "v_CartPage;isPromoCodeActivated=true;productInCart=0",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n3",
+                    "name": "v_CartPage;isPromoCodeActivated=true;productInCart=1",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n4",
+                    "name": "v_HomePage;isPromoCodeActivated=false;productInCart=0",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n5",
+                    "name": "v_HomePage;isPromoCodeActivated=false;productInCart=1",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n6",
+                    "name": "v_HomePage;isPromoCodeActivated=true;productInCart=0",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n7",
+                    "name": "v_HomePage;isPromoCodeActivated=true;productInCart=1",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "008f7390-4b68-48d0-82d9-cfd83d2cc408",
+                    "name": "v_LoginPage;isPromoCodeActivated=false;productInCart=0",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n8",
+                    "name": "v_LoginPage;isPromoCodeActivated=false;productInCart=1",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n9",
+                    "name": "v_LoginPage;isPromoCodeActivated=true;productInCart=0",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n10",
+                    "name": "v_LoginPage;isPromoCodeActivated=true;productInCart=1",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n11",
+                    "name": "v_ProductDetailsWindow;isPromoCodeActivated=false;productInCart=0",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n12",
+                    "name": "v_ProductDetailsWindow;isPromoCodeActivated=false;productInCart=1",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n13",
+                    "name": "v_ProductDetailsWindow;isPromoCodeActivated=true;productInCart=0",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n14",
+                    "name": "v_ProductDetailsWindow;isPromoCodeActivated=true;productInCart=1",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n15",
+                    "name": "v_ProfilePage;isPromoCodeActivated=false;productInCart=0",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n16",
+                    "name": "v_ProfilePage;isPromoCodeActivated=false;productInCart=1",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n17",
+                    "name": "v_ProfilePage;isPromoCodeActivated=true;productInCart=0",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n18",
+                    "name": "v_ProfilePage;isPromoCodeActivated=true;productInCart=1",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n19",
+                    "name": "v_RestaurantDetailPage;isPromoCodeActivated=false;productInCart=0",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n20",
+                    "name": "v_RestaurantDetailPage;isPromoCodeActivated=false;productInCart=1",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n21",
+                    "name": "v_RestaurantDetailPage;isPromoCodeActivated=true;productInCart=0",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n22",
+                    "name": "v_RestaurantDetailPage;isPromoCodeActivated=true;productInCart=1",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n23",
+                    "name": "v_RestaurantListPage;isPromoCodeActivated=false;productInCart=0",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n24",
+                    "name": "v_RestaurantListPage;isPromoCodeActivated=false;productInCart=1",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n25",
+                    "name": "v_RestaurantListPage;isPromoCodeActivated=true;productInCart=0",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "id": "n26",
+                    "name": "v_RestaurantListPage;isPromoCodeActivated=true;productInCart=1",
+                    "properties": {
+                        "x": 0.0,
+                        "y": 0.0
+                    }
+                }
+            ],
+            "edges": [
+                {
+                    "id": "e0",
+                    "name": "e0(e_RemovePromoCode)",
+                    "sourceVertexId": "n0",
+                    "targetVertexId": "n0",
+                    "input": "removePromoCode",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e1",
+                    "name": "e1(e_AddPromoCode)",
+                    "sourceVertexId": "n0",
+                    "targetVertexId": "n2",
+                    "input": "addPromoCode",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e2",
+                    "name": "e2(e_ClearProductsFromCart)",
+                    "sourceVertexId": "n0",
+                    "targetVertexId": "n0",
+                    "input": "clickClearCart",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e3",
+                    "name": "e3(e_RestaurantListPageClicked5)",
+                    "sourceVertexId": "n0",
+                    "targetVertexId": "n23",
+                    "input": "clickRestaurantListNav",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e4",
+                    "name": "e4(e_ProfilePageClicked5)",
+                    "sourceVertexId": "n0",
+                    "targetVertexId": "n15",
+                    "input": "clickProfilePageNav",
+                    "output": "profilePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e5",
+                    "name": "e5(e_HomePageClicked4)",
+                    "sourceVertexId": "n0",
+                    "targetVertexId": "n4",
+                    "input": "clickHomeNav",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e6",
+                    "name": "e6(e_PlaceOrder)",
+                    "sourceVertexId": "n1",
+                    "targetVertexId": "n4",
+                    "input": "clickPlaceOrder",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e7",
+                    "name": "e7(e_RemovePromoCode)",
+                    "sourceVertexId": "n1",
+                    "targetVertexId": "n1",
+                    "input": "removePromoCode",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e8",
+                    "name": "e8(e_AddPromoCode)",
+                    "sourceVertexId": "n1",
+                    "targetVertexId": "n3",
+                    "input": "addPromoCode",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e9",
+                    "name": "e9(e_ClearProductsFromCart)",
+                    "sourceVertexId": "n1",
+                    "targetVertexId": "n0",
+                    "input": "clickClearCart",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e10",
+                    "name": "e10(e_RemoveProductFromCart)",
+                    "sourceVertexId": "n1",
+                    "targetVertexId": "n0",
+                    "input": "clickRemoveProduct",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e11",
+                    "name": "e11(e_RestaurantListPageClicked5)",
+                    "sourceVertexId": "n1",
+                    "targetVertexId": "n24",
+                    "input": "clickRestaurantListNav",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e12",
+                    "name": "e12(e_ProfilePageClicked5)",
+                    "sourceVertexId": "n1",
+                    "targetVertexId": "n16",
+                    "input": "clickProfilePageNav",
+                    "output": "profilePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e13",
+                    "name": "e13(e_HomePageClicked4)",
+                    "sourceVertexId": "n1",
+                    "targetVertexId": "n5",
+                    "input": "clickHomeNav",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e14",
+                    "name": "e14(e_RemovePromoCode)",
+                    "sourceVertexId": "n2",
+                    "targetVertexId": "n0",
+                    "input": "removePromoCode",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e15",
+                    "name": "e15(e_AddPromoCode)",
+                    "sourceVertexId": "n2",
+                    "targetVertexId": "n2",
+                    "input": "addPromoCode",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e16",
+                    "name": "e16(e_ClearProductsFromCart)",
+                    "sourceVertexId": "n2",
+                    "targetVertexId": "n2",
+                    "input": "clickClearCart",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e17",
+                    "name": "e17(e_RestaurantListPageClicked5)",
+                    "sourceVertexId": "n2",
+                    "targetVertexId": "n25",
+                    "input": "clickRestaurantListNav",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e18",
+                    "name": "e18(e_ProfilePageClicked5)",
+                    "sourceVertexId": "n2",
+                    "targetVertexId": "n17",
+                    "input": "clickProfilePageNav",
+                    "output": "profilePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e19",
+                    "name": "e19(e_HomePageClicked4)",
+                    "sourceVertexId": "n2",
+                    "targetVertexId": "n6",
+                    "input": "clickHomeNav",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e20",
+                    "name": "e20(e_PlaceOrder)",
+                    "sourceVertexId": "n3",
+                    "targetVertexId": "n4",
+                    "input": "clickPlaceOrder",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e21",
+                    "name": "e21(e_RemovePromoCode)",
+                    "sourceVertexId": "n3",
+                    "targetVertexId": "n1",
+                    "input": "removePromoCode",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e22",
+                    "name": "e22(e_AddPromoCode)",
+                    "sourceVertexId": "n3",
+                    "targetVertexId": "n3",
+                    "input": "addPromoCode",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e23",
+                    "name": "e23(e_ClearProductsFromCart)",
+                    "sourceVertexId": "n3",
+                    "targetVertexId": "n2",
+                    "input": "clickClearCart",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e24",
+                    "name": "e24(e_RemoveProductFromCart)",
+                    "sourceVertexId": "n3",
+                    "targetVertexId": "n2",
+                    "input": "clickRemoveProduct",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e25",
+                    "name": "e25(e_RestaurantListPageClicked5)",
+                    "sourceVertexId": "n3",
+                    "targetVertexId": "n26",
+                    "input": "clickRestaurantListNav",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e26",
+                    "name": "e26(e_ProfilePageClicked5)",
+                    "sourceVertexId": "n3",
+                    "targetVertexId": "n18",
+                    "input": "clickProfilePageNav",
+                    "output": "profilePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e27",
+                    "name": "e27(e_HomePageClicked4)",
+                    "sourceVertexId": "n3",
+                    "targetVertexId": "n7",
+                    "input": "clickHomeNav",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e28",
+                    "name": "e28(e_Logout)",
+                    "sourceVertexId": "n4",
+                    "targetVertexId": "008f7390-4b68-48d0-82d9-cfd83d2cc408",
+                    "input": "clickLogOut",
+                    "output": "loginPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e29",
+                    "name": "e29(e_CartPageClicked1)",
+                    "sourceVertexId": "n4",
+                    "targetVertexId": "n0",
+                    "input": "clickCartNav",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e30",
+                    "name": "e30(e_RestaurantListPageClicked1)",
+                    "sourceVertexId": "n4",
+                    "targetVertexId": "n23",
+                    "input": "clickRestaurantListNav",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e31",
+                    "name": "e31(e_ProfilePageClicked1)",
+                    "sourceVertexId": "n4",
+                    "targetVertexId": "n15",
+                    "input": "clickProfilePageNav",
+                    "output": "profilePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e32",
+                    "name": "e32(e_RestaurantClicked1)",
+                    "sourceVertexId": "n4",
+                    "targetVertexId": "n19",
+                    "input": "clickARestaurant",
+                    "output": "restaurantDetailPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e33",
+                    "name": "e33(e_Logout)",
+                    "sourceVertexId": "n5",
+                    "targetVertexId": "n8",
+                    "input": "clickLogOut",
+                    "output": "loginPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e34",
+                    "name": "e34(e_CartPageClicked1)",
+                    "sourceVertexId": "n5",
+                    "targetVertexId": "n1",
+                    "input": "clickCartNav",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e35",
+                    "name": "e35(e_RestaurantListPageClicked1)",
+                    "sourceVertexId": "n5",
+                    "targetVertexId": "n24",
+                    "input": "clickRestaurantListNav",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e36",
+                    "name": "e36(e_ProfilePageClicked1)",
+                    "sourceVertexId": "n5",
+                    "targetVertexId": "n16",
+                    "input": "clickProfilePageNav",
+                    "output": "profilePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e37",
+                    "name": "e37(e_RestaurantClicked1)",
+                    "sourceVertexId": "n5",
+                    "targetVertexId": "n20",
+                    "input": "clickARestaurant",
+                    "output": "restaurantDetailPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e38",
+                    "name": "e38(e_Logout)",
+                    "sourceVertexId": "n6",
+                    "targetVertexId": "n9",
+                    "input": "clickLogOut",
+                    "output": "loginPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e39",
+                    "name": "e39(e_CartPageClicked1)",
+                    "sourceVertexId": "n6",
+                    "targetVertexId": "n2",
+                    "input": "clickCartNav",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e40",
+                    "name": "e40(e_RestaurantListPageClicked1)",
+                    "sourceVertexId": "n6",
+                    "targetVertexId": "n25",
+                    "input": "clickRestaurantListNav",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e41",
+                    "name": "e41(e_ProfilePageClicked1)",
+                    "sourceVertexId": "n6",
+                    "targetVertexId": "n17",
+                    "input": "clickProfilePageNav",
+                    "output": "profilePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e42",
+                    "name": "e42(e_RestaurantClicked1)",
+                    "sourceVertexId": "n6",
+                    "targetVertexId": "n21",
+                    "input": "clickARestaurant",
+                    "output": "restaurantDetailPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e43",
+                    "name": "e43(e_Logout)",
+                    "sourceVertexId": "n7",
+                    "targetVertexId": "n10",
+                    "input": "clickLogOut",
+                    "output": "loginPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e44",
+                    "name": "e44(e_CartPageClicked1)",
+                    "sourceVertexId": "n7",
+                    "targetVertexId": "n3",
+                    "input": "clickCartNav",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e45",
+                    "name": "e45(e_RestaurantListPageClicked1)",
+                    "sourceVertexId": "n7",
+                    "targetVertexId": "n26",
+                    "input": "clickRestaurantListNav",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e46",
+                    "name": "e46(e_ProfilePageClicked1)",
+                    "sourceVertexId": "n7",
+                    "targetVertexId": "n18",
+                    "input": "clickProfilePageNav",
+                    "output": "profilePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e47",
+                    "name": "e47(e_RestaurantClicked1)",
+                    "sourceVertexId": "n7",
+                    "targetVertexId": "n22",
+                    "input": "clickARestaurant",
+                    "output": "restaurantDetailPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e48",
+                    "name": "e48(e_IncorrectCredentials)",
+                    "sourceVertexId": "008f7390-4b68-48d0-82d9-cfd83d2cc408",
+                    "targetVertexId": "008f7390-4b68-48d0-82d9-cfd83d2cc408",
+                    "input": "loginWithIncorrectCredentials",
+                    "output": "loginPageFromLogin",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e49",
+                    "name": "e49(e_SuccessfulLogin)",
+                    "sourceVertexId": "008f7390-4b68-48d0-82d9-cfd83d2cc408",
+                    "targetVertexId": "n4",
+                    "input": "loginWithCorrectCredentials",
+                    "output": "homePageFromLogin",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e50",
+                    "name": "e50(e_IncorrectCredentials)",
+                    "sourceVertexId": "n8",
+                    "targetVertexId": "n8",
+                    "input": "loginWithIncorrectCredentials",
+                    "output": "loginPageFromLogin",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e51",
+                    "name": "e51(e_SuccessfulLogin)",
+                    "sourceVertexId": "n8",
+                    "targetVertexId": "n5",
+                    "input": "loginWithCorrectCredentials",
+                    "output": "homePageFromLogin",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e52",
+                    "name": "e52(e_IncorrectCredentials)",
+                    "sourceVertexId": "n9",
+                    "targetVertexId": "n9",
+                    "input": "loginWithIncorrectCredentials",
+                    "output": "loginPageFromLogin",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e53",
+                    "name": "e53(e_SuccessfulLogin)",
+                    "sourceVertexId": "n9",
+                    "targetVertexId": "n6",
+                    "input": "loginWithCorrectCredentials",
+                    "output": "homePageFromLogin",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e54",
+                    "name": "e54(e_IncorrectCredentials)",
+                    "sourceVertexId": "n10",
+                    "targetVertexId": "n10",
+                    "input": "loginWithIncorrectCredentials",
+                    "output": "loginPageFromLogin",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e55",
+                    "name": "e55(e_SuccessfulLogin)",
+                    "sourceVertexId": "n10",
+                    "targetVertexId": "n7",
+                    "input": "loginWithCorrectCredentials",
+                    "output": "homePageFromLogin",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e56",
+                    "name": "e56(e_AddProductToCart)",
+                    "sourceVertexId": "n11",
+                    "targetVertexId": "n20",
+                    "input": "clickAddProduct",
+                    "output": "restaurantDetailPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e57",
+                    "name": "e57(e_CloseProductDetailWindow)",
+                    "sourceVertexId": "n11",
+                    "targetVertexId": "n19",
+                    "input": "clickCancel",
+                    "output": "restaurantDetailPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e58",
+                    "name": "e58(e_CloseProductDetailWindow)",
+                    "sourceVertexId": "n12",
+                    "targetVertexId": "n20",
+                    "input": "clickCancel",
+                    "output": "restaurantDetailPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e59",
+                    "name": "e59(e_AddProductToCart)",
+                    "sourceVertexId": "n13",
+                    "targetVertexId": "n22",
+                    "input": "clickAddProduct",
+                    "output": "restaurantDetailPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e60",
+                    "name": "e60(e_CloseProductDetailWindow)",
+                    "sourceVertexId": "n13",
+                    "targetVertexId": "n21",
+                    "input": "clickCancel",
+                    "output": "restaurantDetailPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e61",
+                    "name": "e61(e_CloseProductDetailWindow)",
+                    "sourceVertexId": "n14",
+                    "targetVertexId": "n22",
+                    "input": "clickCancel",
+                    "output": "restaurantDetailPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e62",
+                    "name": "e62(e_UpdateProfile)",
+                    "sourceVertexId": "n15",
+                    "targetVertexId": "n0",
+                    "input": "clickUpdateProfileToCart",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e63",
+                    "name": "e63(e_CartPageClicked3)",
+                    "sourceVertexId": "n15",
+                    "targetVertexId": "n0",
+                    "input": "clickCartNav",
+                    "output": "CartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e64",
+                    "name": "e64(e_RestaurantListPageClicked3)",
+                    "sourceVertexId": "n15",
+                    "targetVertexId": "n23",
+                    "input": "clickRestaurantListNav",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e65",
+                    "name": "e65(e_HomePageClicked2)",
+                    "sourceVertexId": "n15",
+                    "targetVertexId": "n4",
+                    "input": "clickHomeNav",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e66",
+                    "name": "e66(e_UpdateProfile)",
+                    "sourceVertexId": "n16",
+                    "targetVertexId": "n1",
+                    "input": "clickUpdateProfileToCart",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e67",
+                    "name": "e67(e_CartPageClicked3)",
+                    "sourceVertexId": "n16",
+                    "targetVertexId": "n1",
+                    "input": "clickCartNav",
+                    "output": "CartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e68",
+                    "name": "e68(e_RestaurantListPageClicked3)",
+                    "sourceVertexId": "n16",
+                    "targetVertexId": "n24",
+                    "input": "clickRestaurantListNav",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e69",
+                    "name": "e69(e_HomePageClicked2)",
+                    "sourceVertexId": "n16",
+                    "targetVertexId": "n5",
+                    "input": "clickHomeNav",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e70",
+                    "name": "e70(e_UpdateProfile)",
+                    "sourceVertexId": "n17",
+                    "targetVertexId": "n2",
+                    "input": "clickUpdateProfileToCart",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e71",
+                    "name": "e71(e_CartPageClicked3)",
+                    "sourceVertexId": "n17",
+                    "targetVertexId": "n2",
+                    "input": "clickCartNav",
+                    "output": "CartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e72",
+                    "name": "e72(e_RestaurantListPageClicked3)",
+                    "sourceVertexId": "n17",
+                    "targetVertexId": "n25",
+                    "input": "clickRestaurantListNav",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e73",
+                    "name": "e73(e_HomePageClicked2)",
+                    "sourceVertexId": "n17",
+                    "targetVertexId": "n6",
+                    "input": "clickHomeNav",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e74",
+                    "name": "e74(e_UpdateProfile)",
+                    "sourceVertexId": "n18",
+                    "targetVertexId": "n3",
+                    "input": "clickUpdateProfileToCart",
+                    "output": "cartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e75",
+                    "name": "e75(e_CartPageClicked3)",
+                    "sourceVertexId": "n18",
+                    "targetVertexId": "n3",
+                    "input": "clickCartNav",
+                    "output": "CartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e76",
+                    "name": "e76(e_RestaurantListPageClicked3)",
+                    "sourceVertexId": "n18",
+                    "targetVertexId": "n26",
+                    "input": "clickRestaurantListNav",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e77",
+                    "name": "e77(e_HomePageClicked2)",
+                    "sourceVertexId": "n18",
+                    "targetVertexId": "n7",
+                    "input": "clickHomeNav",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e78",
+                    "name": "e78(e_OpenProductDetail)",
+                    "sourceVertexId": "n19",
+                    "targetVertexId": "n11",
+                    "input": "clickProduct",
+                    "output": "productDetailsWindow",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e79",
+                    "name": "e79(e_CartPageClicked5)",
+                    "sourceVertexId": "n19",
+                    "targetVertexId": "n0",
+                    "input": "clickCartNav",
+                    "output": "CartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e80",
+                    "name": "e80(e_ProfilePageClicked2)",
+                    "sourceVertexId": "n19",
+                    "targetVertexId": "n15",
+                    "input": "clickProfilePageNav",
+                    "output": "profilePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e81",
+                    "name": "e81(e_RestaurantListPageClicked2)",
+                    "sourceVertexId": "n19",
+                    "targetVertexId": "n23",
+                    "input": "clickRestaurantListNav",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e82",
+                    "name": "e82(e_HomePageClicked1)",
+                    "sourceVertexId": "n19",
+                    "targetVertexId": "n4",
+                    "input": "clickHomeNavFromLogin",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e83",
+                    "name": "e83(e_OpenProductDetail)",
+                    "sourceVertexId": "n20",
+                    "targetVertexId": "n12",
+                    "input": "clickProduct",
+                    "output": "productDetailsWindow",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e84",
+                    "name": "e84(e_CartPageClicked5)",
+                    "sourceVertexId": "n20",
+                    "targetVertexId": "n1",
+                    "input": "clickCartNav",
+                    "output": "CartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e85",
+                    "name": "e85(e_ProfilePageClicked2)",
+                    "sourceVertexId": "n20",
+                    "targetVertexId": "n16",
+                    "input": "clickProfilePageNav",
+                    "output": "profilePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e86",
+                    "name": "e86(e_RestaurantListPageClicked2)",
+                    "sourceVertexId": "n20",
+                    "targetVertexId": "n24",
+                    "input": "clickRestaurantListNav",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e87",
+                    "name": "e87(e_HomePageClicked1)",
+                    "sourceVertexId": "n20",
+                    "targetVertexId": "n5",
+                    "input": "clickHomeNavFromLogin",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e88",
+                    "name": "e88(e_OpenProductDetail)",
+                    "sourceVertexId": "n21",
+                    "targetVertexId": "n13",
+                    "input": "clickProduct",
+                    "output": "productDetailsWindow",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e89",
+                    "name": "e89(e_CartPageClicked5)",
+                    "sourceVertexId": "n21",
+                    "targetVertexId": "n2",
+                    "input": "clickCartNav",
+                    "output": "CartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e90",
+                    "name": "e90(e_ProfilePageClicked2)",
+                    "sourceVertexId": "n21",
+                    "targetVertexId": "n17",
+                    "input": "clickProfilePageNav",
+                    "output": "profilePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e91",
+                    "name": "e91(e_RestaurantListPageClicked2)",
+                    "sourceVertexId": "n21",
+                    "targetVertexId": "n25",
+                    "input": "clickRestaurantListNav",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e92",
+                    "name": "e92(e_HomePageClicked1)",
+                    "sourceVertexId": "n21",
+                    "targetVertexId": "n6",
+                    "input": "clickHomeNavFromLogin",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e93",
+                    "name": "e93(e_OpenProductDetail)",
+                    "sourceVertexId": "n22",
+                    "targetVertexId": "n14",
+                    "input": "clickProduct",
+                    "output": "productDetailsWindow",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e94",
+                    "name": "e94(e_CartPageClicked5)",
+                    "sourceVertexId": "n22",
+                    "targetVertexId": "n3",
+                    "input": "clickCartNav",
+                    "output": "CartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e95",
+                    "name": "e95(e_ProfilePageClicked2)",
+                    "sourceVertexId": "n22",
+                    "targetVertexId": "n18",
+                    "input": "clickProfilePageNav",
+                    "output": "profilePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e96",
+                    "name": "e96(e_RestaurantListPageClicked2)",
+                    "sourceVertexId": "n22",
+                    "targetVertexId": "n26",
+                    "input": "clickRestaurantListNav",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e97",
+                    "name": "e97(e_HomePageClicked1)",
+                    "sourceVertexId": "n22",
+                    "targetVertexId": "n7",
+                    "input": "clickHomeNavFromLogin",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e98",
+                    "name": "e98(e_FilterRestaurants)",
+                    "sourceVertexId": "n23",
+                    "targetVertexId": "n23",
+                    "input": "filterRestaurants",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e99",
+                    "name": "e99(e_CartPageClicked4)",
+                    "sourceVertexId": "n23",
+                    "targetVertexId": "n0",
+                    "input": "clickCartNav",
+                    "output": "CartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e100",
+                    "name": "e100(e_ProfilePageClicked3)",
+                    "sourceVertexId": "n23",
+                    "targetVertexId": "n15",
+                    "input": "clickProfilePageNav",
+                    "output": "profilePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e101",
+                    "name": "e101(e_RestaurantClicked3)",
+                    "sourceVertexId": "n23",
+                    "targetVertexId": "n19",
+                    "input": "clickARestaurant",
+                    "output": "restaurantDetailPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e102",
+                    "name": "e102(e_HomePageClicked3)",
+                    "sourceVertexId": "n23",
+                    "targetVertexId": "n4",
+                    "input": "clickHomeNav",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e103",
+                    "name": "e103(e_FilterRestaurants)",
+                    "sourceVertexId": "n24",
+                    "targetVertexId": "n24",
+                    "input": "filterRestaurants",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e104",
+                    "name": "e104(e_CartPageClicked4)",
+                    "sourceVertexId": "n24",
+                    "targetVertexId": "n1",
+                    "input": "clickCartNav",
+                    "output": "CartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e105",
+                    "name": "e105(e_ProfilePageClicked3)",
+                    "sourceVertexId": "n24",
+                    "targetVertexId": "n16",
+                    "input": "clickProfilePageNav",
+                    "output": "profilePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e106",
+                    "name": "e106(e_RestaurantClicked3)",
+                    "sourceVertexId": "n24",
+                    "targetVertexId": "n20",
+                    "input": "clickARestaurant",
+                    "output": "restaurantDetailPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e107",
+                    "name": "e107(e_HomePageClicked3)",
+                    "sourceVertexId": "n24",
+                    "targetVertexId": "n5",
+                    "input": "clickHomeNav",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e108",
+                    "name": "e108(e_FilterRestaurants)",
+                    "sourceVertexId": "n25",
+                    "targetVertexId": "n25",
+                    "input": "filterRestaurants",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e109",
+                    "name": "e109(e_CartPageClicked4)",
+                    "sourceVertexId": "n25",
+                    "targetVertexId": "n2",
+                    "input": "clickCartNav",
+                    "output": "CartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e110",
+                    "name": "e110(e_ProfilePageClicked3)",
+                    "sourceVertexId": "n25",
+                    "targetVertexId": "n17",
+                    "input": "clickProfilePageNav",
+                    "output": "profilePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e111",
+                    "name": "e111(e_RestaurantClicked3)",
+                    "sourceVertexId": "n25",
+                    "targetVertexId": "n21",
+                    "input": "clickARestaurant",
+                    "output": "restaurantDetailPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e112",
+                    "name": "e112(e_HomePageClicked3)",
+                    "sourceVertexId": "n25",
+                    "targetVertexId": "n6",
+                    "input": "clickHomeNav",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e113",
+                    "name": "e113(e_FilterRestaurants)",
+                    "sourceVertexId": "n26",
+                    "targetVertexId": "n26",
+                    "input": "filterRestaurants",
+                    "output": "restaurantListPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e114",
+                    "name": "e114(e_CartPageClicked4)",
+                    "sourceVertexId": "n26",
+                    "targetVertexId": "n3",
+                    "input": "clickCartNav",
+                    "output": "CartPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e115",
+                    "name": "e115(e_ProfilePageClicked3)",
+                    "sourceVertexId": "n26",
+                    "targetVertexId": "n18",
+                    "input": "clickProfilePageNav",
+                    "output": "profilePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e116",
+                    "name": "e116(e_RestaurantClicked3)",
+                    "sourceVertexId": "n26",
+                    "targetVertexId": "n22",
+                    "input": "clickARestaurant",
+                    "output": "restaurantDetailPage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                },
+                {
+                    "id": "e117",
+                    "name": "e117(e_HomePageClicked3)",
+                    "sourceVertexId": "n26",
+                    "targetVertexId": "n7",
+                    "input": "clickHomeNav",
+                    "output": "homePage",
+                    "weight": "1.000000",
+                    "cost": "1.000000"
+                }
+            ],
+            "startElementId": "008f7390-4b68-48d0-82d9-cfd83d2cc408"
+        }
+    ]
+}

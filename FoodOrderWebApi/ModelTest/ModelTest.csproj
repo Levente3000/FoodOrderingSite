@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="coverlet.collector" Version="6.0.0"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
+        <PackageReference Include="Microsoft.Playwright.NUnit" Version="1.27.1"/>
+        <PackageReference Include="NUnit" Version="3.14.0"/>
+        <PackageReference Include="NUnit.Analyzers" Version="3.9.0"/>
+        <PackageReference Include="NUnit3TestAdapter" Version="4.5.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Using Include="Microsoft.Playwright.NUnit"/>
+        <Using Include="NUnit.Framework"/>
+        <Using Include="System.Text.RegularExpressions"/>
+        <Using Include="System.Threading.Tasks"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\FoodOrderWebApi.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="bin\Debug\net8.0\FoodOrderingSite-efsm_trans-AS-test_suite.json"/>
+        <None Include="bin\Debug\net8.0\FoodOrderingSite-efsm_trans-ATS0-test_suite.json"/>
+        <None Include="bin\Debug\net8.0\FoodOrderingSite-efsm_trans-NS-1-test_suite.json"/>
+        <None Include="bin\Debug\net8.0\FoodOrderingSite-efsm_trans-R-state-100-test_suite.json"/>
+        <None Include="bin\Debug\net8.0\FoodOrderingSite-efsm_trans-R-state-80-test_suite.json"/>
+        <None Include="bin\Debug\net8.0\FoodOrderingSite-efsm_trans-R-transition-100-test_suite.json"/>
+        <None Include="bin\Debug\net8.0\FoodOrderingSite-efsm_trans-R-transition-80-test_suite.json"/>
+        <None Include="bin\Debug\net8.0\FoodOrderingSite-efsm_trans-TT-test_suite.json"/>
+        <None Include="bin\Debug\net8.0\TestSuites\FoodOrderingSite-efsm_trans-AS-test_suite.json"/>
+        <None Include="bin\Debug\net8.0\TestSuites\FoodOrderingSite-efsm_trans-ATS0-test_suite.json"/>
+        <None Include="bin\Debug\net8.0\TestSuites\FoodOrderingSite-efsm_trans-NS-1-test_suite.json"/>
+        <None Include="bin\Debug\net8.0\TestSuites\FoodOrderingSite-efsm_trans-R-state-100-test_suite.json"/>
+        <None Include="bin\Debug\net8.0\TestSuites\FoodOrderingSite-efsm_trans-R-state-80-test_suite.json"/>
+        <None Include="bin\Debug\net8.0\TestSuites\FoodOrderingSite-efsm_trans-R-transition-100-test_suite.json"/>
+        <None Include="bin\Debug\net8.0\TestSuites\FoodOrderingSite-efsm_trans-R-transition-80-test_suite.json"/>
+        <None Include="bin\Debug\net8.0\TestSuites\FoodOrderingSite-efsm_trans-TT-test_suite.json"/>
+    </ItemGroup>
+</Project>
